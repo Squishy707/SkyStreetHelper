@@ -1,0 +1,9 @@
+fastapi>=0.100.0
+uvicorn>=0.23.0
+requests>=2.31.0
+openpyxl>=3.1.2
+numpy>=1.24.0
+pydantic>=2.0.0
+
+# Optional: only required when packaging standalone .exe via `python build_exe.py`
+# pyinstaller>=6.0.0

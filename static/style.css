@@ -1,0 +1,1453 @@
+/* SkyBlock Gemstone Flipper Pro Theme */
+:root {
+  --bg-primary: #0b0d13;
+  --bg-secondary: #131722;
+  --bg-card: #181d2c;
+  --bg-card-hover: #1f2537;
+  --border-color: #262e45;
+  --border-glow: rgba(56, 189, 248, 0.25);
+  
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --accent-gold: #f59e0b;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-ruby: #ef4444;
+  --accent-purple: #a855f7;
+  --accent-blue: #3b82f6;
+
+  --badge-bg: #22293d;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
+}
+
+/* Card Glow Effect */
+.gem-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gem-card:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(99, 102, 241, 0.15);
+}
+
+/* CN Badges */
+.cn-badge-5 {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.cn-badge-3 {
+  background: rgba(6, 182, 212, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+.cn-badge-2 {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+.cn-badge-1 {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.cn-badge-0 {
+  background: rgba(100, 116, 139, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+}
+.cn-badge--1 {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+  background-color: rgba(5, 7, 12, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+/* Range Sliders with Centered Ticks */
+input[type="range"] {
+  accent-color: #6366f1;
+  position: relative;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.slider-track-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.slider-center-ticks {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.slider-tick-pip {
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 2.5px;
+  height: 10px;
+  background-color: rgba(148, 163, 184, 0.45);
+  border-radius: 1px;
+  transition: all 0.15s ease;
+}
+
+.slider-tick-pip.highlight {
+  background-color: #fbbf24;
+  height: 12px;
+  width: 3px;
+  box-shadow: 0 0 5px rgba(251, 191, 36, 0.5);
+}
+
+.slider-tick-pip.emerald {
+  background-color: #34d399;
+  height: 12px;
+  width: 3px;
+  box-shadow: 0 0 5px rgba(52, 211, 153, 0.5);
+}
+
+.slider-tick-pip.active {
+  background-color: #818cf8;
+  height: 12px;
+  width: 3px;
+  box-shadow: 0 0 5px rgba(129, 140, 248, 0.6);
+}
+
+/* Animations */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s infinite ease-in-out;
+}
+
+/* =========================================================
+   Filter Section Strict Grid Math (Unit Width 'b' & Gap 'g')
+   Row 1: 4 Quality Cards, each Width = 3*b + 2*g, Height = b
+   Row 2: Spacer = 3*b + 2*g, Btn1 = 3*b + 2*g, Btn2 = 6*b + 5*g
+   Row 3: 12 Gemstone Buttons, each Size = b x b
+   Row 4: Btn1(2b+g), Btn2(b), Btn3(2b+g), Btn4(2b+g), Btn5(4b+3g), Btn6(b)
+   Total width of all 4 rows: 12*b + 11*g (Pixel-perfect vertical alignment)
+   ========================================================= */
+:root {
+  --filter-size-b: 64px; /* 宝石按钮基准尺寸 b (长宽相等) */
+  --filter-gap-g: 8px;  /* 相邻卡片间距 g */
+  /* Compatibility aliases */
+  --filter-unit-a: var(--filter-size-b);
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --filter-size-b: 58px;
+    --filter-gap-g: 6px;
+    --filter-unit-a: var(--filter-size-b);
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --filter-size-b: 50px;
+    --filter-gap-g: 6px;
+    --filter-unit-a: var(--filter-size-b);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --filter-size-b: 44px;
+    --filter-gap-g: 4px;
+    --filter-unit-a: var(--filter-size-b);
+  }
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: var(--filter-gap-g);
+  width: max-content;
+}
+
+/* Row 1: 4 Quality Cards (Width = 3*b + 2*g, Height = b) */
+.quality-btn-3b-2g,
+.filter-card-3a {
+  width: calc(var(--filter-size-b) * 3 + var(--filter-gap-g) * 2);
+  height: var(--filter-size-b);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Row 2: Spacer under T1 Rough (Width = 3*b + 2*g) */
+.quality-spacer-3b-2g,
+.filter-spacer-3a {
+  width: calc(var(--filter-size-b) * 3 + var(--filter-gap-g) * 2);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* Row 2: Button under T2 Flawed (Width = 3*b + 2*g) */
+.filter-btn-3b-2g,
+.filter-btn-3a {
+  width: calc(var(--filter-size-b) * 3 + var(--filter-gap-g) * 2);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Row 2: Button under T3 + T4 (Width = 6*b + 5*g) */
+.filter-btn-6b-5g,
+.filter-btn-6a-g {
+  width: calc(var(--filter-size-b) * 6 + var(--filter-gap-g) * 5);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Row 3: Gemstone Square Buttons (b x b) */
+.gem-btn-b,
+.gem-btn-a {
+  width: var(--filter-size-b);
+  height: var(--filter-size-b);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Row 4: Multi-select Buttons Aligned with Gemstones */
+.filter-btn-2b-g,
+.filter-btn-2a-g {
+  width: calc(var(--filter-size-b) * 2 + var(--filter-gap-g));
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.filter-btn-b,
+.filter-btn-1a {
+  width: var(--filter-size-b);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.filter-btn-4b-3g,
+.filter-btn-4a-3g {
+  width: calc(var(--filter-size-b) * 4 + var(--filter-gap-g) * 3);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* T1 Rough Long-Press Indicator */
+.t1-longpress-wrapper {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+.t1-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #ef4444, #f59e0b);
+  transition: width 0s linear;
+}
+.t1-pressing .t1-progress-bar {
+  width: 100%;
+  transition: width 1s linear;
+}
+
+/* Slider Scale Label Font Size: Exactly 14px */
+.slider-scale-label {
+  font-size: 14px !important;
+}
+
+/* =========================================================
+   LIGHT MODE (白色界面 - 默认模式)
+   ========================================================= */
+html:not(.dark) {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --badge-bg: #e2e8f0;
+}
+
+html:not(.dark) body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html:not(.dark) header {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .bg-\[\#0b0d13\] {
+  background-color: #f8fafc !important;
+}
+
+html:not(.dark) .bg-\[\#111520\] {
+  background-color: #f1f5f9 !important;
+}
+
+html:not(.dark) .bg-\[\#111520\]\/80 {
+  background-color: rgba(241, 245, 249, 0.85) !important;
+}
+
+html:not(.dark) .bg-\[\#181d2c\] {
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+html:not(.dark) .border-\[\#262e45\] {
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .text-white {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .text-slate-100 {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .text-slate-200 {
+  color: #1e293b !important;
+}
+
+html:not(.dark) .text-slate-300 {
+  color: #334155 !important;
+}
+
+html:not(.dark) .text-slate-400 {
+  color: #64748b !important;
+}
+
+html:not(.dark) .gem-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+html:not(.dark) .gem-card:hover {
+  border-color: #6366f1 !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.12) !important;
+}
+
+html:not(.dark) #masterTable thead {
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+}
+
+html:not(.dark) #masterTable tr {
+  border-bottom-color: #e2e8f0 !important;
+}
+
+html:not(.dark) #masterTable tr:hover {
+  background-color: #f8fafc !important;
+}
+
+/* Form Inputs & Controls in Light Mode */
+html:not(.dark) input[type="text"],
+html:not(.dark) input[type="number"],
+html:not(.dark) input:not([type="range"]):not([type="checkbox"]),
+html:not(.dark) textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+html:not(.dark) input:focus,
+html:not(.dark) textarea:focus {
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.18) !important;
+  outline: none !important;
+}
+
+/* Inline transparent input controls (Bazaar Tax, Selling Mode, Auto Refresh) */
+html:not(.dark) #taxInput {
+  background-color: transparent !important;
+  color: #0f172a !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+html:not(.dark) #taxInput:focus {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+html:not(.dark) select.bg-transparent,
+html:not(.dark) #autoRefreshSelect,
+html:not(.dark) #sellingModeSelect {
+  background-color: transparent !important;
+  color: #0f172a !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Explicit styling for select dropdown options in both modes */
+html:not(.dark) select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+select option {
+  background-color: #181d2c;
+  color: #f1f5f9;
+}
+
+/* Search Box specific styling */
+html:not(.dark) #tableSearchInput {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+html:not(.dark) #tableSearchInput::placeholder {
+  color: #94a3b8 !important;
+}
+html:not(.dark) .fa-search {
+  color: #94a3b8 !important;
+}
+
+/* Disabled Input (IGN Sync) */
+html:not(.dark) #ignInput:disabled {
+  background-color: #f1f5f9 !important;
+  color: #94a3b8 !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Flip Simulator Modal Input Elements */
+html:not(.dark) #simModal input,
+html:not(.dark) #simModal select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+html:not(.dark) #simModal input::placeholder {
+  color: #94a3b8 !important;
+}
+html:not(.dark) #simModal select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Filter Cards & Buttons in Light Mode */
+html:not(.dark) .quality-btn-3b-2g,
+html:not(.dark) .filter-card-3a {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) .quality-btn-3b-2g:hover,
+html:not(.dark) .filter-card-3a:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  border-color: #cbd5e1 !important;
+}
+html:not(.dark) .quality-btn-3b-2g .text-slate-300,
+html:not(.dark) .filter-card-3a .text-slate-300 {
+  color: #0f172a !important;
+}
+html:not(.dark) .quality-btn-3b-2g .text-white,
+html:not(.dark) .filter-card-3a .text-white {
+  color: #0f172a !important;
+}
+html:not(.dark) .quality-btn-3b-2g .bg-slate-800,
+html:not(.dark) .filter-card-3a .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+html:not(.dark) .quality-btn-3b-2g .border-slate-600,
+html:not(.dark) .filter-card-3a .border-slate-600 {
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) .filter-btn-3b-2g,
+html:not(.dark) .filter-btn-3a {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #047857 !important;
+}
+html:not(.dark) .filter-btn-3b-2g:hover,
+html:not(.dark) .filter-btn-3a:hover {
+  background-color: #d1fae5 !important;
+  border-color: #10b981 !important;
+}
+
+html:not(.dark) .filter-btn-6b-5g,
+html:not(.dark) .filter-btn-6a-g {
+  background-color: #eef2ff !important;
+  border-color: #c7d2fe !important;
+  color: #4338ca !important;
+}
+html:not(.dark) .filter-btn-6b-5g:hover,
+html:not(.dark) .filter-btn-6a-g:hover {
+  background-color: #e0e7ff !important;
+  border-color: #6366f1 !important;
+}
+
+html:not(.dark) .gem-btn-b,
+html:not(.dark) .gem-btn-a {
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+}
+
+html:not(.dark) #gemPresetButtonsRow button,
+html:not(.dark) .filter-btn-2b-g,
+html:not(.dark) .filter-btn-2a-g,
+html:not(.dark) .filter-btn-b,
+html:not(.dark) .filter-btn-1a,
+html:not(.dark) .filter-btn-4b-3g,
+html:not(.dark) .filter-btn-4a-3g {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) #gemPresetButtonsRow button:hover,
+html:not(.dark) .filter-btn-2b-g:hover,
+html:not(.dark) .filter-btn-2a-g:hover,
+html:not(.dark) .filter-btn-b:hover,
+html:not(.dark) .filter-btn-1a:hover,
+html:not(.dark) .filter-btn-4b-3g:hover,
+html:not(.dark) .filter-btn-4a-3g:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  background-color: #f8fafc !important;
+}
+
+html:not(.dark) .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+  color: #64748b !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .bg-black\/30 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Range Sliders in Light Mode */
+html:not(.dark) input[type="range"] {
+  background-color: #cbd5e1 !important;
+}
+html:not(.dark) .slider-tick-pip {
+  background-color: rgba(100, 116, 139, 0.4);
+}
+
+/* Table Accent Colors Contrast Optimization */
+html:not(.dark) #masterTable td.bg-amber-500\/10 {
+  background-color: rgba(245, 158, 11, 0.08) !important;
+  color: #b45309 !important;
+  border-color: rgba(245, 158, 11, 0.25) !important;
+}
+html:not(.dark) #masterTable td.bg-amber-500\/5 {
+  background-color: rgba(245, 158, 11, 0.04) !important;
+  color: #b45309 !important;
+  border-color: rgba(245, 158, 11, 0.15) !important;
+}
+html:not(.dark) .text-amber-300 {
+  color: #b45309 !important;
+}
+html:not(.dark) .text-amber-400 {
+  color: #b45309 !important;
+}
+html:not(.dark) .text-cyan-300 {
+  color: #0e7490 !important;
+}
+html:not(.dark) .text-purple-300 {
+  color: #7e22ce !important;
+}
+html:not(.dark) .text-rose-300 {
+  color: #be123c !important;
+}
+html:not(.dark) .text-red-300 {
+  color: #b91c1c !important;
+}
+html:not(.dark) .text-emerald-300 {
+  color: #047857 !important;
+}
+html:not(.dark) .text-indigo-300 {
+  color: #4338ca !important;
+}
+
+html:not(.dark) .divide-\[\#262e45\]\/60 > * {
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .modal-backdrop {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+}
+
+/* =========================================================
+   LIGHT MODE: Banners, Event Panels, Schedule Drawer & Tips
+   ========================================================= */
+
+/* 1. Global Anomaly Alert Banner (跌破保底价/白送套利) in Light Mode */
+html:not(.dark) #anomalyAlertBanner {
+  background: linear-gradient(to right, #fff1f2, #ffe4e6, #fff1f2) !important;
+  border-color: #fda4af !important;
+  box-shadow: 0 4px 16px rgba(244, 63, 94, 0.12) !important;
+}
+html:not(.dark) #anomalyAlertBanner #anomalyBannerTitle {
+  color: #9f1239 !important;
+}
+html:not(.dark) #anomalyAlertBanner #anomalyBannerDesc {
+  color: #334155 !important;
+}
+html:not(.dark) #anomalyAlertBanner .bg-rose-500\/20 {
+  background-color: #ffe4e6 !important;
+  color: #e11d48 !important;
+  border-color: #fda4af !important;
+}
+html:not(.dark) #anomalyAlertBanner .bg-rose-500\/30 {
+  background-color: #fecdd3 !important;
+  color: #9f1239 !important;
+  border-color: #fda4af !important;
+}
+
+/* 2. Upcoming Mining Fiesta & Macro Intelligence Panel (预计下一场采矿节) in Light Mode */
+html:not(.dark) #eventIntelligencePanel {
+  background: #ffffff !important;
+  border-color: #e0e7ff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) #eventIntelligencePanel #fiestaMainTitle {
+  color: #0f172a !important;
+}
+html:not(.dark) #eventIntelligencePanel #fiestaAdminSummary {
+  color: #64748b !important;
+}
+html:not(.dark) #eventIntelligencePanel #fiestaCountdownDesc {
+  color: #334155 !important;
+}
+html:not(.dark) #eventIntelligencePanel .bg-amber-500\/20 {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+  border-color: #fde68a !important;
+}
+html:not(.dark) #eventIntelligencePanel #fiestaAdviceText {
+  color: #64748b !important;
+}
+html:not(.dark) #eventIntelligencePanel button {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+html:not(.dark) #eventIntelligencePanel button:hover {
+  background-color: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
+/* 2026 Mining Fiesta Rules Tooltip Popover */
+.fiesta-tooltip-wrapper {
+  position: relative;
+}
+
+.fiesta-popover-box {
+  background-color: #111625;
+  border: 1px solid rgba(99, 102, 241, 0.45);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.fiesta-tooltip-wrapper:hover .fiesta-popover-box,
+.fiesta-tooltip-wrapper:focus-within .fiesta-popover-box {
+  display: block;
+  animation: fadeInPopover 0.15s ease-out;
+}
+
+@keyframes fadeInPopover {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Light Mode Support for Fiesta Tooltip Popover */
+html:not(.dark) .fiesta-popover-box {
+  background-color: #ffffff !important;
+  border-color: #c7d2fe !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08) !important;
+  color: #1e293b !important;
+}
+
+html:not(.dark) .fiesta-popover-box span.text-slate-300 {
+  color: #334155 !important;
+}
+
+html:not(.dark) .fiesta-popover-box span.text-slate-400 {
+  color: #64748b !important;
+}
+
+html:not(.dark) .fiesta-popover-box .border-indigo-500\/30,
+html:not(.dark) .fiesta-popover-box .border-slate-700\/50 {
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .fiesta-rule-badge-btn {
+  background-color: #eef2ff !important;
+  border-color: #c7d2fe !important;
+  color: #4338ca !important;
+}
+
+html:not(.dark) .fiesta-rule-badge-btn:hover {
+  background-color: #e0e7ff !important;
+  border-color: #a5b4fc !important;
+  color: #3730a3 !important;
+}
+
+/* 3. Mining Fiesta Schedule Details Collapsible Drawer in Light Mode */
+html:not(.dark) #fiestaScheduleDetails {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #fiestaScheduleDetails .bg-amber-500\/10 {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+  color: #92400e !important;
+}
+html:not(.dark) #fiestaScheduleDetails .bg-amber-500\/10 p.text-slate-300 {
+  color: #78350f !important;
+}
+html:not(.dark) #fiestaScheduleDetails .border-b {
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #fiestaScheduleDetails span {
+  color: #334155;
+}
+html:not(.dark) #fiestaScheduleDetails .text-slate-400 {
+  color: #64748b !important;
+}
+html:not(.dark) #fiestaWindowsList > div {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) #fiestaWindowsList .text-white {
+  color: #0f172a !important;
+}
+html:not(.dark) #fiestaWindowsList .text-slate-300 {
+  color: #334155 !important;
+}
+html:not(.dark) #fiestaWindowsList .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* 4. Pro-Tips Collapsible Card in Light Mode */
+html:not(.dark) .bg-indigo-950\/30 {
+  background-color: #ffffff !important;
+  border-color: #e0e7ff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) .text-indigo-300 {
+  color: #4338ca !important;
+}
+html:not(.dark) #tipsContent {
+  color: #334155 !important;
+}
+html:not(.dark) #tipsContent .text-slate-300 {
+  color: #334155 !important;
+}
+html:not(.dark) #tipsContent strong {
+  color: #0f172a !important;
+}
+
+/* 5. CN Badges in Light Mode */
+html:not(.dark) .cn-badge-5 {
+  background: #ecfdf5 !important;
+  color: #047857 !important;
+  border-color: #a7f3d0 !important;
+}
+html:not(.dark) .cn-badge-3 {
+  background: #f0f9ff !important;
+  color: #0369a1 !important;
+  border-color: #bae6fd !important;
+}
+html:not(.dark) .cn-badge-2 {
+  background: #faf5ff !important;
+  color: #7e22ce !important;
+  border-color: #e9d5ff !important;
+}
+html:not(.dark) .cn-badge-1 {
+  background: #fffbeb !important;
+  color: #b45309 !important;
+  border-color: #fde68a !important;
+}
+html:not(.dark) .cn-badge-0 {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+html:not(.dark) .cn-badge--1 {
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+  border-color: #fecaca !important;
+}
+
+/* 6. Chart Tabs in Light Mode */
+html:not(.dark) .chart-tab {
+  color: #64748b !important;
+}
+html:not(.dark) .chart-tab:hover {
+  color: #0f172a !important;
+}
+html:not(.dark) .chart-tab.active {
+  background-color: #eef2ff !important;
+  color: #4338ca !important;
+  border-color: #c7d2fe !important;
+}
+
+/* 7. Commodity Price Preview Modal in Light Mode */
+html:not(.dark) #previewModal .bg-\[\#181d2c\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+}
+html:not(.dark) #previewModal .bg-\[\#111520\] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #previewModal .bg-\[\#111520\]\/50 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #previewModal thead.bg-\[\#111520\] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+html:not(.dark) #previewModal thead th {
+  color: #475569 !important;
+}
+html:not(.dark) #previewModal tbody tr {
+  border-color: #f1f5f9 !important;
+}
+html:not(.dark) #previewModal tbody tr:hover {
+  background-color: #f1f5f9 !important;
+}
+html:not(.dark) #previewModal .text-white {
+  color: #0f172a !important;
+}
+html:not(.dark) #previewModal .text-slate-200 {
+  color: #1e293b !important;
+}
+html:not(.dark) #previewModal .text-slate-300 {
+  color: #334155 !important;
+}
+html:not(.dark) #previewModal .text-slate-400 {
+  color: #64748b !important;
+}
+html:not(.dark) #previewModal .border-\[\#262e45\] {
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #previewSearchInput {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html:not(.dark) #previewSearchInput:focus {
+  border-color: #6366f1 !important;
+}
+
+/* 8. ROI Column & In-cell Data Bar in Light Mode */
+html:not(.dark) td.bg-emerald-500\/5,
+html:not(.dark) th.bg-emerald-500\/10 {
+  background-color: #f0fdf4 !important;
+  border-color: #bbf7d0 !important;
+}
+html:not(.dark) .roi-data-bar.from-emerald-500\/30 {
+  background: linear-gradient(to right, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.35)) !important;
+  border-right-color: #059669 !important;
+}
+html:not(.dark) .roi-data-bar.from-emerald-500\/40 {
+  background: linear-gradient(to right, rgba(16, 185, 129, 0.3), rgba(20, 184, 166, 0.4)) !important;
+  border-right-color: #047857 !important;
+}
+html:not(.dark) td.bg-emerald-500\/5 span.text-emerald-300,
+html:not(.dark) td.bg-emerald-500\/5 span.text-emerald-200 {
+  color: #047857 !important;
+}
+
+/* =========================================================
+   LIGHT MODE: Popups, Toasts, Refresh Button, Sliders, Modals
+   ========================================================= */
+
+/* 9. Top Toast Card in Light Mode (including rough 1s warning) */
+html:not(.dark) .top-toast-card {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08) !important;
+}
+html:not(.dark) .top-toast-card span {
+  color: #0f172a !important;
+}
+html:not(.dark) .top-toast-card.border-rose-500\/50 {
+  background-color: #fff1f2 !important;
+  border-color: #fca5a5 !important;
+  color: #9f1239 !important;
+  box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.15) !important;
+}
+html:not(.dark) .top-toast-card.border-rose-500\/50 span {
+  color: #9f1239 !important;
+}
+html:not(.dark) .top-toast-card.border-emerald-500\/50 {
+  background-color: #f0fdf4 !important;
+  border-color: #86efac !important;
+  color: #065f46 !important;
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.15) !important;
+}
+html:not(.dark) .top-toast-card.border-emerald-500\/50 span {
+  color: #065f46 !important;
+}
+
+/* 10. Header Buttons & Refresh Controls in Light Mode */
+html:not(.dark) #refreshControlsContainer,
+html:not(.dark) .flex.items-center.bg-\[\#181d2c\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+html:not(.dark) #manualRefreshBtn {
+  background-color: #eef2ff !important;
+  color: #4338ca !important;
+  border: 1px solid #c7d2fe !important;
+  box-shadow: 0 1px 2px rgba(99, 102, 241, 0.12) !important;
+}
+html:not(.dark) #manualRefreshBtn:hover {
+  background-color: #e0e7ff !important;
+  color: #3730a3 !important;
+  border-color: #818cf8 !important;
+}
+html:not(.dark) #manualRefreshBtn i,
+html:not(.dark) #manualRefreshBtn span {
+  color: #4338ca !important;
+}
+html:not(.dark) #manualRefreshBtn:hover i,
+html:not(.dark) #manualRefreshBtn:hover span {
+  color: #3730a3 !important;
+}
+
+html:not(.dark) #themeToggleBtn,
+html:not(.dark) #envelopeBtn,
+html:not(.dark) #previewItemsBtn,
+html:not(.dark) #mayorBadge {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) #themeToggleBtn:hover,
+html:not(.dark) #envelopeBtn:hover,
+html:not(.dark) #previewItemsBtn:hover,
+html:not(.dark) #mayorBadge:hover {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html:not(.dark) #themeToggleBtn span,
+html:not(.dark) #previewItemsBtn span {
+  color: #334155 !important;
+}
+
+/* 11. Quantity Slider Panel & Sliders in Light Mode */
+html:not(.dark) #quantitySliderPanel {
+  background-color: #ffffff !important;
+  border-color: #e0e7ff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) #quantitySliderPanel .text-white {
+  color: #0f172a !important;
+}
+html:not(.dark) #quantitySliderPanel .border-b,
+html:not(.dark) #quantitySliderPanel .border-t {
+  border-color: #e2e8f0 !important;
+}
+
+/* 3-tier selector (Flawed / Fine / Rough) */
+html:not(.dark) #quantitySliderPanel .bg-\[\#111520\] {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #batchTier_FLAWED,
+html:not(.dark) #batchTier_FINE,
+html:not(.dark) #batchTier_ROUGH {
+  color: #475569 !important;
+}
+html:not(.dark) #batchTier_FLAWED.bg-indigo-600,
+html:not(.dark) #batchTier_FINE.bg-indigo-600,
+html:not(.dark) #batchTier_ROUGH.bg-indigo-600 {
+  background-color: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+/* Live Badges inside slider */
+html:not(.dark) #badgeQtyCount {
+  background-color: #fffbeb !important;
+  color: #b45309 !important;
+  border-color: #fde68a !important;
+}
+html:not(.dark) #badgeFlawlessCount {
+  background-color: #eef2ff !important;
+  color: #4338ca !important;
+  border-color: #c7d2fe !important;
+}
+html:not(.dark) #badgePerfectCount {
+  background-color: #ecfdf5 !important;
+  color: #047857 !important;
+  border-color: #a7f3d0 !important;
+}
+html:not(.dark) #badgeOrdersCount {
+  background-color: #f8fafc !important;
+  color: #334155 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Slider Track & Thumb */
+html:not(.dark) #quantityRangeSlider {
+  background-color: #e2e8f0 !important;
+}
+html:not(.dark) .slider-tick-pip {
+  background-color: #94a3b8 !important;
+}
+html:not(.dark) .slider-tick-pip.highlight {
+  background-color: #d97706 !important;
+  box-shadow: 0 0 4px rgba(217, 119, 6, 0.5) !important;
+}
+html:not(.dark) .slider-tick-pip.active {
+  background-color: #4f46e5 !important;
+  box-shadow: 0 0 4px rgba(79, 70, 229, 0.5) !important;
+}
+
+/* Scale Labels below slider */
+html:not(.dark) #quantitySnapPills .text-white {
+  color: #0f172a !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+html:not(.dark) #quantitySnapPills .text-slate-400 {
+  color: #475569 !important;
+}
+html:not(.dark) #quantitySnapPills .text-amber-300,
+html:not(.dark) #quantitySnapPills .text-amber-400 {
+  color: #b45309 !important;
+  text-shadow: none !important;
+}
+
+/* 3 Quick Buttons (1炉, 1满单, 7炉) */
+html:not(.dark) #quantityQuickButtons button {
+  background-color: #ffffff !important;
+  border-color: #c7d2fe !important;
+  color: #4338ca !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) #quantityQuickButtons button:hover {
+  background-color: #eef2ff !important;
+  border-color: #818cf8 !important;
+  color: #3730a3 !important;
+}
+
+/* 12. Simulation Modal (simModal) & Shutdown Modal in Light Mode */
+html:not(.dark) #simModal .bg-\[\#181d2c\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+html:not(.dark) #simModal .bg-\[\#111520\] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #simModal .border-\[\#262e45\] {
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #simModal .border-\[\#262e45\]\/80 {
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #simModal .text-white {
+  color: #0f172a !important;
+}
+html:not(.dark) #simModal .text-slate-400 {
+  color: #64748b !important;
+}
+html:not(.dark) #simModal .text-slate-200 {
+  color: #1e293b !important;
+}
+html:not(.dark) #simModal .text-slate-300 {
+  color: #334155 !important;
+}
+html:not(.dark) #simModal input {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+html:not(.dark) #shutdownModalOverlay .bg-\[\#181d2c\] {
+  background-color: #ffffff !important;
+  border-color: #fca5a5 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+html:not(.dark) #shutdownModalOverlay .text-white {
+  color: #0f172a !important;
+}
+html:not(.dark) #shutdownModalOverlay .text-slate-300 {
+  color: #334155 !important;
+}
+html:not(.dark) #shutdownModalOverlay .border-\[\#262e45\]\/80 {
+  border-color: #f1f5f9 !important;
+}
+
+/* 13. Master Table Action Buttons in Light Mode */
+html:not(.dark) #masterTable button.bg-indigo-600\/30 {
+  background-color: #eef2ff !important;
+  color: #4338ca !important;
+  border: 1px solid #c7d2fe !important;
+}
+html:not(.dark) #masterTable button.bg-indigo-600\/30:hover {
+  background-color: #e0e7ff !important;
+  color: #3730a3 !important;
+}
+html:not(.dark) #masterTable a.bg-\[\#111520\],
+html:not(.dark) #masterTable button.bg-\[\#111520\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #64748b !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) #masterTable a.bg-\[\#111520\]:hover,
+html:not(.dark) #masterTable button.bg-\[\#111520\]:hover {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* ==========================================================================
+   14. SHARDTRACKER COMPONENT STYLING & HIGHLIGHTS
+   ========================================================================== */
+.shard-col-cost-max {
+  background-color: rgba(16, 185, 129, 0.06);
+}
+.shard-col-coins-xp {
+  background-color: rgba(99, 102, 241, 0.06);
+}
+
+.shard-badge-max {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.25));
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  color: #fbbf24;
+}
+
+.shard-rarity-c { color: #94a3b8; border-color: rgba(148, 163, 184, 0.3); background: rgba(148, 163, 184, 0.1); }
+.shard-rarity-u { color: #34d399; border-color: rgba(52, 211, 153, 0.3); background: rgba(52, 211, 153, 0.1); }
+.shard-rarity-r { color: #38bdf8; border-color: rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.1); }
+.shard-rarity-e { color: #c084fc; border-color: rgba(192, 132, 252, 0.3); background: rgba(192, 132, 252, 0.1); }
+.shard-rarity-l { color: #fbbf24; border-color: rgba(251, 191, 36, 0.3); background: rgba(251, 191, 36, 0.1); }
+
+/* Shard Names Rarity Colors */
+.shard-name-c { color: #cbd5e1; }
+.shard-name-u { color: #34d399; }
+.shard-name-r { color: #38bdf8; }
+.shard-name-e { color: #c084fc; }
+.shard-name-l { color: #fbbf24; }
+
+html:not(.dark) .shard-name-c { color: #475569 !important; }
+html:not(.dark) .shard-name-u { color: #059669 !important; }
+html:not(.dark) .shard-name-r { color: #0284c7 !important; }
+html:not(.dark) .shard-name-e { color: #9333ea !important; }
+html:not(.dark) .shard-name-l { color: #d97706 !important; }
+
+/* Shard Effect Single-line Collapsible Text Box */
+.shard-effect-box {
+  transition: all 0.2s ease;
+  padding: 2px 4px;
+  border-radius: 6px;
+  user-select: text;
+}
+.shard-effect-box:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+html:not(.dark) .shard-effect-box:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.shard-effect-text.collapsed {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.shard-effect-text.expanded {
+  display: block;
+  white-space: normal;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+/* How to hunt tooltip badge (Icon-only square button) */
+.how-to-hunt-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  font-size: 10px;
+  cursor: help;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+.how-to-hunt-badge:hover {
+  border-color: rgba(245, 158, 11, 0.6);
+  color: #fbbf24;
+  background-color: rgba(245, 158, 11, 0.15);
+}
+html:not(.dark) .how-to-hunt-badge {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+html:not(.dark) .how-to-hunt-badge:hover {
+  border-color: #d97706;
+  color: #b45309;
+  background-color: #fef3c7;
+}
+
+/* In-Cell Price Comparison Data Bars */
+.shard-cell-bar-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+.shard-cell-bar-bg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 4px;
+  pointer-events: none;
+  transition: width 0.3s ease;
+}
+
+/* Volume Conditional Heat Gradient */
+.vol-heat-high {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.22), rgba(16, 185, 129, 0.05));
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #6ee7b7;
+}
+.vol-heat-med {
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.20), rgba(245, 158, 11, 0.05));
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fcd34d;
+}
+.vol-heat-low {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.18), rgba(239, 68, 68, 0.05));
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fda4af;
+}
+
+html:not(.dark) .vol-heat-high {
+  background: linear-gradient(90deg, #ecfdf5, #f0fdf4) !important;
+  border-color: #a7f3d0 !important;
+  color: #065f46 !important;
+}
+html:not(.dark) .vol-heat-med {
+  background: linear-gradient(90deg, #fffbeb, #fefce8) !important;
+  border-color: #fde68a !important;
+  color: #92400e !important;
+}
+html:not(.dark) .vol-heat-low {
+  background: linear-gradient(90deg, #fff1f2, #ffe4e6) !important;
+  border-color: #fecdd3 !important;
+  color: #9f1239 !important;
+}
+
+/* Card 4 Buy Order Highlight in Light Mode */
+html:not(.dark) #shardCardBo {
+  background: linear-gradient(135deg, #ecfdf5, #ffffff) !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15) !important;
+}
+html:not(.dark) #shardCardBo .text-emerald-300 {
+  color: #047857 !important;
+}
+html:not(.dark) #shardCardBo .text-emerald-400\/80 {
+  color: #059669 !important;
+}
+
+/* Compact Table Row Styling */
+.shard-table-compact td {
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+.shard-table-compact tr {
+  height: 30px !important;
+}
+
+/* Shard Tracker in Light Mode */
+html:not(.dark) #shardTrackerView section {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) #shardTrackerView .bg-\[\#181d2c\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+html:not(.dark) #shardTrackerView .bg-\[\#111520\] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+html:not(.dark) #shardTrackerView thead {
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+html:not(.dark) #shardTrackerView tbody tr {
+  border-color: #f1f5f9 !important;
+  color: #1e293b !important;
+}
+html:not(.dark) #shardTrackerView tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+html:not(.dark) #shardTrackerView input,
+html:not(.dark) #shardTrackerView select {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html:not(.dark) #shardTrackerView .text-white {
+  color: #0f172a !important;
+}
+html:not(.dark) #shardTrackerView .text-slate-300 {
+  color: #334155 !important;
+}
+html:not(.dark) #shardTrackerView .text-slate-400 {
+  color: #64748b !important;
+}
+html:not(.dark) #shardTrackerView .shard-col-cost-max {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+}
+html:not(.dark) #shardTrackerView .shard-col-coins-xp {
+  background-color: rgba(99, 102, 241, 0.08) !important;
+}
+html:not(.dark) #tabShardTrackerBtn.inactive,
+html:not(.dark) #tabGemFlipperBtn.inactive,
+html:not(.dark) #tabGreenhouseBtn.inactive {
+  background-color: #ffffff !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Greenhouse Tracker Light Mode Overrides */
+html:not(.dark) #greenhouseTrackerView section,
+html:not(.dark) #greenhouseTrackerView .bg-\[\#181d2c\],
+html:not(.dark) #greenhouseTrackerView .bg-\[\#111520\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+html:not(.dark) #greenhouseTrackerView .bg-\[\#0b0d13\] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #greenhouseTrackerView thead {
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+html:not(.dark) #greenhouseTrackerView tbody tr {
+  border-color: #f1f5f9 !important;
+  color: #1e293b !important;
+}
+html:not(.dark) #greenhouseTrackerView tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+html:not(.dark) #greenhouseTrackerView input,
+html:not(.dark) #greenhouseTrackerView select {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html:not(.dark) #greenhouseTrackerView .text-white {
+  color: #0f172a !important;
+}
+html:not(.dark) #greenhouseTrackerView .text-slate-300 {
+  color: #334155 !important;
+}
+html:not(.dark) #greenhouseTrackerView .text-slate-400 {
+  color: #64748b !important;
+}
+
+
+
+
