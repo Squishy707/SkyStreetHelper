@@ -734,7 +734,7 @@
             <button onclick="presetQualityOnlyT2()" class="filter-btn-3b-2g filter-btn-3a py-1.5 px-3 rounded-lg bg-[#111520] hover:bg-emerald-600/20 border border-emerald-500/30 hover:border-emerald-500/60 text-emerald-300 text-xs font-semibold transition active:scale-95 text-center" title="只展示 T2 Flawed 微瑕">
               只展示T2 Flawed
             </button>
-            <button onclick="presetQualityT2toT4()" class="filter-btn-6b-5g filter-btn-6a-g py-1.5 px-3 rounded-lg bg-[#111520] hover:bg-indigo-600/20 border border-indigo-500/30 hover:border-indigo-500/60 text-indigo-300 text-xs font-semibold transition active:scale-95 text-center" title="展示 T2~T4 (微瑕/精致/无瑕)">
+            <button onclick="presetQualityT2toT4()" class="filter-btn-6b-5g filter-btn-6a-g py-1.5 px-3 rounded-lg bg-[#111520] hover:bg-indigo-600/20 border border-indigo-500/30 hover:border-indigo-500/60 text-indigo-300 text-xs font-semibold transition active:scale-95 text-center" title="展示 T2-T4 (微瑕/精致/无瑕)">
               展示T2-T4
             </button>
           </div>
@@ -851,7 +851,7 @@
                 <th class="py-3 px-3 text-right" title="全服日均成交量与所需挂单数">流动性 / 挂单数</th>
                 <th class="py-3 px-3 text-right cursor-pointer hover:text-white text-amber-300 font-bold text-[13px] bg-amber-500/5 border-x border-amber-500/20 shadow-inner" onclick="sortTable('revenue')" title="按产出的★完美宝石预估总价值排序">★完美宝石价值（当前） <i class="fa-solid fa-sort ml-1 text-amber-400"></i></th>
                 <th class="py-3 px-4 text-right cursor-pointer hover:text-white" onclick="sortTable('profit')">当前净利润 <i class="fa-solid fa-sort ml-1"></i></th>
-                <th class="py-3 px-3 text-right cursor-pointer hover:text-white text-emerald-400 font-bold bg-emerald-500/10 border-x border-emerald-500/30 shadow-inner" onclick="sortTable('roi')" title="点击按 ROI 盈利率排序 (内置 0%~200% 条件格式数据条)">ROI 盈利率 <i class="fa-solid fa-sort ml-1 text-emerald-400"></i></th>
+                <th class="py-3 px-3 text-right cursor-pointer hover:text-white text-emerald-400 font-bold bg-emerald-500/10 border-x border-emerald-500/30 shadow-inner" onclick="sortTable('roi')" title="点击按 ROI 盈利率排序 (内置 0%-200% 条件格式数据条)">ROI 盈利率 <i class="fa-solid fa-sort ml-1 text-emerald-400"></i></th>
                 <th class="py-3 px-3 text-right cursor-pointer hover:text-white" onclick="sortTable('hourly')">时薪 ($/h) <i class="fa-solid fa-sort ml-1"></i></th>
                 <th class="py-3 px-3 text-center">操作</th>
               </tr>
@@ -1407,7 +1407,7 @@
             <!-- Per Greenhouse Mutations Count -->
             <div class="space-y-1.5">
               <div class="flex items-center justify-between text-xs">
-                <label class="text-slate-300 font-medium">单温室突变数量 (0 ~ 100):</label>
+                <label class="text-slate-300 font-medium">单温室突变数量 (0 - 100):</label>
                 <span class="text-[10px] text-slate-400 font-mono">最大 100 格</span>
               </div>
               <div class="flex items-center space-x-2">

@@ -284,7 +284,7 @@
     "category": "Hunting",
     "level_range": "I->X",
     "base_rate": 0.0,
-    "attribute_effect": "Your Atomized Attributes are 2~20%stronger.",
+    "attribute_effect": "Your Atomized Attributes are 2~20% stronger.",
     "how_to_hunt": "* Fusing Gecko Shard with Forest Category and Rare or higher.",
     "total": 32
   },
@@ -794,7 +794,7 @@
     "category": "Combat",
     "level_range": "I->X",
     "base_rate": 345.0,
-    "attribute_effect": "Grants 3~30%more Damage against Humanoid mobs.",
+    "attribute_effect": "Grants 3~30% more Damage against Humanoid mobs.",
     "how_to_hunt": "* Catch with Pocket Black Hole. * Kill Wetwing while using Salts. * Place Hunting Traps in Murkwater Depths. (Underwater). * Place Hunting Traps in Murkwater Shallows. (Underwater).",
     "total": 64
   },
@@ -1882,7 +1882,7 @@
     "category": "Hunting",
     "level_range": "I->X",
     "base_rate": 0.0,
-    "attribute_effect": "Your Essence Attributes are 2~20%stronger.",
+    "attribute_effect": "Your Essence Attributes are 2~20% stronger.",
     "how_to_hunt": "* Fusing Iguana Shard with Forest Category and Rare or higher.",
     "total": 32
   },
@@ -2766,7 +2766,7 @@
     "category": "Hunting",
     "level_range": "I->X",
     "base_rate": 5.0,
-    "attribute_effect": "Your Resistance Attributes are 2~20%stronger.",
+    "attribute_effect": "Your Resistance Attributes are 2~20% stronger.",
     "how_to_hunt": "* Fusing Crocodile Shard with Combat Category and Rare or higher. * Kill Alligator while using Salts. * Place Hunting Traps in Backwater Bayou. (Underwater).",
     "total": 32
   },
@@ -3106,7 +3106,7 @@
     "category": "Global",
     "level_range": "I->X",
     "base_rate": 0.0,
-    "attribute_effect": "Your \"Visitor\" Attributes are 5~50%stronger.",
+    "attribute_effect": "Your \"Visitor\" Attributes are 5~50% stronger.",
     "how_to_hunt": "* Fusing Queen Bee Shard with Queen Ant Shard.",
     "total": 24
   },
@@ -3514,7 +3514,7 @@
     "category": "Combat",
     "level_range": "I->X",
     "base_rate": 72.0,
-    "attribute_effect": "Grants 3~30%more Damage against Frozen mobs.",
+    "attribute_effect": "Grants 3~30% more Damage against Frozen mobs.",
     "how_to_hunt": "* Catch a Polaris with a Critter Capsule in the Icy Biome of the Critter Safari. * Floor Drop in Icy Biome of the Critter Safari.",
     "total": 64
   },
@@ -3905,7 +3905,7 @@
     "category": "Combat",
     "level_range": "I->X",
     "base_rate": 100.0,
-    "attribute_effect": "Grants 3~30%more Damage against Airborne mobs.",
+    "attribute_effect": "Grants 3~30% more Damage against Airborne mobs.",
     "how_to_hunt": "* Catch a Bluebird with a Critter Capsule in the Forest Biome of the Critter Safari.",
     "total": 64
   },
@@ -4058,7 +4058,7 @@
     "category": "Combat",
     "level_range": "I->X",
     "base_rate": 37.5,
-    "attribute_effect": "Grants 3~30%more Damage against Arcane mobs.",
+    "attribute_effect": "Grants 3~30% more Damage against Arcane mobs.",
     "how_to_hunt": "* Catch a Duplico with a Critter Capsule in the Haunted Biome of the Critter Safari.",
     "total": 64
   },
@@ -4415,7 +4415,7 @@
     "category": "Combat",
     "level_range": "I->X",
     "base_rate": 70.0,
-    "attribute_effect": "Grants 3~30%more Damage against Subterranean mobs.",
+    "attribute_effect": "Grants 3~30% more Damage against Subterranean mobs.",
     "how_to_hunt": "* Catch a Driftling with a Critter Capsule in the Cavern Biome of the Critter Safari.",
     "total": 64
   },
@@ -4636,7 +4636,7 @@
     "category": "Combat",
     "level_range": "I->X",
     "base_rate": 180.0,
-    "attribute_effect": "Grants 3~30%more Damage against Animal mobs.",
+    "attribute_effect": "Grants 3~30% more Damage against Animal mobs.",
     "how_to_hunt": "* Kill Sprawl while using Salts. * Catch with a Fishing Net. * Catch with Lasso.",
     "total": 64
   },
@@ -4687,7 +4687,7 @@
     "category": "Combat",
     "level_range": "I->X",
     "base_rate": 64.0125,
-    "attribute_effect": "Grants 3~30%more Damage against Mythological mobs.",
+    "attribute_effect": "Grants 3~30% more Damage against Mythological mobs.",
     "how_to_hunt": "* Catch with Pocket Black Hole. * Kill Stalwart Minos Hunter, Venerable Minos Hunter, Blessed Minos Hunter, Empyrean Minos Hunter, Exalted Minos Hunter, or Minos Hunter while using Salts.",
     "total": 64
   },
@@ -4857,7 +4857,7 @@
     "category": "Combat",
     "level_range": "I->X",
     "base_rate": 24.0,
-    "attribute_effect": "Grants 3~30%more Damage against Construct mobs.",
+    "attribute_effect": "Grants 3~30% more Damage against Construct mobs.",
     "how_to_hunt": "* Catch with Pocket Black Hole.",
     "total": 64
   },
@@ -4874,7 +4874,7 @@
     "category": "Combat",
     "level_range": "I->X",
     "base_rate": 24.0,
-    "attribute_effect": "Grants 3~30%more Damage against Elusive mobs.",
+    "attribute_effect": "Grants 3~30% more Damage against Elusive mobs.",
     "how_to_hunt": "* Fusing Ant Shard with Elusive Family. * Kill Queen Ant while using Salts. * Place Hunting Traps in Ant's Cave.",
     "total": 64
   },
@@ -5367,7 +5367,7 @@
     "category": "Fishing",
     "level_range": "I->X",
     "base_rate": 12.0,
-    "attribute_effect": "Your \"Bucket\" Attributes are 2~20%stronger.",
+    "attribute_effect": "Your \"Bucket\" Attributes are 2~20% stronger.",
     "how_to_hunt": "* Catch with a Fishing Net. * Catch with Lasso. * Place Hunting Traps in Spring Depths. (Underwater). * Place Hunting Traps in Spring Shallows. (Underwater). * Place Hunting Traps in Torrhus Springs. (On Land).",
     "total": 48
   },

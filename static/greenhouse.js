@@ -189,7 +189,7 @@ function onSelectMutation(mutId) {
   recalculateGreenhouse();
 }
 
-// 5. 阶段选择 UI 动态展示 (Aloe 4~27, Jellybean 12~120, 普通)
+// 5. 阶段选择 UI 动态展示 (Aloe 4-27, Jellybean 12-120, 普通)
 function updateStageSelectorUI() {
   const container = document.getElementById('ghStageSelectorContainer');
   const stageDesc = document.getElementById('ghStageDesc');
@@ -201,7 +201,7 @@ function updateStageSelectorUI() {
     container.classList.remove('hidden');
     container.innerHTML = `
       <label class="block text-xs font-bold text-amber-300 mb-1 flex items-center justify-between">
-        <span><i class="fa-solid fa-layer-group mr-1"></i>All-in Aloe 生长阶段 (Stage 4 ~ 27)</span>
+        <span><i class="fa-solid fa-layer-group mr-1"></i>All-in Aloe 生长阶段 (Stage 4 - 27)</span>
         <span class="text-[10px] text-amber-400 font-mono font-normal">当前倍率: <strong class="text-white text-xs">${GREENHOUSE_STATE.customMultiplier}x</strong></span>
       </label>
       <select id="ghAloeStageSelect" class="w-full bg-[#111520] border border-amber-500/50 rounded-lg px-3 py-2 text-xs font-bold text-amber-200 outline-none focus:border-amber-400">
@@ -212,7 +212,7 @@ function updateStageSelectorUI() {
         }).join('')}
       </select>
       <p class="text-[10px] text-slate-400 mt-1.5 leading-relaxed">
-        <i class="fa-solid fa-circle-info text-amber-400 mr-1"></i>阶段越高掉落倍率呈指数暴增，但每级均有重置风险。玩家实测推荐：<strong>Stage 13~14</strong>期望最高，<strong>Stage 15</strong>为 86x。
+        <i class="fa-solid fa-circle-info text-amber-400 mr-1"></i>阶段越高掉落倍率呈指数暴增，但每级均有重置风险。玩家实测推荐：<strong>Stage 13-14</strong>期望最高，<strong>Stage 15</strong>为 86x。
       </p>
     `;
     const sel = document.getElementById('ghAloeStageSelect');
@@ -228,7 +228,7 @@ function updateStageSelectorUI() {
     container.classList.remove('hidden');
     container.innerHTML = `
       <label class="block text-xs font-bold text-purple-300 mb-1 flex items-center justify-between">
-        <span><i class="fa-solid fa-layer-group mr-1"></i>Magic Jellybean 阶段 (Stage 12 ~ 120)</span>
+        <span><i class="fa-solid fa-layer-group mr-1"></i>Magic Jellybean 阶段 (Stage 12 - 120)</span>
         <span class="text-[10px] text-purple-300 font-mono font-normal">当前倍率: <strong class="text-white text-xs">${GREENHOUSE_STATE.customMultiplier}x</strong></span>
       </label>
       <select id="ghJellybeanStageSelect" class="w-full bg-[#111520] border border-purple-500/50 rounded-lg px-3 py-2 text-xs font-bold text-purple-200 outline-none focus:border-purple-400">

@@ -27,7 +27,7 @@
 
 ### 🔮 工具二：BazaarShardTracker (Shard Price Tracking / 猎杀碎片集市与 Attribute 规划器)
 专为 October 2026 最新猎杀系统（Hunting & Shards）打造的养成与配装助手：
-- **325 种全 Shard 本地权威词典**：完整收录 C1~C37, U1~U74, R1~R90, E1~E89, L1~L35 全稀有度碎片，包含 Attribute 词条、用途类型（Combat, Mining, Fishing, Global 等）、Family 族群与精准获取途径（How to Hunt）。
+- **325 种全 Shard 本地权威词典**：完整收录 C1-C37, U1-U74, R1-R90, E1-E89, L1-L35 全稀有度碎片，包含 Attribute 词条、用途类型（Combat, Mining, Fishing, Global 等）、Family 族群与精准获取途径（How to Hunt）。
 - **玩家 Attribute 菜单进度一键同步**：输入 IGN 玩家 ID（与 Profile 存档名），直连 SkyShards API 同步当前已吸收（Syphoned）层数、剩余待吃数量与 SkyBlock XP 获取进度。
 - **集市最低全满成本量化**：分别计算 **Buy Order 挂单预购总价** 与 **Instant Buy 秒买总价**，提供清晰柱状图与热度指标。
 - **紧凑视图 / 详细视图双模切换**：
@@ -54,8 +54,8 @@
   - 温室座数（0, 1, 2, 3 座一键切换）；
   - 自动计算总突变数联动复选框：支持手动覆盖总数，自适应锁定与解锁。
 - **特殊阶段倍率精准匹配**：
-  - **All-in Aloe（全押芦荟）**：Stage 4 ~ 27 完整阶段与倍率表（默认 Stage 15 为 86x，实测单株约 893,850 颗各作物，自动折算完整 Aloe 与零头碎片）；
-  - **Magic Jellybean（魔力软糖豆）**：Stage 12 ~ 120 阶段倍率联动；
+  - **All-in Aloe（全押芦荟）**：Stage 4 - 27 完整阶段与倍率表（默认 Stage 15 为 86x，实测单株约 893,850 颗各作物，自动折算完整 Aloe 与零头碎片）；
+  - **Magic Jellybean（魔力软糖豆）**：Stage 12 - 120 阶段倍率联动；
 - **游戏背包 / Sack 层级折算展示**：
   - 自动将海量农作物掉落换算为单行表格（`T2 (Compacted/E-Block)`, `T1 (Enchanted)`, `T0 (Vanilla)`）与价值汇总；
 - **39 种全温室可种植突变排布规划与比价大表**：
@@ -165,8 +165,8 @@ SkyStreetHelper/
 - **新增**：全新第三大独立模块 **GreenhouseTracker（温室突变农业产出与收益精算器）** 上线；
 - **落地**：完整实现温室作物掉落、突变掉落、每日基础 NPC 现金流与集市收益严谨数学公式；
 - **新增**：Yield 总和配置器（温室升级、独特作物加成、突变 Buff/Debuff、免疫清零保护）；
-- **新增**：突变数量调节乘数（0, 1, 16, 46, 64, 72, 100 快速选择）与温室数量乘数（0~3座）自动联动计算；
-- **新增**：All-in Aloe（Stage 4~27，默认 Stage 15 为 86x）与 Magic Jellybean（Stage 12~120）多阶段倍率选择；
+- **新增**：突变数量调节乘数（0, 1, 16, 46, 64, 72, 100 快速选择）与温室数量乘数（0-3座）自动联动计算；
+- **新增**：All-in Aloe（Stage 4-27，默认 Stage 15 为 86x）与 Magic Jellybean（Stage 12-120）多阶段倍率选择；
 - **新增**：作物掉落 Agronomy Sack 层级折算；
 - **新增**：全温室突变作物规划与收益排布大表，支持一键载入精算；
 - **新增**：离线 master Excel 字典 `greenhouse_mutations.xlsx`，支持界面一键下载与自定义热重载。
@@ -176,7 +176,7 @@ SkyStreetHelper/
 - **优化**：针对 1080P 显示器重构 ShardTracker 表格排版，新增独立的 `Remaining` 列。
 - **更新**：更新矿业节（Mining Fiesta）24/7 常驻机制说明并修正历史时间预测组件。
 
-### alpha 0.3.0 ~ 0.3.2 (2026-10-11)
+### alpha 0.3.0 - 0.3.2 (2026-10-11)
 - **新增**：全新子工具 **BazaarShardTracker** 上线，接入 SkyShards API 与 325 种猎杀碎片本地字典。
 
 ---

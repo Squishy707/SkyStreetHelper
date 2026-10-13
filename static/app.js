@@ -400,7 +400,7 @@ function presetQualityT2toT4() {
   updateQualityFilterUI();
   renderTable();
   updateChart();
-  showTopToast('已筛选: 展示 T2~T4 (微瑕/精致/无瑕)', 'success');
+  showTopToast('已筛选: 展示 T2-T4 (微瑕/精致/无瑕)', 'success');
 }
 
 function updateQualityFilterUI() {
@@ -1341,7 +1341,7 @@ function renderFiestaPanel(eventContext) {
             ${w.ingame_date_str || `Year ${w.year}, ${w.season}`}
           </div>
           <div class="text-[11px] text-slate-400 font-mono line-through">
-            ${w.start_time_local} ~ ${w.end_time_local}
+            ${w.start_time_local} - ${w.end_time_local}
           </div>
           <div class="text-[10px] text-amber-500/80 font-medium">
             ⚠️ 2026更新：已由任期内 24/7 常驻取代
@@ -1792,8 +1792,8 @@ function renderTable() {
                 : `${item.dynamic_profit > 0 ? '+' : ''}${formatCompact(item.dynamic_profit)}`)}
         </td>
 
-        <!-- 9. ROI (内置 0%~200% 原地条件格式柱形图 + 金绿高亮列) -->
-        <td class="py-3 px-3 text-right font-mono font-semibold relative overflow-hidden bg-emerald-500/5 border-x border-emerald-500/20 shadow-inner group/roi" title="投资回报率 (ROI): ${roiPct.toFixed(2)}% (0%~200% 原地条件格式柱形图)">
+        <!-- 9. ROI (内置 0%-200% 原地条件格式柱形图 + 金绿高亮列) -->
+        <td class="py-3 px-3 text-right font-mono font-semibold relative overflow-hidden bg-emerald-500/5 border-x border-emerald-500/20 shadow-inner group/roi" title="投资回报率 (ROI): ${roiPct.toFixed(2)}% (0%-200% 原地条件格式柱形图)">
           ${(!item.has_buy_order || !item.perfect_has_offer) ? `
             <div class="relative z-10 flex items-center justify-end">
               <span class="text-slate-500 text-xs">--</span>
