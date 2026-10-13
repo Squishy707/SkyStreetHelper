@@ -84,7 +84,7 @@ class ShardService:
         self._load_database()
 
     def _load_database(self) -> None:
-        """Loads and normalizes the master shard dictionary from Excel or JSON."""
+        """Loads and normalizes the master shard dictionary from CSV or JSON."""
         self.shards_dict.clear()
         self.shards_list.clear()
 
@@ -93,80 +93,71 @@ class ShardService:
         else:
             base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-        loaded_from_excel = False
-        excel_path = os.path.join(base_dir, "backend", "data", "shard_dictionary.xlsx")
-        if not os.path.exists(excel_path):
-            excel_path = "backend/data/shard_dictionary.xlsx"
+        loaded_from_csv = False
+        csv_path = os.path.join(base_dir, "backend", "data", "shard_dictionary.csv")
+        if not os.path.exists(csv_path):
+            csv_path = "backend/data/shard_dictionary.csv"
 
-        if os.path.exists(excel_path):
+        if os.path.exists(csv_path):
             try:
-                import openpyxl
-                wb = openpyxl.load_workbook(excel_path, data_only=True)
-                if "Metadata" in wb.sheetnames:
-                    meta_sheet = wb["Metadata"]
-                    for row in meta_sheet.iter_rows(values_only=True):
-                        if row and len(row) >= 2 and row[0] and row[1]:
-                            prop_key = str(row[0]).strip().lower().replace(" ", "_")
-                            self.metadata[prop_key] = row[1]
-                
-                if "ShardDict" in wb.sheetnames:
-                    dict_sheet = wb["ShardDict"]
-                    rows = list(dict_sheet.iter_rows(values_only=True))
-                    if len(rows) > 1:
-                        for row in rows[1:]:
-                            if not row or not row[1]:
-                                continue
-                            tag = str(row[0] or "").strip()
-                            s_id = str(row[1] or "").strip()
-                            name = str(row[2] or "").strip()
-                            attr = str(row[3] or "").strip()
-                            rarity = str(row[4] or "C").strip().upper()
-                            rarity_lvl = int(row[5] or 1)
-                            total = int(row[6] or RARITY_MAX.get(rarity, 96))
-                            category = str(row[7] or "Combat").strip()
-                            family = str(row[8] or "Unknown").strip()
-                            acq = str(row[9] or "Direct").strip()
-                            lvl_range = str(row[10] or "I->X").strip()
-                            eff = clean_effect_text(row[11] or "")
-                            hunt = str(row[12] or "").strip()
+                import csv
+                with open(csv_path, "r", encoding="utf-8-sig", newline="") as f:
+                    rows = list(csv.reader(f))
+                if len(rows) > 1:
+                    for row in rows[1:]:
+                        if not row or len(row) < 13 or not row[1]:
+                            continue
+                        tag = str(row[0] or "").strip()
+                        s_id = str(row[1] or "").strip()
+                        name = str(row[2] or "").strip()
+                        attr = str(row[3] or "").strip()
+                        rarity = str(row[4] or "C").strip().upper()
+                        rarity_lvl = int(float(row[5] or 1))
+                        total = int(float(row[6] or RARITY_MAX.get(rarity, 96)))
+                        category = str(row[7] or "Combat").strip()
+                        family = str(row[8] or "Unknown").strip()
+                        acq = str(row[9] or "Direct").strip()
+                        lvl_range = str(row[10] or "I->X").strip()
+                        eff = clean_effect_text(row[11] or "")
+                        hunt = str(row[12] or "").strip()
 
-                            # Synergy tagging
-                            synergy = "Standard"
-                            if name in ECHO_SHARDS or "echo" in attr.lower():
-                                synergy = "Echo (Synergy Link)"
-                            elif name in ATOMIZED_SHARDS or "atomiz" in attr.lower():
-                                synergy = "Atomized (Powder Buff)"
-                            elif category == "Global":
-                                synergy = "Global (Universal Buff)"
-                            elif "elemental" in family.lower():
-                                synergy = "Elemental (Family Link)"
+                        # Synergy tagging
+                        synergy = "Standard"
+                        if name in ECHO_SHARDS or "echo" in attr.lower():
+                            synergy = "Echo (Synergy Link)"
+                        elif name in ATOMIZED_SHARDS or "atomiz" in attr.lower():
+                            synergy = "Atomized (Powder Buff)"
+                        elif category == "Global":
+                            synergy = "Global (Universal Buff)"
+                        elif "elemental" in family.lower():
+                            synergy = "Elemental (Family Link)"
 
-                            bz_id = BAZAAR_ID_ALIASES.get(s_id, s_id)
+                        bz_id = BAZAAR_ID_ALIASES.get(s_id, s_id)
 
-                            item = {
-                                "tag": tag,
-                                "shard_id": s_id,
-                                "shard_name": name,
-                                "attribute_name": attr,
-                                "rarity": rarity,
-                                "rarity_lvl": rarity_lvl,
-                                "total": total,
-                                "category": category,
-                                "shard_family": family,
-                                "acquisition": acq,
-                                "level_range": lvl_range,
-                                "attribute_effect": eff,
-                                "how_to_hunt": hunt,
-                                "synergy_tag": synergy,
-                                "bazaar_product_id": bz_id
-                            }
-                            self.shards_dict[s_id] = item
-                            self.shards_list.append(item)
-                        loaded_from_excel = True
+                        item = {
+                            "tag": tag,
+                            "shard_id": s_id,
+                            "shard_name": name,
+                            "attribute_name": attr,
+                            "rarity": rarity,
+                            "rarity_lvl": rarity_lvl,
+                            "total": total,
+                            "category": category,
+                            "shard_family": family,
+                            "acquisition": acq,
+                            "level_range": lvl_range,
+                            "attribute_effect": eff,
+                            "how_to_hunt": hunt,
+                            "synergy_tag": synergy,
+                            "bazaar_product_id": bz_id
+                        }
+                        self.shards_dict[s_id] = item
+                        self.shards_list.append(item)
+                    loaded_from_csv = True
             except Exception as e:
-                print(f"[Shard Service] [WARN] 读取本地 Excel 词典失败: {e}，正在回退至 JSON 格式。")
+                print(f"[Shard Service] [WARN] 读取本地 CSV 词典失败: {e}，正在回退至 JSON 格式。")
 
-        if not loaded_from_excel:
+        if not loaded_from_csv:
             raw_shards = []
             json_path = os.path.join(base_dir, "backend", "shard_data.json")
             target_json = json_path if os.path.exists(json_path) else self.data_path

@@ -31,17 +31,18 @@ env.bak/
 venv.bak/
 
 # ==============================================================================
-# Temporary Research / Scratch Drafts
-# (开发过程中的一次性中间测试文档、反编译文本与草稿目录)
+# Temporary Research / Scratch Drafts & All Excel Prototypes
+# (屏蔽所有 .xlsx/.xls 表格原型及内嵌 Power Query，仅允许 .csv 与 .json 数据文件入库)
 # ==============================================================================
+*.xlsx
+*.xls
+~$*.xlsx
+~$*.xls
 scratch/
 excel_dump.txt
 Gemflipper.txt
 GemflipperTarget.txt
-ShardCalculator20260817.xlsx
 ShardCommands.txt
-~$*.xlsx
-~$*.xls
 
 # ==============================================================================
 # Editor, IDE & Agent Artifacts

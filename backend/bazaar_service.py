@@ -4,13 +4,14 @@ Fetches, caches, and manages Hypixel Bazaar market data and election status.
 Includes resilient failover and rich, informative console logging.
 """
 
+import csv
+import os
 import sys
 import time
 import threading
 from datetime import datetime, timezone, timedelta
 from typing import Dict, Any, Optional
 import requests
-import openpyxl
 
 if hasattr(sys.stdout, 'reconfigure'):
     try:
@@ -23,68 +24,70 @@ HYPIXEL_BAZAAR_URL = "https://api.hypixel.net/v2/skyblock/bazaar"
 HYPIXEL_ELECTION_URL = "https://api.hypixel.net/v2/resources/skyblock/election"
 
 class BazaarService:
-    def __init__(self, excel_backup_path: str = "gemflipper.xlsx"):
-        self.excel_backup_path = excel_backup_path
+    def __init__(self, csv_backup_path: str = "backend/data/bazaar_fallback.csv"):
+        self.csv_backup_path = csv_backup_path
         self._cache: Dict[str, Any] = {}
         self._last_updated_ms: int = 0
         self._last_fetched_time: Optional[datetime] = None
         self._last_election_info: Dict[str, Any] = {}
         self._election_last_fetched: float = 0
         self._is_live: bool = False
-        self._data_source: str = "Local Excel Snapshot (Fallback)"
+        self._data_source: str = "Local CSV Snapshot (Fallback)"
         self._last_latency_s: float = 0.0
 
         self._last_local_fetch_ts: float = 0.0
         self._fetch_lock = threading.Lock()
         self._election_lock = threading.Lock()
 
-        # Load initial data from Excel as immediate baseline
-        self._load_from_excel()
+        # Load initial data from CSV as immediate baseline
+        self._load_from_csv()
 
         # Attempt initial live fetch immediately
         print("[System] [INIT] 正在尝试与 Hypixel 官方 API 建立首次连接...")
         self.fetch_live_bazaar(force=True)
         self.fetch_live_election(force=True)
 
-    def _load_from_excel(self) -> None:
-        """Loads baseline products from gemflipper.xlsx in case network is down."""
+    def _load_from_csv(self) -> None:
+        """Loads baseline products from bazaar_fallback.csv in case network is down."""
         try:
-            wb = openpyxl.load_workbook(self.excel_backup_path, data_only=True)
-            if "SwaggerAPI" in wb.sheetnames:
-                ws = wb["SwaggerAPI"]
-                products = {}
-                for r in range(2, ws.max_row + 1):
-                    item_id = ws.cell(r, 1).value
-                    if not item_id:
+            if not os.path.exists(self.csv_backup_path):
+                return
+            products = {}
+            with open(self.csv_backup_path, "r", encoding="utf-8-sig", newline="") as f:
+                reader = csv.reader(f)
+                rows = list(reader)
+                for row in rows[1:]:
+                    if not row or not row[0]:
                         continue
-                    buy_price = ws.cell(r, 2).value or 0
-                    sell_price = ws.cell(r, 3).value or 0
-                    buy_volume = ws.cell(r, 4).value or 0
-                    sell_volume = ws.cell(r, 5).value or 0
-                    buy_moving_week = ws.cell(r, 6).value or 0
-                    sell_moving_week = ws.cell(r, 7).value or 0
-                    
+                    item_id = str(row[0]).strip()
+                    buy_price = float(row[1] or 0) if len(row) > 1 else 0.0
+                    sell_price = float(row[2] or 0) if len(row) > 2 else 0.0
+                    buy_volume = int(float(row[3] or 0)) if len(row) > 3 else 0
+                    sell_volume = int(float(row[4] or 0)) if len(row) > 4 else 0
+                    buy_moving_week = int(float(row[5] or 0)) if len(row) > 5 else 0
+                    sell_moving_week = int(float(row[6] or 0)) if len(row) > 6 else 0
+
                     products[item_id] = {
                         "product_id": item_id,
                         "quick_status": {
                             "productId": item_id,
-                            "buyPrice": float(buy_price),
-                            "sellPrice": float(sell_price),
-                            "buyVolume": int(buy_volume),
-                            "sellVolume": int(sell_volume),
-                            "buyMovingWeek": int(buy_moving_week),
-                            "sellMovingWeek": int(sell_moving_week)
+                            "buyPrice": buy_price,
+                            "sellPrice": sell_price,
+                            "buyVolume": buy_volume,
+                            "sellVolume": sell_volume,
+                            "buyMovingWeek": buy_moving_week,
+                            "sellMovingWeek": sell_moving_week
                         }
                     }
-                self._cache = products
-                self._last_updated_ms = int(time.time() * 1000)
-                self._last_local_fetch_ts = time.time()
-                self._last_fetched_time = datetime.now()
-                self._is_live = False
-                self._data_source = "Local Excel Snapshot (Baseline)"
-                print(f"[Bazaar Data] [INFO] 已预载本地 Excel 备用快照: 共 {len(products)} 项商品 ({self.excel_backup_path})")
+            self._cache = products
+            self._last_updated_ms = int(time.time() * 1000)
+            self._last_local_fetch_ts = time.time()
+            self._last_fetched_time = datetime.now()
+            self._is_live = False
+            self._data_source = "Local CSV Snapshot (Baseline)"
+            print(f"[Bazaar Data] [INFO] 已预载本地 CSV 备用快照: 共 {len(products)} 项商品 ({self.csv_backup_path})")
         except Exception as e:
-            print(f"[Bazaar Data] [WARN] 读取 Excel 备用快照失败: {e}")
+            print(f"[Bazaar Data] [WARN] 读取 CSV 备用快照失败: {e}")
 
     def fetch_live_bazaar(self, force: bool = False, max_age_seconds: int = 60) -> Dict[str, Any]:
         """

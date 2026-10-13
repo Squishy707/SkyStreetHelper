@@ -5,10 +5,10 @@ Hypixel SkyBlock 温室突变收益、产出与农业幸运 (ff) 计算服务
 
 import os
 import sys
+import csv
 import json
 import logging
 from typing import Dict, Any, List, Optional
-import openpyxl
 
 logger = logging.getLogger("GreenhouseService")
 logger.setLevel(logging.INFO)
@@ -20,7 +20,7 @@ def get_base_dir() -> str:
     return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DATA_DIR = os.path.join(get_base_dir(), "backend", "data")
-EXCEL_PATH = os.path.join(DATA_DIR, "greenhouse_mutations.xlsx")
+CSV_PATH = os.path.join(DATA_DIR, "greenhouse_mutations.csv")
 JSON_PATH = os.path.join(DATA_DIR, "greenhouse_mutations.json")
 
 class GreenhouseService:
@@ -34,23 +34,23 @@ class GreenhouseService:
         self.load_data()
 
     def load_data(self):
-        """从本地 Excel 字典或 JSON 种子文件中加载数据"""
+        """从本地 JSON 种子文件或 CSV 字典文件中加载数据"""
         loaded = False
-        if os.path.exists(EXCEL_PATH):
-            try:
-                self._load_from_excel(EXCEL_PATH)
-                logger.info(f"成功从 Excel 加载温室突变字典: {len(self.mutations)} 种突变, {len(self.base_crops)} 种基础作物")
-                loaded = True
-            except Exception as e:
-                logger.warning(f"读取 Excel 突变字典失败，将尝试从 JSON 载入: {e}")
-
-        if not loaded and os.path.exists(JSON_PATH):
+        if os.path.exists(JSON_PATH):
             try:
                 self._load_from_json(JSON_PATH)
-                logger.info(f"成功从 JSON 种子加载温室突变数据: {len(self.mutations)} 种突变")
+                logger.info(f"成功从 JSON 种子加载温室突变数据: {len(self.mutations)} 种突变, {len(self.base_crops)} 种基础作物")
                 loaded = True
             except Exception as e:
                 logger.error(f"读取 JSON 种子突变数据失败: {e}")
+
+        if os.path.exists(CSV_PATH):
+            try:
+                self._load_mutations_from_csv(CSV_PATH)
+                logger.info(f"成功从 CSV 同步温室突变字典: {len(self.mutations)} 种突变")
+                loaded = True
+            except Exception as e:
+                logger.warning(f"读取 CSV 突变字典失败，保留 JSON 数据: {e}")
 
         if not loaded:
             logger.error("未找到有效的温室突变数据源！")
@@ -58,90 +58,53 @@ class GreenhouseService:
     def _load_from_json(self, path: str):
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
-            self.version = data.get("version", "alpha 0.4.0")
+            self.version = data.get("version", "alpha 0.4.1")
             self.base_crops = data.get("base_crops", [])
             self.mutations = data.get("mutations", [])
             self.aloe_stages = {int(k): float(v) for k, v in data.get("aloe_stages", {}).items()}
             self.jellybean_stages = {int(k): float(v) for k, v in data.get("jellybean_stages", {}).items()}
             self.npc_prices = {c["name_en"]: c["npc_price"] for c in self.base_crops}
 
-    def _load_from_excel(self, path: str):
-        wb = openpyxl.load_workbook(path, data_only=True)
-        # 1. Base crops
-        self.base_crops = []
-        if "Base_Crops_NPC_Prices" in wb.sheetnames:
-            ws_bc = wb["Base_Crops_NPC_Prices"]
-            for row in ws_bc.iter_rows(min_row=2, values_only=True):
-                if not row or not row[0]:
-                    continue
-                cid, name_en, name_zh, npc_p, bz_id = row[:5]
-                crop_info = {
-                    "id": str(cid),
-                    "name_en": str(name_en),
-                    "name_zh": str(name_zh),
-                    "npc_price": float(npc_p or 0),
-                    "bazaar_id": str(bz_id) if bz_id else str(cid)
-                }
-                self.base_crops.append(crop_info)
-                self.npc_prices[str(name_en)] = float(npc_p or 0)
+    def _load_mutations_from_csv(self, path: str):
+        mutations = []
+        with open(path, "r", encoding="utf-8-sig", newline="") as f:
+            rows = list(csv.reader(f))
+        for row in rows[1:]:
+            if not row or len(row) < 17 or not row[0]:
+                continue
+            (mid, name_en, name_zh, rarity, size, surface,
+             substrates, sub_count, max_per_gh, drops_json,
+             effects, yield_buff, yield_debuff, has_imm, has_mult,
+             def_mult, bz_id) = row[:17]
 
-        # 2. Stage multipliers
-        self.aloe_stages = {}
-        self.jellybean_stages = {}
-        if "Stage_Multipliers" in wb.sheetnames:
-            ws_sm = wb["Stage_Multipliers"]
-            for row in ws_sm.iter_rows(min_row=2, values_only=True):
-                if not row:
-                    continue
-                if row[0] is not None and row[1] is not None:
-                    try:
-                        self.aloe_stages[int(row[0])] = float(row[1])
-                    except ValueError:
-                        pass
-                if len(row) >= 5 and row[3] is not None and row[4] is not None and row[3] != "":
-                    try:
-                        self.jellybean_stages[int(row[3])] = float(row[4])
-                    except ValueError:
-                        pass
+            drops = {}
+            if drops_json:
+                try:
+                    drops = json.loads(str(drops_json))
+                except Exception:
+                    drops = {}
 
-        # 3. Mutations
-        self.mutations = []
-        if "Mutations_Dictionary" in wb.sheetnames:
-            ws_mut = wb["Mutations_Dictionary"]
-            for row in ws_mut.iter_rows(min_row=2, values_only=True):
-                if not row or not row[0]:
-                    continue
-                (mid, name_en, name_zh, rarity, size, surface,
-                 substrates, sub_count, max_per_gh, drops_json,
-                 effects, yield_buff, yield_debuff, has_imm, has_mult,
-                 def_mult, bz_id) = row[:17]
-
-                drops = {}
-                if drops_json:
-                    try:
-                        drops = json.loads(str(drops_json))
-                    except Exception:
-                        drops = {}
-
-                self.mutations.append({
-                    "id": str(mid),
-                    "name_en": str(name_en),
-                    "name_zh": str(name_zh),
-                    "rarity": str(rarity),
-                    "size": str(size),
-                    "growth_surface": str(surface),
-                    "substrates_text": str(substrates or ""),
-                    "substrate_count": int(sub_count or 0),
-                    "max_per_gh": int(max_per_gh or 16),
-                    "base_drops": drops,
-                    "effects_text": str(effects or ""),
-                    "yield_buff": float(yield_buff or 0),
-                    "yield_debuff": float(yield_debuff or 0),
-                    "has_immunity": str(has_imm).upper() in ["YES", "TRUE", "1"],
-                    "has_multiplier": str(has_mult).upper() in ["YES", "TRUE", "1"],
-                    "default_multiplier": float(def_mult or 1.0),
-                    "bazaar_id": str(bz_id or mid)
-                })
+            mutations.append({
+                "id": str(mid),
+                "name_en": str(name_en),
+                "name_zh": str(name_zh),
+                "rarity": str(rarity),
+                "size": str(size),
+                "growth_surface": str(surface),
+                "substrates_text": str(substrates or ""),
+                "substrate_count": int(float(sub_count or 0)),
+                "max_per_gh": int(float(max_per_gh or 16)),
+                "base_drops": drops,
+                "effects_text": str(effects or ""),
+                "yield_buff": float(yield_buff or 0),
+                "yield_debuff": float(yield_debuff or 0),
+                "has_immunity": str(has_imm).upper() in ["YES", "TRUE", "1"],
+                "has_multiplier": str(has_mult).upper() in ["YES", "TRUE", "1"],
+                "default_multiplier": float(def_mult or 1.0),
+                "bazaar_id": str(bz_id or mid)
+            })
+        if mutations:
+            self.mutations = mutations
 
     def get_mutations_payload(self, bazaar_prices: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """返回供前端渲染的全量突变数据、NPC 基础价格、阶段倍率与实时 Bazaar 价格"""

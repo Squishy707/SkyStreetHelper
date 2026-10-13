@@ -1,0 +1,40 @@
+﻿id,name_en,name_zh,rarity,size,growth_surface,substrates_text,substrate_count,max_per_gh,base_drops_json,effects_text,yield_buff,yield_debuff,has_immunity,has_multiplier,default_multiplier,bazaar_id
+ASHWREATH,Ashwreath,余烬花环,COMMON,1x1,Soul Sand,2x Nether Wart / 2x Fire,4,46,"{""Nether Wart"": 360}",Improved Harvest Boost (+30% Yield) / XP Loss,30,0,NO,NO,1.0,ASHWREATH
+CHOCONUT,Choconut,巧克果,COMMON,1x1,Farmland,2x Cocoa Beans,2,72,"{""Cocoa Beans"": 200}",Immunity (免疫负面效果),0,0,YES,NO,1.0,CHOCONUT
+DUSTGRAIN,Dustgrain,尘穗,COMMON,1x1,Farmland,2x Wheat,2,72,"{""Wheat"": 100}",Harvest Boost (+20% Yield),20,0,NO,NO,1.0,DUSTGRAIN
+GLOOMGOURD,Gloomgourd,幽影瓜,COMMON,1x1,Farmland,1x Pumpkin / 1x Melon,2,72,"{""Pumpkin"": 30, ""Melon Slice"": 140}",Water Retain / Bonus Drops,0,0,NO,NO,1.0,GLOOMGOURD
+LONELILY,Lonelily,孑然幽莲,COMMON,1x1,Farmland,0 adjacent crops (周围8格留空),8,16,"{""Potato"": 600, ""Carrot"": 700, ""Pumpkin"": 340}",Bonus Drops,0,0,NO,NO,1.0,LONELILY
+SCOURROOT,Scourroot,苦根草,COMMON,1x1,Farmland,1x Potato / 1x Carrot,2,72,"{""Potato"": 105, ""Carrot"": 122}",Immunity / XP Boost,0,0,YES,NO,1.0,SCOURROOT
+SHADEVINE,Shadevine,暗藤,COMMON,1x1,Farmland,1x Cactus / 1x Sugar Cane,2,72,"{""Cactus"": 68, ""Sugar Cane"": 90}",Improved Water Retain / Harvest Loss (-20% Yield),0,-20,NO,NO,1.0,SHADEVINE
+VEILSHROOM,Veilshroom,幕纱蕈,COMMON,1x1,Mycelium,1x Red Mushroom / 1x Brown Mushroom,2,72,"{""Brown Mushroom"": 33, ""Red Mushroom"": 33}",Improved Harvest Boost (+30% Yield) / Water Drain,30,0,NO,NO,1.0,VEILSHROOM
+WITHERBLOOM,Witherbloom,凋零之花,COMMON,1x1,Soul Sand,4x Dead Plant,4,46,"{""Wild Rose"": 300}",Effect Spread,0,0,NO,NO,1.0,WITHERBLOOM
+CHOCOBERRY,Chocoberry,巧克莓,UNCOMMON,1x1,Farmland,6x Choconut / 2x Gloomgourd,8,16,"{""Cocoa Beans"": 400, ""Pumpkin"": 170, ""Melon Slice"": 1600}",Water Retain,0,0,NO,NO,1.0,CHOCOBERRY
+CINDERSHADE,Cindershade,烬影草,UNCOMMON,1x1,Soul Sand,4x Ashwreath / 4x Witherbloom,8,16,"{""Nether Wart"": 1200, ""Wild Rose"": 800}",Effect Spread / Improved Harvest Boost (+30% Yield) / XP Loss,30,0,NO,NO,1.0,CINDERSHADE
+COALROOT,Coalroot,黑炭根,UNCOMMON,1x1,Farmland,5x Ashwreath / 3x Scourroot,8,16,"{""Potato"": 600, ""Carrot"": 1400, ""Nether Wart"": 600}",XP Boost,0,0,NO,NO,1.0,COALROOT
+CREAMBLOOM,Creambloom,奶油花,UNCOMMON,1x1,Farmland,8x Choconut,8,16,"{""Cocoa Beans"": 1600}",Immunity (免疫负面效果),0,0,YES,NO,1.0,CREAMBLOOM
+DUSKBLOOM,Duskbloom,暮辉花,UNCOMMON,1x1,Farmland,2x Moonflower / 2x Shadevine / 2x Sunflower / 2x Dustgrain,8,16,"{""Moonflower"": 533, ""Sunflower"": 533, ""Wheat"": 267}",Bonus Drops,0,0,NO,NO,1.0,DUSKBLOOM
+THORNSHADE,Thornshade,荆影花,UNCOMMON,1x1,Farmland,4x Wild Rose / 4x Veilshroom,8,16,"{""Brown Mushroom"": 190, ""Red Mushroom"": 190, ""Wild Rose"": 800}",Effect Spread,0,0,NO,NO,1.0,THORNSHADE
+BLASTBERRY,Blastberry,爆烈莓,RARE,1x1,Sand,5x Chocoberry / 3x Ashwreath,8,16,"{""Cocoa Beans"": 1200, ""Nether Wart"": 1800}",Immunity / Improved Harvest Boost (+30% Yield) / XP Loss,30,0,YES,NO,1.0,BLASTBERRY
+CHEESEBITE,Cheesebite,奶酪脆,RARE,1x1,Farmland,4x Creambloom / 4x Fermento,8,16,"{""Brown Mushroom"": 190, ""Cactus"": 600, ""Sugar Cane"": 800, ""Red Mushroom"": 190}",Improved Water Retain,0,0,NO,NO,1.0,CHEESEBITE
+CHLORONITE,Chloronite,叶绿石,RARE,1x1,Farmland,6x Coalroot / 2x Thornshade,8,16,"{""Brown Mushroom"": 95, ""Potato"": 600, ""Carrot"": 700, ""Red Mushroom"": 95, ""Wild Rose"": 400}",Immunity (免疫负面效果),0,0,YES,NO,1.0,CHLORONITE
+DO_NOT_EAT_SHROOM,Do-not-eat-shroom,剧毒勿食蕈,RARE,1x1,Farmland,4x Veilshroom / 4x Scourroot,8,16,"{""Brown Mushroom"": 380, ""Potato"": 1200, ""Carrot"": 1400, ""Red Mushroom"": 380}",Improved Harvest Boost (+30% Yield) / Water Drain,30,0,NO,NO,1.0,DO_NOT_EAT_SHROOM
+FLESHTRAP,Fleshtrap,血肉捕蝇草,RARE,1x1,Farmland,4x Cindershade / 4x Lonelily,8,16,"{""Potato"": 1200, ""Carrot"": 1400, ""Pumpkin"": 680}",Bonus Drops,0,0,NO,NO,1.0,FLESHTRAP
+MAGIC_JELLYBEAN,Magic Jellybean,魔力软糖豆,RARE,1x1,Sand,5x Sugar Cane / 3x Duskbloom,8,16,"{""Moonflower"": 600, ""Sunflower"": 600, ""Sugar Cane"": 1200}",Improved XP Boost / Harvest Loss (-20% Yield),0,-20,NO,YES,10.0,MAGIC_JELLYBEAN
+NOCTILUME,Noctilume,夜光菌核,RARE,2x2,Farmland,6x Duskbloom / 6x Lonelily,12,4,"{""Cactus"": 1200, ""Wild Rose"": 1600}",Effect Spread / Improved Water Retain / Harvest Loss (-20% Yield),0,-20,NO,NO,1.0,NOCTILUME
+SNOOZLING,Snoozling,睡梦灵草,RARE,3x3,Farmland,4x Creambloom / 3x Dustgrain / 3x Witherbloom / 3x Duskbloom / 3x Thornshade,16,4,"{""Moonflower"": 800, ""Sunflower"": 800, ""Cactus"": 600, ""Sugar Cane"": 800}",Bonus Drops,0,0,NO,NO,1.0,SNOOZLING
+SOGGYBUD,Soggybud,浸水幼芽,RARE,1x1,Farmland,2x Melon / 2x Gloomgourd,4,46,"{""Melon Slice"": 3200}",Water Retain,0,0,NO,NO,1.0,SOGGYBUD
+CHORUS_FRUIT,Chorus Fruit,紫颂果,EPIC,1x1,End Stone,5x Chloronite / 3x Magic Jellybean,8,16,"{""Potato"": 1500, ""Carrot"": 1700, ""Sugar Cane"": 2000}",Improved XP Boost / Harvest Loss (-20% Yield),0,-20,NO,NO,1.0,CHORUS_FRUIT
+PLANTBOY_ADVANCE,PlantBoy Advance,植男掌机,EPIC,2x2,Farmland,6x Snoozling / 6x Thunderling,12,4,"{""Moonflower"": 1200, ""Sunflower"": 1200, ""Wheat"": 122}",Harvest Boost (+20% Yield),20,0,NO,NO,1.0,PLANTBOY_ADVANCE
+PUFFERCLOUD,Puffercloud,豚云菇,EPIC,1x1,Farmland,2x Snoozling / 6x Do-not-eat-shroom,8,16,"{""Brown Mushroom"": 665, ""Moonflower"": 1400, ""Sunflower"": 1400, ""Red Mushroom"": 665}",Improved Harvest Boost (+30% Yield) / Water Drain,30,0,NO,NO,1.0,PUFFERCLOUD
+SHELLFRUIT,Shellfruit,甲壳果,EPIC,1x1,Farmland,Explode a Turtlellini with Blastberry (龟菇受爆裂莓诱爆),2,72,"{""Cocoa Beans"": 400, ""Melon Slice"": 800}",Water Retain / Immunity,0,0,YES,NO,1.0,SHELLFRUIT
+STARTLEVINE,Startlevine,惊骇藤,EPIC,1x1,Farmland,4x Blastberry / 4x Cheesebite,8,16,"{""Cactus"": 1500, ""Sugar Cane"": 2000}",Improved Water Retain / Improved XP Boost / Harvest Loss (-20% Yield),0,-20,NO,NO,1.0,STARTLEVINE
+STOPLIGHT_PETAL,Stoplight Petal,信号花瓣,EPIC,1x1,Farmland,4x Snoozling / 4x Noctilume,8,16,"{""Cactus"": 2400, ""Wild Rose"": 3200}",Effect Spread / Improved Water Retain / Harvest Loss (-20% Yield),0,-20,NO,NO,1.0,STOPLIGHT_PETAL
+THUNDERLING,Thunderling,雷灵苗,EPIC,1x1,Farmland,5x Soggybud / 3x Noctilume,8,16,"{""Cactus"": 900, ""Melon Slice"": 2400, ""Wild Rose"": 2400}",Effect Spread,0,0,NO,NO,1.0,THUNDERLING
+TURTLELLINI,Turtlellini,龟壳蘑菇,EPIC,1x1,Farmland,4x Soggybud / 4x Choconut,8,16,{},Water Retain / Immunity,0,0,YES,NO,1.0,TURTLELLINI
+ZOMBUD,Zombud,尸腐芽,EPIC,1x1,Soul Sand,4x Dead Plant / 2x Cindershade / 2x Fleshtrap,8,16,"{""Pumpkin"": 1190, ""Wild Rose"": 2800}",Effect Spread / Bonus Drops,0,0,NO,NO,1.0,ZOMBUD
+ALL_IN_ALOE,All-in Aloe,全押芦荟 (梭哈芦荟),LEGENDARY,1x1,Sand,6x Magic Jellybean / 2x PlantBoy Advance,8,16,"{""Moonflower"": 140, ""Sunflower"": 140, ""Wheat"": 140}",Harvest Boost (+20% Yield),20,0,NO,YES,86.0,ALL_IN_ALOE
+DEVOURER,Devourer,吞噬巨花,LEGENDARY,1x1,Farmland,4x Puffercloud / 4x Zombud,8,16,"{""Pumpkin"": 1700, ""Brown Mushroom"": 950, ""Red Mushroom"": 950}",Bonus Drops / Improved Harvest Boost (+30% Yield) / Water Drain,30,0,NO,NO,1.0,DEVOURER
+GLASSCORN,Glasscorn,琉璃玉蜀黍,LEGENDARY,2x2,Sand,6x Startlevine / 6x Chloronite,12,4,"{""Cactus"": 2400, ""Potato"": 4800}",Immunity / Improved Water Retain / Harvest Loss (-20% Yield),0,-20,YES,NO,1.0,GLASSCORN
+GODSEED,Godseed,万物神种,LEGENDARY,3x3,Farmland,All positive crop effects (集齐全部正面增益),16,4,"{""Cactus"": 369, ""Carrot"": 862, ""Melon Slice"": 985, ""Cocoa Beans"": 492, ""Moonflower"": 492, ""Sunflower"": 492, ""Sugar Cane"": 492, ""Wild Rose"": 492, ""Nether Wart"": 738, ""Potato"": 738, ""Pumpkin"": 209, ""Brown Mushroom"": 117, ""Red Mushroom"": 117, ""Wheat"": 246}",Improved Harvest Boost (+30% Yield) / Improved Water Retain / Improved XP Boost / Immunity / Bonus Drops / Effect Spread,30,0,YES,NO,1.0,GODSEED
+PHANTOMLEAF,Phantomleaf,幽魂叶,LEGENDARY,1x1,Soul Sand,4x Chorus Fruit / 4x Shellfruit,8,16,"{""Potato"": 4800, ""Carrot"": 5600}",XP Boost / Immunity,0,0,YES,NO,1.0,PHANTOMLEAF
+TIMESTALK,Timestalk,时之茎,LEGENDARY,1x1,End Stone,4x Stoplight Petal / 2x Chorus Fruit / 2x Shellfruit,8,16,"{""Cactus"": 3000, ""Sugar Cane"": 4000}",Improved Water Retain / Improved XP Boost / Harvest Loss (-20% Yield),0,-20,NO,NO,1.0,TIMESTALK

@@ -43,7 +43,6 @@ def build():
         "--onefile",  # 单文件绿色便携版
         f"--name={exe_name}",
         "--add-data=static;static",
-        "--add-data=gemflipper.xlsx;.",
         "--add-data=backend/data;backend/data",
         "--add-data=backend/shard_data.json;backend",
         "--hidden-import=uvicorn.logging",

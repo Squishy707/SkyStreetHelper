@@ -37,7 +37,7 @@ else:
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 STATIC_DIR = os.path.join(BASE_DIR, "static")
-EXCEL_PATH = os.path.join(BASE_DIR, "gemflipper.xlsx")
+FALLBACK_CSV_PATH = os.path.join(BASE_DIR, "backend", "data", "bazaar_fallback.csv")
 
 app = FastAPI(
     title="SkyStreetHelper API",
@@ -55,7 +55,7 @@ app.add_middleware(
 )
 
 # Initialize services
-bazaar_service = BazaarService(excel_backup_path=EXCEL_PATH)
+bazaar_service = BazaarService(csv_backup_path=FALLBACK_CSV_PATH)
 event_service = EventService()
 price_tracker = PriceTracker()
 profile_service = ProfileService()
@@ -503,18 +503,18 @@ def get_shards_master_dictionary():
     }
 
 @app.get("/api/shards/dictionary/download")
-def download_shards_dictionary_excel():
+def download_shards_dictionary_csv():
     """
-    Downloads the local master shard_dictionary.xlsx file.
+    Downloads the local master shard_dictionary.csv file.
     """
-    dict_file = os.path.join(BASE_DIR, "backend", "data", "shard_dictionary.xlsx")
+    dict_file = os.path.join(BASE_DIR, "backend", "data", "shard_dictionary.csv")
     if os.path.exists(dict_file):
         return FileResponse(
             dict_file, 
-            filename="SkyBlock_Shards_Dictionary_v0.4.0.xlsx",
-            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            filename="SkyBlock_Shards_Dictionary_v0.4.1.csv",
+            media_type="text/csv; charset=utf-8"
         )
-    raise HTTPException(status_code=404, detail="Shard 词典文件未就绪")
+    raise HTTPException(status_code=404, detail="Shard 词典 CSV 文件未就绪")
 
 
 # ==============================================================================
@@ -569,18 +569,18 @@ def calculate_greenhouse(req: GreenhouseCalcRequest):
     return JSONResponse(result)
 
 @app.get("/api/greenhouse/export")
-def export_greenhouse_excel():
+def export_greenhouse_csv():
     """
-    下载本地 master greenhouse_mutations.xlsx 文件
+    下载本地 master greenhouse_mutations.csv 文件
     """
-    excel_file = os.path.join(BASE_DIR, "backend", "data", "greenhouse_mutations.xlsx")
-    if os.path.exists(excel_file):
+    csv_file = os.path.join(BASE_DIR, "backend", "data", "greenhouse_mutations.csv")
+    if os.path.exists(csv_file):
         return FileResponse(
-            excel_file,
-            filename="SkyBlock_Greenhouse_Mutations_v0.4.0.xlsx",
-            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            csv_file,
+            filename="SkyBlock_Greenhouse_Mutations_v0.4.1.csv",
+            media_type="text/csv; charset=utf-8"
         )
-    raise HTTPException(status_code=404, detail="温室突变 Excel 字典文件未找到")
+    raise HTTPException(status_code=404, detail="温室突变 CSV 字典文件未找到")
 
 
 # ==============================================================================
