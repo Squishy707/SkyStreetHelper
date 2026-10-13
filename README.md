@@ -5,7 +5,7 @@
 > 一款专为 Hypixel SkyBlock 玩家打造的高性能、低延迟、现代化集市量化交易与角色养成追踪工具箱。
 > 内置三大独立核心工具：**GemFlipper（宝石锻造与倒卖利润监控）**、**BazaarShardTracker（猎杀碎片集市价格与 Attribute 吸收规划）** 与 **GreenhouseTracker（温室突变农业产出与收益精算器）**。
 
-[![Release](https://img.shields.io/badge/Release-alpha%200.4.1-blue.svg)](https://github.com/QianhyNyaU/SkyStreetHelper/releases)
+[![Release](https://img.shields.io/badge/Release-alpha%200.4.1-blue.svg)](https://github.com/Squishy707/SkyStreetHelper/releases)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-teal.svg)](https://fastapi.tiangolo.com/)
 [![License](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
@@ -68,7 +68,7 @@
 
 如果你是普通玩家，无需配置任何编程环境，推荐直接使用预编译的独立便携版：
 
-1. 前往 GitHub 仓库右侧的 [**Releases**](https://github.com/QianhyNyaU/SkyStreetHelper/releases) 页面；
+1. 前往 GitHub 仓库右侧的 [**Releases**](https://github.com/Squishy707/SkyStreetHelper/releases) 页面；
 2. 找到最新版本（如 `alpha 0.4.1`），在附件列表下载 **`SkyStreetHelper_0.4.1.exe`**；
 3. 将 `.exe` 放置在任意文件夹中，**双击直接运行**；
 4. 程序启动后会自动打开系统默认浏览器，访问 `http://localhost:8000` 即可开始使用；
@@ -82,7 +82,7 @@
 
 ### 1. 克隆代码仓库
 ```bash
-git clone https://github.com/QianhyNyaU/SkyStreetHelper.git
+git clone https://github.com/Squishy707/SkyStreetHelper.git
 cd SkyStreetHelper
 ```
 
