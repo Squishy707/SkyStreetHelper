@@ -5,7 +5,7 @@
 
 > 为 Hypixel SkyBlock 玩家打造的高性能、低延迟、现代化集市量化交易与profile养成追踪工具。
 
-> 内置三大独立核心工具：**GemFlipper（宝石锻造与倒卖利润监控）**、**BazaarShardTracker（猎杀碎片集市价格与 Attribute 吸收规划）** 与 **GreenhouseTracker（温室突变农业产出与收益精算器）**。
+> 三大独立工具：**GemFlipper（宝石锻造与倒卖利润监控）**、**BazaarShardTracker（Shard碎片集市价格与 Attribute 吸收规划）** 与 **GreenhouseTracker（温室突变农业产出与收益精算器）**。
 
 [![Release](https://img.shields.io/badge/Release-alpha%200.4.1-blue.svg)](https://github.com/Squishy707/SkyStreetHelper/releases)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
@@ -14,27 +14,27 @@
 
 ---
 
-## 🌟 核心功能一览
+## 🌟 核心功能
 
-### 💎 工具一：GemFlipper (Forge Gem-Flipping / 宝石倒卖与锻炉利润终端)
-针对 SkyBlock 锻炉（The Forge）与集市（Bazaar）宝石生态量身定制：
-- **实时盘口**：BZ Api 读取 `sell_summary` 与 `buy_summary` 订单簿前排深度，还原挂单成本与秒买、秒卖利润。
+### 💎 工具一：GemFlipper (Forge Gem-Flipping / 宝石倒卖与锻炉利润查询)
+针对 SkyBlock 锻炉（The Forge）与集市（Bazaar）宝石定制：
+- **实时盘口**：BZ Api 读取 `sell_summary` 与 `buy_summary` 订单，还原挂单成本与秒买、秒卖利润。
 - **品质换算**：支持 Rough ➔ Flawed ➔ ★Perfect 链路核算；支持自动计算配方数量、单炉耗时与每小时净利润（Coins/Hour）。
-- **断供 / 断求预警**：对零挂单或流动性枯竭商品标记高亮，杜绝虚假定价误导。
+- **断供 / 断求预警**：对零挂单或流动性枯竭商品标记高亮。
 - **NPC 保底回收价套利**：集市价格暴跌触发破发套利时即时提示。
-- **中英文双语检索**：支持快速键入宝石英文名称（如 `flawed`, `topaz`, `apparatus`）实时过滤比价。
+- **中英文双语检索**：支持快速键入宝石英文名称过滤。
 
 ---
 
 ### 🔮 工具二：BazaarShardTracker (Shard Price Tracking / 猎杀碎片集市与 Attribute 规划器)
-专为 October 2026 最新猎杀系统（Hunting & Shards）打造的养成与配装助手（Oct. 6th, 2026 冰洞解谜更新）：
-- **325 种全 Shard 本地权威词典**：收录全稀有度碎片，包含 Attribute 词条、用途类型（Combat,..., Global 等）、Family 族群与获取途径（How to Hunt）。
-- **玩家 Attribute 同步**：输入 IGN 玩家 ID（与 Profile 存档名），直连 SkyShards API 同步当前已吸收（Syphoned）层数、剩余待吃数量与 SkyBlock XP 获取进度。
-- **集市最低全满成本量化**：分别计算 **Buy Order 价** 与 **Instant Buy 价**，提供清晰柱状图和热度指标。
+为猎杀系统（Hunting & Shards）打造的养成与配装助手（Oct. 6th, 2026 冰洞解谜更新）：
+- **325 种全 Shard 词典**：收录全稀有度碎片，包含 Attribute 词条、用途类型、Family 族群与获取途径（How to Hunt）。
+- **玩家 Attribute 同步**：输入 IGN ，直连 SkyShards API 同步当前已吸收（Syphoned）层数、剩余待吃数量与 SkyBlock XP 获取进度。
+- **拉满成本量化**：分别计算 **Buy Order 价** 与 **Instant Buy 价**，提供清晰柱状图和热度指标。
 - **紧凑视图 / 详细视图双模切换**：
   - **紧凑模式**：高密度排版，总览核心参数；
   - **详细模式**：完整展示词条效果与刷取攻略。
-- **双轨数据导出**：支持导出个人 Shard 养成进度报告，或单独导出全量 Shard 词典表格。
+- **数据导出**：导出个人 Shard 养成进度报告，或导出 Shard 词典表格。
 
 ---
 
@@ -56,16 +56,16 @@
 - **特殊阶段倍率精准匹配**：
   - **All-in Aloe（全押芦荟）** 和 **Magic Jellybean（魔力软糖豆）** stage和倍率可选。
 - **游戏背包 / Sack 层级折算展示**：
-  - 自动将海量农作物掉落换算为单行表格（`T2 (Compacted/E-Block)`, `T1 (Enchanted)`, `T0 (Vanilla)`）与价值汇总；
+  - 农作物数量换算（`T2 (Compacted/E-Block)`, `T1 (Enchanted)`, `T0 (Vanilla)`）与价值汇总；
 - **39 种全温室可种植突变排布规划与比价大表**：
   - 包含底物条件、单温室上限容量、13 列原版作物拆分掉落、单株 NPC 基础收益、单温室全满总价与实时 Bazaar 价格，支持一键载入至精算器；
   - 附带离线表格 `backend/data/greenhouse_mutations.xlsx`，支持即时下载与自定义维护。
 
 ---
 
-## 🚀 普通玩家极速上手 (无需安装 Python)
+## 🚀 快速开始
 
-便携版：
+便携版(无需安装 Python)：
 
 1. 前往 GitHub 仓库右侧的 [**Releases**](https://github.com/Squishy707/SkyStreetHelper/releases) 页面；
 2. 找到最新版本（如 `alpha 0.4.1`），在附件列表下载 **`SkyStreetHelper_0.4.1.exe`**；
@@ -75,7 +75,7 @@
 
 ---
 
-## 💻 开发者源码运行、部署与打包指南
+## 💻 开发者指南
 
 如果你希望克隆本项目到本地运行、部署在自己的个人主页/服务器，或自行打包 `.exe`，请按以下步骤操作：
 
@@ -152,7 +152,7 @@ SkyStreetHelper/
 ## 📌 版本更新日志 (Changelog)
 
 ### alpha 0.4.1 (2026-10-13)
-- **品牌升级**：项目正式定名为 **SkyStreetHelper**（副标题：`Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking and Mutation Output Calculator`）；
+- **品牌升级**：项目正式定名为 **SkyStreetHelper**；
 - **修复**：启动脚本优化；
 - **优化**：农作物图标放大；
 - **新增**：选择待测突变作物区域新增实时检索框，支持按名称、拼音与稀有度模糊过滤；
