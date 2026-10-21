@@ -1,4 +1,4 @@
-# SkyStreetHelper (alpha 0.4.1)
+# SkyStreetHelper (alpha 0.4.2)
 
 > **Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking and Mutation Output Calculator**
 > **Hypixel Skyblock 助手：宝石锻造倒卖、集市Shard询价和突变产出计算**
@@ -7,7 +7,7 @@
 
 > 三大独立工具：**GemFlipper（宝石锻造与倒卖利润监控）**、**BazaarShardTracker（Shard碎片集市价格与 Attribute 吸收规划）** 与 **GreenhouseTracker（温室突变农业产出与收益精算器）**。
 
-[![Release](https://img.shields.io/badge/Release-alpha%200.4.1-blue.svg)](https://github.com/Squishy707/SkyStreetHelper/releases)
+[![Release](https://img.shields.io/badge/Release-alpha%200.4.2-blue.svg)](https://github.com/Squishy707/SkyStreetHelper/releases)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-teal.svg)](https://fastapi.tiangolo.com/)
 [![License](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
@@ -68,7 +68,7 @@
 便携版(无需安装 Python)：
 
 1. 前往 GitHub 仓库右侧的 [**Releases**](https://github.com/Squishy707/SkyStreetHelper/releases) 页面；
-2. 找到最新版本（如 `alpha 0.4.1`），在附件列表下载 **`SkyStreetHelper_0.4.1.exe`**；
+2. 找到最新版本（如 `alpha 0.4.2`），在附件列表下载 **`SkyStreetHelper_0.4.2.exe`**；
 3. 将 `.exe` 放置在任意文件夹中，**双击直接运行**；
 4. 程序启动后会自动打开系统默认浏览器，访问 `http://localhost:8000` 即可开始使用；
 5. **安全退出**：可在网页顶栏点击红色的 `[关闭服务]` 按钮，或在终端按 `Ctrl + C`。
@@ -114,7 +114,7 @@ pip install -r requirements.txt
 pip install pyinstaller
 python build_exe.py
 ```
-- 打包产物将自动输出至 `dist/SkyStreetHelper_0.4.1.exe`（及带时间戳归档副本）。
+- 打包产物将自动输出至 `dist/SkyStreetHelper_0.4.2.exe`（及带时间戳归档副本）。
 
 ---
 
@@ -128,9 +128,9 @@ SkyStreetHelper/
 │   ├── shard_service.py      # Shards 词典加载、SkyShards API 玩家进度同步
 │   ├── greenhouse_service.py # 温室突变字典、掉落收益计算引擎
 │   └── data/                 # 离线种子词典与数据表格
-│       ├── shard_dictionary.xlsx     # 325 种 Shards 权威离线词典
+│       ├── shard_dictionary.csv      # 325 种 Shards 权威离线词典
 │       ├── shard_data.json           # Shards 结构化元数据
-│       ├── greenhouse_mutations.xlsx # 39 种温室突变与 14 种原版作物 NPC 价格表
+│       ├── greenhouse_mutations.csv  # 39 种温室突变与 14 种原版作物 NPC 价格表
 │       └── greenhouse_mutations.json # 温室突变元数据与阶段倍率
 ├── static/                   # 前端现代化单页应用 (Vanilla JS + CSS3)
 │   ├── index.html            # 主界面入口 (三工具 Tab 切换、白天/夜间主题)
@@ -150,6 +150,16 @@ SkyStreetHelper/
 ---
 
 ## 📌 版本更新日志 (Changelog)
+
+### alpha 0.4.2 (2026-10-21)
+- **白天模式（Light Mode）高对比度与辨识度深度重构**：
+  - **收益图表切换栏**：优化全宝石净利润排行、原料品质收益差与利润-风险四象限图表切换 Tab 背景及高亮文本色彩，彻底消除激活态对比度不足问题；
+  - **碎片属性追踪（ShardTracker）**：重绘“视图模式”（完整模式 / 紧凑模式）、“展示条数”（Top 10 / 20 / 50 / 100 / 全部）及策略/品质筛选按钮，修正激活选中态高亮与非选中态底色；
+  - **温室突变农业精算终端（GreenhouseTracker）**：
+    - 全面改造大型科技框体底色与边框投影，优化数学公式代码卡片、乘数徽章与输入配置面板浅色呈现；
+    - 优化温室座数（0, 1, 2, 3 座）与理论株数预设按钮，提升标签文字与数值清晰度；
+    - 重绘“原版农作物基础收益 (NPC价)”核心保底 KPI 1 卡片背景与数值字色层级，确保收益一目了然；
+    - 农作物产出合计汇总行（Tfoot）与 Sack 分级换算徽标样式优化，全面改善浅色主题下的数据可读性。
 
 ### alpha 0.4.1 (2026-10-13)
 - **品牌升级**：项目正式定名为 **SkyStreetHelper**；

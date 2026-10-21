@@ -41,8 +41,8 @@ FALLBACK_CSV_PATH = os.path.join(BASE_DIR, "backend", "data", "bazaar_fallback.c
 
 app = FastAPI(
     title="SkyStreetHelper API",
-    description="Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking and Mutation Output Calculator (alpha 0.4.1)",
-    version="alpha 0.4.1"
+    description="Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking and Mutation Output Calculator (alpha 0.4.2)",
+    version="alpha 0.4.2"
 )
 
 # Enable CORS
@@ -511,7 +511,7 @@ def download_shards_dictionary_csv():
     if os.path.exists(dict_file):
         return FileResponse(
             dict_file, 
-            filename="SkyBlock_Shards_Dictionary_v0.4.1.csv",
+            filename="SkyBlock_Shards_Dictionary_v0.4.2.csv",
             media_type="text/csv; charset=utf-8"
         )
     raise HTTPException(status_code=404, detail="Shard 词典 CSV 文件未就绪")
@@ -577,7 +577,7 @@ def export_greenhouse_csv():
     if os.path.exists(csv_file):
         return FileResponse(
             csv_file,
-            filename="SkyBlock_Greenhouse_Mutations_v0.4.1.csv",
+            filename="SkyBlock_Greenhouse_Mutations_v0.4.2.csv",
             media_type="text/csv; charset=utf-8"
         )
     raise HTTPException(status_code=404, detail="温室突变 CSV 字典文件未找到")

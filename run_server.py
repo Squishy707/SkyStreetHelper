@@ -41,7 +41,7 @@ def open_browser():
         try:
             req = urllib.request.Request(
                 f"{url}/api/bazaar", 
-                headers={"User-Agent": "SkyStreetHelper-Launcher/0.4.1"}
+                headers={"User-Agent": "SkyStreetHelper-Launcher/0.4.2"}
             )
             with urllib.request.urlopen(req, timeout=1.5) as resp:
                 if resp.status == 200:
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     multiprocessing.freeze_support()
 
     print("=" * 72)
-    print("  SkyStreetHelper - 独立便携版 (alpha 0.4.1)")
+    print("  SkyStreetHelper - 独立便携版 (alpha 0.4.2)")
     print("  Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking")
     print("                           and Mutation Output Calculator")
     print("  - 本地服务地址: http://localhost:8000")

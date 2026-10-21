@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SkyStreetHelper | Hypixel Skyblock Helper (alpha 0.4.1)</title>
+  <title>SkyStreetHelper | Hypixel Skyblock Helper (alpha 0.4.2)</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Chart.js CDN -->
@@ -44,7 +44,7 @@
         <div>
           <div class="flex items-center space-x-2">
             <h1 class="text-lg font-bold tracking-tight text-white">SkyStreetHelper</h1>
-            <span class="text-xs bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full font-mono">alpha 0.4.1</span>
+            <span class="text-xs bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full font-mono">alpha 0.4.2</span>
           </div>
           <p class="text-xs text-slate-400">Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking and Mutation Output Calculator</p>
         </div>
@@ -623,8 +623,8 @@
           <h2 class="text-base font-bold text-white">收益多维可视化对比</h2>
         </div>
         <!-- Chart Mode Tabs -->
-        <div class="flex items-center bg-[#111520] border border-[#262e45] rounded-lg p-1 space-x-1 text-xs">
-          <button id="tabLeaderboard" class="chart-tab px-3 py-1 rounded font-medium bg-indigo-600 text-white transition" onclick="switchChartTab('leaderboard')">
+        <div id="chartTabsGroup" class="flex items-center bg-[#111520] border border-[#262e45] rounded-lg p-1 space-x-1 text-xs">
+          <button id="tabLeaderboard" class="chart-tab px-3 py-1 rounded font-medium bg-indigo-600 text-white transition active" onclick="switchChartTab('leaderboard')">
             全宝石净利润排行 (纵向)
           </button>
           <button id="tabParallel" class="chart-tab px-3 py-1 rounded font-medium text-slate-400 hover:text-white transition" onclick="switchChartTab('parallel')">
@@ -1505,7 +1505,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
           <!-- KPI 1: 原版农作物基础收益 (NPC 卖价) - 最核心指标 -->
-          <div class="bg-gradient-to-br from-[#181d2c] to-[#12201d] border border-emerald-500/50 rounded-2xl p-4 shadow-lg shadow-emerald-950/20 relative overflow-hidden">
+          <div id="ghKpiNpcCard" class="bg-gradient-to-br from-[#181d2c] to-[#12201d] border border-emerald-500/50 rounded-2xl p-4 shadow-lg shadow-emerald-950/20 relative overflow-hidden">
             <div class="absolute -right-4 -bottom-4 text-emerald-500/10 text-6xl">
               <i class="fa-solid fa-coins"></i>
             </div>
@@ -1524,7 +1524,7 @@
           </div>
 
           <!-- KPI 2: 突变本体集市收益 -->
-          <div class="bg-[#181d2c] border border-purple-500/40 rounded-2xl p-4 shadow-md relative overflow-hidden">
+          <div id="ghKpiMutCard" class="bg-[#181d2c] border border-purple-500/40 rounded-2xl p-4 shadow-md relative overflow-hidden">
             <div class="absolute -right-4 -bottom-4 text-purple-500/10 text-6xl">
               <i class="fa-solid fa-store"></i>
             </div>
@@ -1543,7 +1543,7 @@
           </div>
 
           <!-- KPI 3: 综合总预计收益 -->
-          <div class="bg-[#181d2c] border border-amber-500/40 rounded-2xl p-4 shadow-md relative overflow-hidden">
+          <div id="ghKpiGrandCard" class="bg-[#181d2c] border border-amber-500/40 rounded-2xl p-4 shadow-md relative overflow-hidden">
             <div class="absolute -right-4 -bottom-4 text-amber-500/10 text-6xl">
               <i class="fa-solid fa-chart-line-up"></i>
             </div>
@@ -1562,7 +1562,7 @@
           </div>
 
           <!-- KPI 4: 突变产出数量折算 -->
-          <div class="bg-[#181d2c] border border-indigo-500/40 rounded-2xl p-4 shadow-md relative overflow-hidden">
+          <div id="ghKpiMutCountCard" class="bg-[#181d2c] border border-indigo-500/40 rounded-2xl p-4 shadow-md relative overflow-hidden">
             <div class="absolute -right-4 -bottom-4 text-indigo-500/10 text-6xl">
               <i class="fa-solid fa-boxes-packing"></i>
             </div>
@@ -1916,7 +1916,7 @@
     <div class="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center gap-4">
       <div class="flex items-center space-x-2">
         <i class="fa-solid fa-cube text-indigo-400"></i>
-        <span>SkyStreetHelper • alpha 0.4.1</span>
+        <span>SkyStreetHelper • alpha 0.4.2</span>
         <span>•</span>
         <span>数据源自 Hypixel 官方 Bazaar API &amp; SkyShards API</span>
       </div>

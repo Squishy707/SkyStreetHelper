@@ -15,7 +15,7 @@ import sys
 from datetime import datetime
 
 def build():
-    version = "0.4.1"
+    version = "0.4.2"
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     exe_name = f"SkyStreetHelper_{version}_{timestamp}"
 

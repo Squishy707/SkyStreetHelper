@@ -1,5 +1,5 @@
 /**
- * SkyblockTracker - Greenhouse Mutations Calculator Logic (alpha 0.4.1)
+ * SkyblockTracker - Greenhouse Mutations Calculator Logic (alpha 0.4.2)
  * 农业（突变）收益-产出-ff计算小工具
  */
 

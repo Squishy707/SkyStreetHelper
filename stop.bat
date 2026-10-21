@@ -2,7 +2,7 @@
 chcp 65001 >nul
 title Stop SkyStreetHelper Server
 echo ============================================================
-echo   SkyStreetHelper - Shutdown Script (alpha 0.4.1)
+echo   SkyStreetHelper - Shutdown Script (alpha 0.4.2)
 echo ============================================================
 echo [INFO] Searching for processes listening on port 8000...
 

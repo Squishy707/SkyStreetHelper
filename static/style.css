@@ -843,16 +843,23 @@ html:not(.dark) .cn-badge--1 {
 }
 
 /* 6. Chart Tabs in Light Mode */
-html:not(.dark) .chart-tab {
-  color: #64748b !important;
+html:not(.dark) #chartTabsGroup {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
 }
-html:not(.dark) .chart-tab:hover {
+html:not(.dark) #chartTabsGroup .chart-tab {
+  color: #475569 !important;
+  background-color: transparent !important;
+}
+html:not(.dark) #chartTabsGroup .chart-tab:hover {
+  background-color: #e2e8f0 !important;
   color: #0f172a !important;
 }
-html:not(.dark) .chart-tab.active {
-  background-color: #eef2ff !important;
-  color: #4338ca !important;
-  border-color: #c7d2fe !important;
+html:not(.dark) #chartTabsGroup .chart-tab.bg-indigo-600,
+html:not(.dark) #chartTabsGroup .chart-tab.active {
+  background-color: #4f46e5 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.35) !important;
 }
 
 /* 7. Commodity Price Preview Modal in Light Mode */
@@ -1391,7 +1398,7 @@ html:not(.dark) #shardTrackerView .text-slate-300 {
   color: #334155 !important;
 }
 html:not(.dark) #shardTrackerView .text-slate-400 {
-  color: #64748b !important;
+  color: #475569 !important;
 }
 html:not(.dark) #shardTrackerView .shard-col-cost-max {
   background-color: rgba(16, 185, 129, 0.1) !important;
@@ -1399,6 +1406,63 @@ html:not(.dark) #shardTrackerView .shard-col-cost-max {
 html:not(.dark) #shardTrackerView .shard-col-coins-xp {
   background-color: rgba(99, 102, 241, 0.08) !important;
 }
+
+/* Shard View Mode & Limit Switcher in Light Mode */
+html:not(.dark) #shardTrackerView #shardViewModeGroup,
+html:not(.dark) #shardTrackerView #shardLimitGroup {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+html:not(.dark) #shardTrackerView .shard-view-btn,
+html:not(.dark) #shardTrackerView .shard-limit-btn {
+  color: #475569 !important;
+  background-color: transparent !important;
+}
+html:not(.dark) #shardTrackerView .shard-view-btn:hover,
+html:not(.dark) #shardTrackerView .shard-limit-btn:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+html:not(.dark) #shardTrackerView .shard-view-btn.bg-indigo-600,
+html:not(.dark) #shardTrackerView .shard-limit-btn.bg-indigo-600 {
+  background-color: #4f46e5 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.35) !important;
+}
+html:not(.dark) #shardTrackerView .shard-view-btn.bg-indigo-600 i,
+html:not(.dark) #shardTrackerView .shard-limit-btn.bg-indigo-600 i {
+  color: #ffffff !important;
+}
+
+/* Shard Strategy & Rarity Filters in Light Mode */
+html:not(.dark) #shardTrackerView #shardStrategyFilterGroup .shard-strat-btn,
+html:not(.dark) #shardTrackerView #shardRarityFilterGroup .shard-rarity-btn {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+html:not(.dark) #shardTrackerView #shardStrategyFilterGroup .shard-strat-btn:hover,
+html:not(.dark) #shardTrackerView #shardRarityFilterGroup .shard-rarity-btn:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+html:not(.dark) #shardTrackerView #shardStrategyFilterGroup .shard-strat-btn.bg-indigo-600,
+html:not(.dark) #shardTrackerView #shardRarityFilterGroup .shard-rarity-btn.bg-indigo-600 {
+  background-color: #4f46e5 !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.35) !important;
+}
+html:not(.dark) #shardTrackerView #shardStrategyFilterGroup .shard-strat-btn.bg-indigo-600 i,
+html:not(.dark) #shardTrackerView #shardRarityFilterGroup .shard-rarity-btn.bg-indigo-600 i {
+  color: #ffffff !important;
+}
+html:not(.dark) #shardSearchInput {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
 html:not(.dark) #tabShardTrackerBtn.inactive,
 html:not(.dark) #tabGemFlipperBtn.inactive,
 html:not(.dark) #tabGreenhouseBtn.inactive {
@@ -1445,7 +1509,347 @@ html:not(.dark) #greenhouseTrackerView .text-slate-300 {
   color: #334155 !important;
 }
 html:not(.dark) #greenhouseTrackerView .text-slate-400 {
+  color: #475569 !important;
+}
+
+/* Greenhouse Calculator Top Banner in Light Mode */
+html:not(.dark) #ghCalculatorTopSection {
+  background-image: none !important;
+  background-color: #ffffff !important;
+  border-color: #dcfce7 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 0 15px -3px rgba(132, 204, 22, 0.08) !important;
+}
+html:not(.dark) #ghCalculatorTopSection label,
+html:not(.dark) #ghCalculatorTopSection .text-slate-300 {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+html:not(.dark) #ghCalculatorTopSection .text-slate-400 {
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+html:not(.dark) #ghCalculatorTopSection .text-slate-500 {
   color: #64748b !important;
+}
+html:not(.dark) #ghCalculatorTopSection .border-\[\#262e45\] {
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #ghCalculatorTopSection .border-\[\#262e45\]\/50 {
+  border-color: #f1f5f9 !important;
+}
+html:not(.dark) #ghCalculatorTopSection .border-\[\#262e45\]\/60 {
+  border-color: #f1f5f9 !important;
+}
+html:not(.dark) #ghCalculatorTopSection .bg-\[\#111520\]\/90 {
+  background-color: #f8fafc !important;
+  border-color: #d9f99d !important;
+}
+html:not(.dark) #ghCalculatorTopSection .bg-\[\#0b0d13\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #ghCalculatorTopSection .bg-\[\#0b0d13\] span.text-slate-400 {
+  color: #475569 !important;
+}
+html:not(.dark) #ghCalculatorTopSection code.text-emerald-300 {
+  color: #047857 !important;
+}
+html:not(.dark) #ghCalculatorTopSection code.text-amber-300 {
+  color: #b45309 !important;
+}
+html:not(.dark) #ghCalculatorTopSection .text-lime-400 {
+  color: #4d7c0f !important;
+}
+html:not(.dark) #ghCalculatorTopSection #ghYieldSummaryBadge {
+  background-color: #ecfdf5 !important;
+  border-color: #86efac !important;
+  color: #15803d !important;
+}
+html:not(.dark) #ghCalculatorTopSection #ghYieldSummaryBadge strong.text-white {
+  color: #0f172a !important;
+}
+html:not(.dark) #ghCalculatorTopSection #ghYieldSummaryBadge strong.text-lime-300 {
+  color: #15803d !important;
+}
+html:not(.dark) #ghCalculatorTopSection .bg-\[\#111520\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+html:not(.dark) #ghCalculatorTopSection .bg-\[\#181d2c\] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #ghCalculatorTopSection input[type="number"],
+html:not(.dark) #ghCalculatorTopSection input[type="text"],
+html:not(.dark) #ghCalculatorTopSection select {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html:not(.dark) #ghCalculatorTopSection input[type="number"]:focus,
+html:not(.dark) #ghCalculatorTopSection input[type="text"]:focus,
+html:not(.dark) #ghCalculatorTopSection select:focus {
+  border-color: #6366f1 !important;
+}
+html:not(.dark) #ghCalculatorTopSection button[onclick^="adjustFf"] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+html:not(.dark) #ghCalculatorTopSection button[onclick^="adjustFf"]:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* Greenhouse Count & Presets Buttons in Light Mode */
+html:not(.dark) #ghCountGroup button,
+html:not(.dark) #ghPerGhPresets button {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+html:not(.dark) #ghCountGroup button:hover,
+html:not(.dark) #ghPerGhPresets button:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+html:not(.dark) #ghCountGroup button.bg-indigo-600 {
+  background-color: #4f46e5 !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.35) !important;
+}
+html:not(.dark) #ghPerGhPresets button.bg-amber-500\/20 {
+  background-color: #fef3c7 !important;
+  border-color: #fde68a !important;
+  color: #b45309 !important;
+  font-weight: 700 !important;
+}
+
+/* Greenhouse Target Info & Stage Selectors */
+html:not(.dark) #ghTargetMutationInfo .bg-\[\#111520\] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+html:not(.dark) #ghTargetMutationInfo .text-emerald-300 {
+  color: #047857 !important;
+}
+html:not(.dark) #ghTargetMutationInfo .text-amber-300,
+html:not(.dark) #ghTargetMutationInfo .text-amber-400 {
+  color: #b45309 !important;
+}
+html:not(.dark) #ghAloeStageSelect {
+  background-color: #ffffff !important;
+  border-color: #f59e0b !important;
+  color: #92400e !important;
+}
+html:not(.dark) #ghJellybeanStageSelect {
+  background-color: #ffffff !important;
+  border-color: #a855f7 !important;
+  color: #6b21a8 !important;
+}
+html:not(.dark) #ghStageSelectorContainer .text-amber-300 {
+  color: #92400e !important;
+}
+html:not(.dark) #ghStageSelectorContainer .text-purple-300 {
+  color: #6b21a8 !important;
+}
+
+/* Greenhouse KPI 1: 原版农作物基础收益 (NPC价) in Light Mode */
+html:not(.dark) #ghKpiNpcCard {
+  background-image: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%) !important;
+  background-color: #ffffff !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 4px 15px -1px rgba(16, 185, 129, 0.15) !important;
+}
+html:not(.dark) #ghKpiNpcCard .text-emerald-400 {
+  color: #065f46 !important;
+}
+html:not(.dark) #ghKpiNpcCard .text-emerald-300 {
+  color: #047857 !important;
+}
+html:not(.dark) #ghKpiNpcCard .bg-emerald-500\/20 {
+  background-color: #d1fae5 !important;
+  color: #047857 !important;
+  border: 1px solid #6ee7b7 !important;
+}
+html:not(.dark) #ghKpiNpcCard #ghNpcRevenueDisplay {
+  color: #047857 !important;
+}
+html:not(.dark) #ghKpiNpcCard p.text-slate-400 {
+  color: #065f46 !important;
+  font-weight: 600 !important;
+}
+html:not(.dark) #ghKpiNpcCard .text-emerald-500\/10 {
+  color: rgba(16, 185, 129, 0.12) !important;
+}
+
+/* Greenhouse KPI 2, 3, 4 in Light Mode */
+html:not(.dark) #ghKpiMutCard {
+  background-image: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%) !important;
+  background-color: #ffffff !important;
+  border-color: #c084fc !important;
+  box-shadow: 0 4px 15px -1px rgba(168, 85, 247, 0.1) !important;
+}
+html:not(.dark) #ghKpiMutCard .text-purple-400 {
+  color: #6b21a8 !important;
+}
+html:not(.dark) #ghKpiMutCard .text-purple-300 {
+  color: #7e22ce !important;
+}
+html:not(.dark) #ghKpiMutCard .bg-purple-500\/20 {
+  background-color: #f3e8ff !important;
+  color: #7e22ce !important;
+  border: 1px solid #d8b4fe !important;
+}
+html:not(.dark) #ghKpiMutCard #ghMutRevenueDisplay {
+  color: #7e22ce !important;
+}
+html:not(.dark) #ghKpiMutCard p.text-slate-400 {
+  color: #6b21a8 !important;
+  font-weight: 600 !important;
+}
+html:not(.dark) #ghKpiMutCard .text-purple-500\/10 {
+  color: rgba(168, 85, 247, 0.12) !important;
+}
+
+html:not(.dark) #ghKpiGrandCard {
+  background-image: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%) !important;
+  background-color: #ffffff !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 4px 15px -1px rgba(245, 158, 11, 0.12) !important;
+}
+html:not(.dark) #ghKpiGrandCard .text-amber-400 {
+  color: #92400e !important;
+}
+html:not(.dark) #ghKpiGrandCard .text-amber-300 {
+  color: #b45309 !important;
+}
+html:not(.dark) #ghKpiGrandCard .bg-amber-500\/20 {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+  border: 1px solid #fde68a !important;
+}
+html:not(.dark) #ghKpiGrandCard #ghGrandRevenueDisplay {
+  color: #b45309 !important;
+}
+html:not(.dark) #ghKpiGrandCard p.text-slate-400 {
+  color: #92400e !important;
+  font-weight: 600 !important;
+}
+html:not(.dark) #ghKpiGrandCard .text-amber-500\/10 {
+  color: rgba(245, 158, 11, 0.12) !important;
+}
+
+html:not(.dark) #ghKpiMutCountCard {
+  background-image: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%) !important;
+  background-color: #ffffff !important;
+  border-color: #818cf8 !important;
+  box-shadow: 0 4px 15px -1px rgba(99, 102, 241, 0.1) !important;
+}
+html:not(.dark) #ghKpiMutCountCard .text-indigo-400 {
+  color: #3730a3 !important;
+}
+html:not(.dark) #ghKpiMutCountCard .text-indigo-300 {
+  color: #4338ca !important;
+}
+html:not(.dark) #ghKpiMutCountCard .bg-indigo-500\/20 {
+  background-color: #e0e7ff !important;
+  color: #4338ca !important;
+  border: 1px solid #c7d2fe !important;
+}
+html:not(.dark) #ghKpiMutCountCard #ghMutDropCountDisplay {
+  color: #1e1b4b !important;
+}
+html:not(.dark) #ghKpiMutCountCard p.text-slate-400 {
+  color: #3730a3 !important;
+  font-weight: 600 !important;
+}
+html:not(.dark) #ghKpiMutCountCard .text-indigo-500\/10 {
+  color: rgba(99, 102, 241, 0.12) !important;
+}
+
+/* Crops Breakdown Table in Light Mode */
+html:not(.dark) #ghCropsBreakdownContainer .bg-\[\#111520\]\/80 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer thead,
+html:not(.dark) #ghCropsBreakdownContainer thead.bg-\[\#151926\] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #475569 !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer tbody tr {
+  border-color: #f1f5f9 !important;
+  background-color: #ffffff !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer tbody .text-emerald-300 {
+  color: #047857 !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer tbody .text-amber-300 {
+  color: #b45309 !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer tfoot,
+html:not(.dark) #ghCropsBreakdownContainer tfoot.bg-\[\#151926\]\/90 {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer tfoot td.font-sans,
+html:not(.dark) #ghCropsBreakdownContainer tfoot td.text-slate-400 {
+  color: #1e293b !important;
+  font-weight: 700 !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer tfoot .text-slate-500 {
+  color: #475569 !important;
+  font-weight: 600 !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer tfoot .text-emerald-400 {
+  color: #047857 !important;
+  font-weight: 800 !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer tfoot .text-amber-300 {
+  color: #b45309 !important;
+  font-weight: 800 !important;
+}
+
+/* Sack Level Badges in Light Mode */
+html:not(.dark) #ghCropsBreakdownContainer .bg-slate-700\/40 {
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer .bg-indigo-500\/20 {
+  background-color: #e0e7ff !important;
+  color: #4338ca !important;
+  border-color: #a5b4fc !important;
+}
+html:not(.dark) #ghCropsBreakdownContainer .bg-amber-500\/20 {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+  border-color: #fde68a !important;
+}
+
+/* Master Mutations Leaderboard Table Controls in Light Mode */
+html:not(.dark) #greenhouseTrackerView thead.bg-\[\#151926\] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
+html:not(.dark) #ghTableSearchInput,
+html:not(.dark) #ghTableRaritySelect {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html:not(.dark) #ghTableSearchInput:focus {
+  border-color: #6366f1 !important;
 }
 
 

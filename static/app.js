@@ -1843,11 +1843,11 @@ function switchChartTab(tab) {
     b.className = 'chart-tab px-3 py-1 rounded font-medium text-slate-400 hover:text-white transition';
   });
   if (tab === 'leaderboard') {
-    document.getElementById('tabLeaderboard').className = 'chart-tab px-3 py-1 rounded font-medium bg-indigo-600 text-white transition';
+    document.getElementById('tabLeaderboard').className = 'chart-tab px-3 py-1 rounded font-medium bg-indigo-600 text-white transition active';
   } else if (tab === 'parallel') {
-    document.getElementById('tabParallel').className = 'chart-tab px-3 py-1 rounded font-medium bg-indigo-600 text-white transition';
+    document.getElementById('tabParallel').className = 'chart-tab px-3 py-1 rounded font-medium bg-indigo-600 text-white transition active';
   } else if (tab === 'risk') {
-    document.getElementById('tabRiskMatrix').className = 'chart-tab px-3 py-1 rounded font-medium bg-indigo-600 text-white transition';
+    document.getElementById('tabRiskMatrix').className = 'chart-tab px-3 py-1 rounded font-medium bg-indigo-600 text-white transition active';
   }
   updateChart();
 }
