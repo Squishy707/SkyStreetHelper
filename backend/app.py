@@ -29,6 +29,7 @@ from backend.flipper_engine import calculate_gem_flipper, GEMSTONE_METADATA, TIE
 from backend.profile_service import ProfileService
 from backend.shard_service import shard_service
 from backend.greenhouse_service import greenhouse_service
+from backend.crop_arbitrage_service import crop_arbitrage_service
 
 # Resolve base directories (supporting both raw python and PyInstaller standalone .exe)
 if getattr(sys, 'frozen', False):
@@ -41,8 +42,8 @@ FALLBACK_CSV_PATH = os.path.join(BASE_DIR, "backend", "data", "bazaar_fallback.c
 
 app = FastAPI(
     title="SkyStreetHelper API",
-    description="Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking and Mutation Output Calculator (alpha 0.4.2)",
-    version="alpha 0.4.2"
+    description="Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking, Greenhouse Mutations and Crop Dump Arbitrage (alpha 0.5.0)",
+    version="alpha 0.5.0"
 )
 
 # Enable CORS
@@ -511,7 +512,7 @@ def download_shards_dictionary_csv():
     if os.path.exists(dict_file):
         return FileResponse(
             dict_file, 
-            filename="SkyBlock_Shards_Dictionary_v0.4.2.csv",
+            filename="SkyBlock_Shards_Dictionary_v0.5.0.csv",
             media_type="text/csv; charset=utf-8"
         )
     raise HTTPException(status_code=404, detail="Shard 词典 CSV 文件未就绪")
@@ -577,10 +578,59 @@ def export_greenhouse_csv():
     if os.path.exists(csv_file):
         return FileResponse(
             csv_file,
-            filename="SkyBlock_Greenhouse_Mutations_v0.4.2.csv",
+            filename="SkyBlock_Greenhouse_Mutations_v0.5.0.csv",
             media_type="text/csv; charset=utf-8"
         )
     raise HTTPException(status_code=404, detail="温室突变 CSV 字典文件未找到")
+
+
+# ==============================================================================
+# 农作物集市倾销与破发套利 API (Crop Dump Arbitrage - alpha 0.5.0)
+# ==============================================================================
+@app.get("/api/crops/arbitrage")
+def get_crop_arbitrage():
+    """
+    获取实时农作物集市倾销破发套利数据 (正式服现行价 vs 测试服削弱价)
+    """
+    # 确保盘口数据及时刷新
+    bazaar_service.fetch_live_bazaar(force=False)
+    data = crop_arbitrage_service.calculate_arbitrage(bazaar_service._cache)
+    return JSONResponse(data)
+
+@app.get("/api/crops/export")
+def export_crop_arbitrage_csv():
+    """
+    导出实时农作物破发套利大表为 CSV 文件
+    """
+    bazaar_service.fetch_live_bazaar(force=False)
+    data = crop_arbitrage_service.calculate_arbitrage(bazaar_service._cache)
+    
+    # 构建包含多采购渠道与限额测算的完整 CSV
+    output_lines = [
+        "Item ID,Crop Name,Family,Tier,Multiplier,Buy Order Price,Insta-Buy Price,T1 Craft BO Cost,T1 Craft BO Saving,Live NPC Price,Nerfed NPC Price,BO Profit (Live),BO ROI (Live) %,IB Profit (Live),IB ROI (Live) %,500M Cap Profit (BO),500M Cap Profit (T1 Craft),15B Turnover Quota %,Worst-case Nerf Floor,Arbitrage Status,24h Volume"
+    ]
+    for it in data["items"]:
+        total_vol = it["buy_volume"] + it["sell_volume"]
+        bo_profit = it["pnl_bo_npc_live"]["profit"]
+        bo_roi = it["pnl_bo_npc_live"]["roi"]
+        ib_profit = it["pnl_ib_npc_live"]["profit"]
+        ib_roi = it["pnl_ib_npc_live"]["roi"]
+        nerf_profit = it["pnl_bo_npc_nerf"]["profit"]
+        output_lines.append(
+            f'"{it["id"]}","{it["name"]}","{it["family"]}","{it["tier"]}",{it["multiplier"]},'
+            f'{it["buy_order_price"]},{it["insta_buy_price"]},{it["craft_bo_cost"]},{it["craft_bo_saving"]},'
+            f'{it["npc_live"]},{it["npc_nerfed"]},'
+            f'{bo_profit},{bo_roi}%,{ib_profit},{ib_roi}%,{it["cap_profit_bo"]},{it["cap_profit_craft_bo"]},'
+            f'{it["bz_turnover_pct_bo"]}%,{nerf_profit},"{it["status_zh"]}",{total_vol}'
+        )
+    csv_content = "\ufeff" + "\n".join(output_lines)
+    
+    from fastapi.responses import Response
+    return Response(
+        content=csv_content.encode("utf-8"),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": 'attachment; filename="SkyBlock_Crop_Arbitrage_v0.5.0.csv"'}
+    )
 
 
 # ==============================================================================

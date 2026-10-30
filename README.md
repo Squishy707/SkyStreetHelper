@@ -1,13 +1,13 @@
-# SkyStreetHelper (alpha 0.4.2)
+# SkyStreetHelper (alpha 0.5.0)
 
-> **Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking and Mutation Output Calculator**
-> **Hypixel Skyblock 助手：宝石锻造倒卖、集市Shard询价和突变产出计算**
+> **Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking, Greenhouse Mutations and Crop Dump Arbitrage**
+> **Hypixel Skyblock 助手：宝石锻造倒卖、集市Shard询价、温室突变精算与农作物破发套利**
 
 > 为 Hypixel SkyBlock 玩家打造的高性能、低延迟、现代化集市量化交易与profile养成追踪工具。
 
-> 三大独立工具：**GemFlipper（宝石锻造与倒卖利润监控）**、**BazaarShardTracker（Shard碎片集市价格与 Attribute 吸收规划）** 与 **GreenhouseTracker（温室突变农业产出与收益精算器）**。
+> 四大独立工具：**GemFlipper（宝石锻造与倒卖利润监控）**、**BazaarShardTracker（Shard碎片集市价格与 Attribute 吸收规划）**、**GreenhouseTracker（温室突变农业产出与收益精算器）** 与 **CropArbitrage（农作物集市倾销与破发套利雷达）**。
 
-[![Release](https://img.shields.io/badge/Release-alpha%200.4.2-blue.svg)](https://github.com/Squishy707/SkyStreetHelper/releases)
+[![Release](https://img.shields.io/badge/Release-alpha%200.5.0-blue.svg)](https://github.com/Squishy707/SkyStreetHelper/releases)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-teal.svg)](https://fastapi.tiangolo.com/)
 [![License](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
@@ -68,7 +68,7 @@
 便携版(无需安装 Python)：
 
 1. 前往 GitHub 仓库右侧的 [**Releases**](https://github.com/Squishy707/SkyStreetHelper/releases) 页面；
-2. 找到最新版本（如 `alpha 0.4.2`），在附件列表下载 **`SkyStreetHelper_0.4.2.exe`**；
+2. 找到最新版本（如 `alpha 0.5.0`），在附件列表下载 **`SkyStreetHelper_0.5.0.exe`**；
 3. 将 `.exe` 放置在任意文件夹中，**双击直接运行**；
 4. 程序启动后会自动打开系统默认浏览器，访问 `http://localhost:8000` 即可开始使用；
 5. **安全退出**：可在网页顶栏点击红色的 `[关闭服务]` 按钮，或在终端按 `Ctrl + C`。
@@ -114,7 +114,7 @@ pip install -r requirements.txt
 pip install pyinstaller
 python build_exe.py
 ```
-- 打包产物将自动输出至 `dist/SkyStreetHelper_0.4.2.exe`（及带时间戳归档副本）。
+- 打包产物将自动输出至 `dist/SkyStreetHelper_0.5.0.exe`（及带时间戳归档副本）。
 
 ---
 
@@ -127,16 +127,18 @@ SkyStreetHelper/
 │   ├── bazaar_service.py     # Hypixel Bazaar 实时盘口抓取与计算
 │   ├── shard_service.py      # Shards 词典加载、SkyShards API 玩家进度同步
 │   ├── greenhouse_service.py # 温室突变字典、掉落收益计算引擎
+│   ├── crop_arbitrage_service.py # 农作物集市倾销与破发套利引擎
 │   └── data/                 # 离线种子词典与数据表格
 │       ├── shard_dictionary.csv      # 325 种 Shards 权威离线词典
 │       ├── shard_data.json           # Shards 结构化元数据
 │       ├── greenhouse_mutations.csv  # 39 种温室突变与 14 种原版作物 NPC 价格表
 │       └── greenhouse_mutations.json # 温室突变元数据与阶段倍率
 ├── static/                   # 前端现代化单页应用 (Vanilla JS + CSS3)
-│   ├── index.html            # 主界面入口 (三工具 Tab 切换、白天/夜间主题)
+│   ├── index.html            # 主界面入口 (四大工具 Tab 切换、白天/夜间主题)
 │   ├── app.js                # GemFlipper 核心交互与实时重绘
 │   ├── shard_tracker.js      # BazaarShardTracker 渲染与玩家档案同步
 │   ├── greenhouse.js         # 温室突变收益精算器交互与大表渲染
+│   ├── crop_arbitrage.js     # 农作物倾销套利雷达核心交互与模拟器
 │   └── style.css             # 响应式布局与日间/夜间样式表
 ├── run_server.py             # 统一启动脚本 (含 UTF-8 控制台自适应、浏览器唤起与优雅关机)
 ├── build_exe.py              # PyInstaller 单文件自动化打包构建脚本
@@ -150,6 +152,16 @@ SkyStreetHelper/
 ---
 
 ## 📌 版本更新日志 (Changelog)
+
+### alpha 0.5.0 (2026-10-30)
+- **新增第四大独立模块：农作物集市倾销与破发套利雷达（CropArbitrage）**：
+  - **背景响应**：针对 2026-10-29/30 Hypixel 测试服发布的农作物 NPC 卖价大削弱开发者公告（小麦 6➔2.5C、土豆/胡萝卜 3➔2C、南瓜 10➔4.5C 等）引发的全服囤货恐慌性砸盘，紧急开发破发套利监测系统；
+  - **套利逻辑与双重基准**：实时追踪 44 种农作物及附魔/紧实衍生品的 Bazaar 进货价（挂单 Buy Order 与秒买 Insta-Buy），独家提供「正式服现价 Live NPC（实时无风险变现窗口）」与「测试服新价 Nerfed NPC（终极安全垫）」双重核算标准；
+  - **可视化与精算工具**：
+    - 集成全市场折价率与 ROI 收益率横向柱状图（Chart.js），直观透视全场最受踩踏的暴利品种；
+    - 内置「单车搬砖精算器」弹窗，支持自由输入或快捷选择背包数量（如 1 背包 2,240 件 / 1 大号 Sack 20,000 件），实时推算总花费、总回款与净利润；
+  - **视觉体验全面适配**：完美适配夜间科技风与白天（Light Mode）高对比度色彩规范，各级状态徽标与数值对比度显著增强；
+  - **数据导出**：支持一键导出包含全量 44 种作物实时买卖单、NPC 底价与套利利润的 CSV 报表。
 
 ### alpha 0.4.2 (2026-10-21)
 - **白天模式（Light Mode）高对比度与辨识度深度重构**：

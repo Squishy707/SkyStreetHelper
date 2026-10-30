@@ -2575,42 +2575,63 @@ function switchMainTab(tab) {
   const gemBtn = document.getElementById('tabGemFlipperBtn');
   const shardBtn = document.getElementById('tabShardTrackerBtn');
   const ghBtn = document.getElementById('tabGreenhouseBtn');
+  const cropBtn = document.getElementById('tabCropArbitrageBtn');
   const gemView = document.getElementById('gemFlipperView');
   const shardView = document.getElementById('shardTrackerView');
   const ghView = document.getElementById('greenhouseTrackerView');
+  const cropView = document.getElementById('cropArbitrageView');
 
   if (!gemBtn || !shardBtn || !gemView || !shardView) return;
 
-  const inactiveClass = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-[#181d2c] text-slate-300 hover:text-white hover:bg-slate-800 border border-[#262e45] inactive";
+  const inactiveClass = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-[#181d2c] text-slate-300 hover:text-white hover:bg-slate-800 border border-[#262e45] inactive whitespace-nowrap";
 
   if (tab === 'gemflipper') {
-    gemBtn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-indigo-600 text-white";
+    gemBtn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-indigo-600 text-white whitespace-nowrap";
     shardBtn.className = inactiveClass;
     if (ghBtn) ghBtn.className = inactiveClass;
+    if (cropBtn) cropBtn.className = inactiveClass;
     gemView.classList.remove('hidden');
     shardView.classList.add('hidden');
     if (ghView) ghView.classList.add('hidden');
+    if (cropView) cropView.classList.add('hidden');
   } else if (tab === 'shardtracker') {
-    shardBtn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-emerald-600 text-white";
+    shardBtn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-emerald-600 text-white whitespace-nowrap";
     gemBtn.className = inactiveClass;
     if (ghBtn) ghBtn.className = inactiveClass;
+    if (cropBtn) cropBtn.className = inactiveClass;
     gemView.classList.add('hidden');
     shardView.classList.remove('hidden');
     if (ghView) ghView.classList.add('hidden');
+    if (cropView) cropView.classList.add('hidden');
 
     if (!shardAppState.loaded) {
       fetchShardTrackerData();
     }
   } else if (tab === 'greenhouse') {
-    if (ghBtn) ghBtn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-lime-600 text-white shadow-lime-900/40";
+    if (ghBtn) ghBtn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-lime-600 text-white shadow-lime-900/40 whitespace-nowrap";
     gemBtn.className = inactiveClass;
     shardBtn.className = inactiveClass;
+    if (cropBtn) cropBtn.className = inactiveClass;
     gemView.classList.add('hidden');
     shardView.classList.add('hidden');
     if (ghView) ghView.classList.remove('hidden');
+    if (cropView) cropView.classList.add('hidden');
 
     if (typeof initGreenhouseTracker === 'function') {
       initGreenhouseTracker();
+    }
+  } else if (tab === 'crop_arbitrage') {
+    if (cropBtn) cropBtn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-amber-600 text-white shadow-amber-900/40 whitespace-nowrap";
+    gemBtn.className = inactiveClass;
+    shardBtn.className = inactiveClass;
+    if (ghBtn) ghBtn.className = inactiveClass;
+    gemView.classList.add('hidden');
+    shardView.classList.add('hidden');
+    if (ghView) ghView.classList.add('hidden');
+    if (cropView) cropView.classList.remove('hidden');
+
+    if (typeof initCropArbitrage === 'function') {
+      initCropArbitrage();
     }
   }
 }
