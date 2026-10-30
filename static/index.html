@@ -655,9 +655,9 @@
           <span class="text-sm font-bold text-white">宝石品质/类型筛选</span>
         </div>
         <div class="flex items-center space-x-3 text-xs">
-          <div class="relative w-48">
-            <i class="fa-solid fa-search absolute left-2.5 top-2.5 text-slate-500"></i>
-            <input type="text" id="tableSearchInput" placeholder="按种类名称筛选..." class="w-full bg-[#111520] border border-[#262e45] rounded-lg pl-8 pr-3 py-1.5 text-white focus:border-indigo-500 outline-none">
+          <div class="relative w-48 search-box-wrapper">
+            <i class="fa-solid fa-search search-icon absolute left-2.5 top-2.5 text-slate-500"></i>
+            <input type="text" id="tableSearchInput" placeholder="按种类名称筛选..." class="search-input-box w-full bg-[#111520] border border-[#262e45] rounded-lg pl-8 pr-3 py-1.5 text-white focus:border-indigo-500 outline-none">
           </div>
           <span class="text-slate-400 font-mono" id="tableResultCount">共 12 条记录</span>
         </div>
@@ -891,8 +891,8 @@
             <span class="text-white font-bold text-sm">玩家档案同步</span>
           </div>
           <!-- IGN Input -->
-          <div class="relative flex items-center">
-            <input type="text" id="shardIgnInput" placeholder="输入玩家 IGN (如 Qryptarithm)..." class="bg-[#111520] border border-[#262e45] text-slate-100 placeholder-slate-500 text-xs rounded-lg px-3 py-1.5 w-48 sm:w-56 focus:outline-none focus:border-emerald-500 transition">
+          <div class="relative flex items-center search-box-wrapper">
+            <input type="text" id="shardIgnInput" placeholder="输入玩家 IGN (如 Qryptarithm)..." class="search-input-box bg-[#111520] border border-[#262e45] text-slate-100 placeholder-slate-500 text-xs rounded-lg px-3 py-1.5 w-48 sm:w-56 focus:outline-none focus:border-emerald-500 transition">
             <button onclick="clearShardIgn()" class="absolute right-2 text-slate-500 hover:text-slate-300 text-xs hidden" id="shardIgnClearBtn"><i class="fa-solid fa-xmark"></i></button>
           </div>
           <!-- Sync Button -->
@@ -1170,9 +1170,9 @@
           </div>
 
           <!-- Search Input Box (全属性全局搜索) -->
-          <div class="relative flex-1 max-w-md">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-500 text-xs"></i>
-            <input type="text" id="shardSearchInput" oninput="onShardSearchInput()" placeholder="搜索 Shard名 / Attribute名 / 类型 / 效果 / 狩猎来源 / 家族..." class="bg-[#111520] border border-[#262e45] text-slate-100 placeholder-slate-500 text-xs rounded-lg pl-8 pr-8 py-1.5 w-full focus:outline-none focus:border-indigo-500 transition">
+          <div class="relative flex-1 max-w-md search-box-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon absolute left-3 top-2.5 text-slate-500 text-xs"></i>
+            <input type="text" id="shardSearchInput" oninput="onShardSearchInput()" placeholder="搜索 Shard名 / Attribute名 / 类型 / 效果 / 狩猎来源 / 家族..." class="search-input-box bg-[#111520] border border-[#262e45] text-slate-100 placeholder-slate-500 text-xs rounded-lg pl-8 pr-8 py-1.5 w-full focus:outline-none focus:border-indigo-500 transition">
             <button onclick="clearShardSearch()" id="shardSearchClearBtn" class="absolute right-2.5 top-2 text-slate-500 hover:text-slate-300 text-xs hidden">
               <i class="fa-solid fa-xmark"></i>
             </button>
@@ -1477,10 +1477,10 @@
             <div>
               <label class="text-xs text-slate-300 font-medium block mb-1">选择待测突变作物:</label>
               <div class="space-y-1.5">
-                <div class="relative">
+                <div class="relative search-box-wrapper">
                   <input id="ghMutationSearchInput" type="text" placeholder="快速搜索突变名称 / 稀有度..." 
-                    class="w-full bg-[#181d2c] border border-[#262e45] focus:border-lime-400 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 outline-none transition">
-                  <i class="fa-solid fa-magnifying-glass text-slate-500 text-xs absolute left-2.5 top-2.5"></i>
+                    class="search-input-box w-full bg-[#181d2c] border border-[#262e45] focus:border-lime-400 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 outline-none transition">
+                  <i class="fa-solid fa-magnifying-glass search-icon text-slate-500 text-xs absolute left-2.5 top-2.5"></i>
                 </div>
                 <select id="ghMutationSelect" class="w-full bg-[#181d2c] border border-lime-500/40 focus:border-lime-400 rounded-lg px-3 py-2 text-xs text-white font-bold outline-none cursor-pointer">
                   <!-- Dynamically populated via greenhouse.js -->
@@ -1636,10 +1636,10 @@
           <!-- Search & Filter Controls -->
           <div class="flex flex-wrap items-center gap-2">
             <!-- Search -->
-            <div class="relative">
+            <div class="relative search-box-wrapper">
               <input id="ghTableSearchInput" type="text" placeholder="搜索突变名称 / 土壤 / 底物..." 
-                class="bg-[#181d2c] border border-[#262e45] rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 outline-none focus:border-indigo-500 w-48 sm:w-64">
-              <i class="fa-solid fa-magnifying-glass text-slate-500 text-xs absolute left-2.5 top-2.5"></i>
+                class="search-input-box bg-[#181d2c] border border-[#262e45] rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 outline-none focus:border-indigo-500 w-48 sm:w-64">
+              <i class="fa-solid fa-magnifying-glass search-icon text-slate-500 text-xs absolute left-2.5 top-2.5"></i>
             </div>
 
             <!-- Rarity Filter -->
@@ -1996,9 +1996,9 @@
           </div>
 
           <!-- 全局搜索框 -->
-          <div class="relative flex-1 max-w-xs">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-500 text-xs"></i>
-            <input type="text" id="cropSearchInput" oninput="onCropSearchInput()" placeholder="Search crop / ID..." class="bg-[#111520] border border-[#262e45] text-slate-100 placeholder-slate-500 text-xs rounded-lg pl-8 pr-3 py-1.5 w-full focus:outline-none focus:border-indigo-500 transition">
+          <div class="relative flex-1 max-w-xs search-box-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon absolute left-3 top-2.5 text-slate-500 text-xs"></i>
+            <input type="text" id="cropSearchInput" oninput="onCropSearchInput()" placeholder="Search crop / ID..." class="search-input-box bg-[#111520] border border-[#262e45] text-slate-100 placeholder-slate-500 text-xs rounded-lg pl-8 pr-3 py-1.5 w-full focus:outline-none focus:border-indigo-500 transition">
           </div>
         </div>
       </section>
@@ -2202,9 +2202,9 @@
 
       <!-- Search & Count Bar inside Modal -->
       <div class="flex items-center justify-between gap-3 shrink-0 text-xs">
-        <div class="relative w-72">
-          <i class="fa-solid fa-search absolute left-2.5 top-2.5 text-slate-500"></i>
-          <input type="text" id="previewSearchInput" oninput="filterPreviewTable()" placeholder="快速键入中英文搜索 (如 flawed, topaz, apparatus, 蓝宝石)..." class="w-full bg-[#111520] border border-[#262e45] rounded-lg pl-8 pr-3 py-1.5 text-white outline-none focus:border-indigo-500">
+        <div class="relative w-72 search-box-wrapper">
+          <i class="fa-solid fa-search search-icon absolute left-2.5 top-2.5 text-slate-500"></i>
+          <input type="text" id="previewSearchInput" oninput="filterPreviewTable()" placeholder="快速键入中英文搜索 (如 flawed, topaz, apparatus, 蓝宝石)..." class="search-input-box w-full bg-[#111520] border border-[#262e45] rounded-lg pl-8 pr-3 py-1.5 text-white outline-none focus:border-indigo-500">
         </div>
         <span class="text-slate-400 font-mono text-[11px]" id="previewCountBadge">共 62 项商品</span>
       </div>

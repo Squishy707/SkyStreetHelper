@@ -454,17 +454,215 @@ select option {
   color: #f1f5f9;
 }
 
-/* Search Box specific styling */
-html:not(.dark) #tableSearchInput {
+/* ==============================================================================
+ * UNIFIED SEARCH INPUTS & BOXES SPECIFICATION (检索文本框底板与文字颜色 - 黑白模式深度适配)
+ * Covers: #cropSearchInput, #tableSearchInput, #shardSearchInput, 
+ *         #ghMutationSearchInput, #ghTableSearchInput, #previewSearchInput, #shardIgnInput, .search-input-box
+ * ============================================================================== */
+
+/* --- 1. DARK MODE (深色模式 / 默认黑模式) --- */
+.search-input-box,
+#cropSearchInput,
+#tableSearchInput,
+#shardSearchInput,
+#ghMutationSearchInput,
+#ghTableSearchInput,
+#previewSearchInput,
+#shardIgnInput {
+  background-color: #121727 !important;
+  color: #f8fafc !important;
+  border: 1px solid #2d3856 !important;
+  box-shadow: inset 0 1.5px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.search-input-box::placeholder,
+#cropSearchInput::placeholder,
+#tableSearchInput::placeholder,
+#shardSearchInput::placeholder,
+#ghMutationSearchInput::placeholder,
+#ghTableSearchInput::placeholder,
+#previewSearchInput::placeholder,
+#shardIgnInput::placeholder {
+  color: #94a3b8 !important; /* 清晰、高对比度占位提示 */
+  font-weight: 400 !important;
+}
+
+.search-input-box:hover,
+#cropSearchInput:hover,
+#tableSearchInput:hover,
+#shardSearchInput:hover,
+#ghMutationSearchInput:hover,
+#ghTableSearchInput:hover,
+#previewSearchInput:hover,
+#shardIgnInput:hover {
+  background-color: #161e33 !important;
+  border-color: #445480 !important;
+}
+
+.search-input-box:focus,
+#cropSearchInput:focus,
+#tableSearchInput:focus,
+#shardSearchInput:focus,
+#previewSearchInput:focus,
+#shardIgnInput:focus,
+#ghTableSearchInput:focus {
+  background-color: #0d121f !important;
+  color: #ffffff !important;
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.28), inset 0 1px 2px rgba(0, 0, 0, 0.45) !important;
+  outline: none !important;
+}
+
+#ghMutationSearchInput:focus {
+  background-color: #0d121f !important;
+  color: #ffffff !important;
+  border-color: #a3e635 !important;
+  box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.28), inset 0 1px 2px rgba(0, 0, 0, 0.45) !important;
+  outline: none !important;
+}
+
+/* 伴随放大镜图标 (Dark Mode) */
+.search-icon,
+.relative:has(#cropSearchInput) > i,
+.relative:has(#tableSearchInput) > i,
+.relative:has(#shardSearchInput) > i,
+.relative:has(#ghTableSearchInput) > i,
+.relative:has(#previewSearchInput) > i {
+  color: #818cf8 !important;
+  transition: color 0.2s ease, filter 0.2s ease !important;
+}
+
+#ghMutationSearchInput ~ .search-icon,
+.relative:has(#ghMutationSearchInput) > i {
+  color: #a3e635 !important;
+  transition: color 0.2s ease, filter 0.2s ease !important;
+}
+
+.search-box-wrapper:focus-within .search-icon,
+.relative:focus-within > i {
+  filter: brightness(1.25) !important;
+}
+
+#shardSearchClearBtn,
+#shardIgnClearBtn {
+  color: #94a3b8 !important;
+}
+
+#shardSearchClearBtn:hover,
+#shardIgnClearBtn:hover {
+  color: #ffffff !important;
+}
+
+/* --- 2. LIGHT MODE (浅色模式 / 白天白模式) --- */
+html:not(.dark) .search-input-box,
+html:not(.dark) #cropSearchInput,
+html:not(.dark) #tableSearchInput,
+html:not(.dark) #shardSearchInput,
+html:not(.dark) #ghMutationSearchInput,
+html:not(.dark) #ghTableSearchInput,
+html:not(.dark) #previewSearchInput,
+html:not(.dark) #shardIgnInput {
+  background-color: #f1f5f9 !important; /* 柔和浅灰底板，与纯白卡片容器形成清晰立体层次 */
+  color: #0f172a !important;            /* 纯正高对比度文字黑，极佳辨识度 */
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: inset 0 1.5px 2.5px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html:not(.dark) .search-input-box::placeholder,
+html:not(.dark) #cropSearchInput::placeholder,
+html:not(.dark) #tableSearchInput::placeholder,
+html:not(.dark) #shardSearchInput::placeholder,
+html:not(.dark) #ghMutationSearchInput::placeholder,
+html:not(.dark) #ghTableSearchInput::placeholder,
+html:not(.dark) #previewSearchInput::placeholder,
+html:not(.dark) #shardIgnInput::placeholder {
+  color: #64748b !important; /* 满足 WCAG AA 4.5:1 对比度的清晰占位文字 */
+  font-weight: 500 !important;
+}
+
+html:not(.dark) .search-input-box:hover,
+html:not(.dark) #cropSearchInput:hover,
+html:not(.dark) #tableSearchInput:hover,
+html:not(.dark) #shardSearchInput:hover,
+html:not(.dark) #ghMutationSearchInput:hover,
+html:not(.dark) #ghTableSearchInput:hover,
+html:not(.dark) #previewSearchInput:hover,
+html:not(.dark) #shardIgnInput:hover {
+  background-color: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+}
+
+html:not(.dark) .search-input-box:focus,
+html:not(.dark) #cropSearchInput:focus,
+html:not(.dark) #tableSearchInput:focus,
+html:not(.dark) #shardSearchInput:focus,
+html:not(.dark) #ghTableSearchInput:focus,
+html:not(.dark) #previewSearchInput:focus,
+html:not(.dark) #shardIgnInput:focus {
+  background-color: #ffffff !important; /* 输入时光标所在底板变为亮白，极大增强视觉焦点 */
+  color: #0f172a !important;
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+  outline: none !important;
+}
+
+html:not(.dark) #ghMutationSearchInput:focus {
   background-color: #ffffff !important;
   color: #0f172a !important;
-  border: 1px solid #cbd5e1 !important;
+  border-color: #65a30d !important;
+  box-shadow: 0 0 0 3px rgba(101, 163, 13, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+  outline: none !important;
 }
-html:not(.dark) #tableSearchInput::placeholder {
-  color: #94a3b8 !important;
-}
+
+/* 伴随放大镜图标 (Light Mode) */
+html:not(.dark) .search-icon,
+html:not(.dark) .relative:has(#cropSearchInput) > i,
+html:not(.dark) .relative:has(#tableSearchInput) > i,
+html:not(.dark) .relative:has(#shardSearchInput) > i,
+html:not(.dark) .relative:has(#ghTableSearchInput) > i,
+html:not(.dark) .relative:has(#previewSearchInput) > i,
 html:not(.dark) .fa-search {
-  color: #94a3b8 !important;
+  color: #4f46e5 !important; /* 优雅的紫靛色聚焦图标 */
+  transition: color 0.2s ease !important;
+}
+
+html:not(.dark) #ghMutationSearchInput ~ .search-icon,
+html:not(.dark) .relative:has(#ghMutationSearchInput) > i {
+  color: #65a30d !important; /* 温室专属草绿图标 */
+  transition: color 0.2s ease !important;
+}
+
+html:not(.dark) .search-box-wrapper:focus-within .search-icon,
+html:not(.dark) .relative:focus-within > i {
+  color: #3730a3 !important;
+}
+
+html:not(.dark) #shardSearchClearBtn,
+html:not(.dark) #shardIgnClearBtn {
+  color: #64748b !important;
+}
+
+html:not(.dark) #shardSearchClearBtn:hover,
+html:not(.dark) #shardIgnClearBtn:hover {
+  color: #0f172a !important;
+}
+
+/* 毗邻下拉框微调 (保证与检索输入框高度、底板和谐统一) */
+html:not(.dark) #ghTableRaritySelect {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+html:not(.dark) #ghTableRaritySelect:hover {
+  background-color: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+}
+html:not(.dark) #ghTableRaritySelect:focus {
+  background-color: #ffffff !important;
+  border-color: #4f46e5 !important;
+  outline: none !important;
 }
 
 /* Disabled Input (IGN Sync) */
@@ -904,14 +1102,7 @@ html:not(.dark) #previewModal .text-slate-400 {
 html:not(.dark) #previewModal .border-\[\#262e45\] {
   border-color: #e2e8f0 !important;
 }
-html:not(.dark) #previewSearchInput {
-  background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  color: #0f172a !important;
-}
-html:not(.dark) #previewSearchInput:focus {
-  border-color: #6366f1 !important;
-}
+/* previewSearchInput covered by master search block */
 
 /* 8. ROI Column & In-cell Data Bar in Light Mode */
 html:not(.dark) td.bg-emerald-500\/5,
@@ -1457,11 +1648,7 @@ html:not(.dark) #shardTrackerView #shardStrategyFilterGroup .shard-strat-btn.bg-
 html:not(.dark) #shardTrackerView #shardRarityFilterGroup .shard-rarity-btn.bg-indigo-600 i {
   color: #ffffff !important;
 }
-html:not(.dark) #shardSearchInput {
-  background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  color: #0f172a !important;
-}
+/* shardSearchInput covered by master search block */
 
 html:not(.dark) #tabShardTrackerBtn.inactive,
 html:not(.dark) #tabGemFlipperBtn.inactive,
@@ -1848,15 +2035,7 @@ html:not(.dark) #greenhouseTrackerView thead.bg-\[\#151926\] {
   border-color: #cbd5e1 !important;
   color: #475569 !important;
 }
-html:not(.dark) #ghTableSearchInput,
-html:not(.dark) #ghTableRaritySelect {
-  background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  color: #0f172a !important;
-}
-html:not(.dark) #ghTableSearchInput:focus {
-  border-color: #6366f1 !important;
-}
+/* ghTableSearchInput covered by master search block */
 
 /* ==============================================================================
  * 8. Crop Arbitrage & Panic Dump Radar Styles (alpha 0.5.0)
