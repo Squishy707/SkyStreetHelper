@@ -11,7 +11,7 @@
   <!-- FontAwesome Icons CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/style.css?v=0.5.2">
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -135,7 +135,7 @@
   <main class="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-5 flex-1 w-full">
 
     <!-- PRIMARY NAVIGATION TABS (主工具双模块切换栏) -->
-    <div class="flex items-center space-x-2 border-b border-[#262e45] pb-3">
+    <div class="flex items-center space-x-2 border-b border-[#262e45] pb-3 overflow-x-auto scrollbar-thin">
       <button id="tabGemFlipperBtn" onclick="switchMainTab('gemflipper')" class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-indigo-600 text-white">
         <i class="fa-solid fa-gem text-amber-300"></i>
         <span>💎 宝石锻造套利器 (GemFlipper)</span>
@@ -2735,8 +2735,9 @@
     </div>
   </div>
 <!-- App Javascript -->
-  <script src="/static/crop_arbitrage.js"></script>
-  <script src="/static/greenhouse.js"></script>
-  <script src="/static/app.js"></script>
+  <script src="/static/crop_arbitrage.js?v=0.5.2"></script>
+  <script src="/static/greenhouse.js?v=0.5.2"></script>
+  <script src="/static/order_tracker.js?v=0.5.2"></script>
+  <script src="/static/app.js?v=0.5.2"></script>
 </body>
 </html>

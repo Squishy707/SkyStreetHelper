@@ -56,6 +56,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Disable browser caching for HTML and static assets to ensure code updates take effect immediately
+@app.middleware("http")
+async def add_no_cache_headers(request, call_next):
+    response = await call_next(request)
+    if request.url.path == "/" or request.url.path.startswith("/static/"):
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+    return response
+
 # Initialize services
 bazaar_service = BazaarService(csv_backup_path=FALLBACK_CSV_PATH)
 event_service = EventService()
@@ -727,5 +737,12 @@ app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 def index():
     index_file = os.path.join(STATIC_DIR, "index.html")
     if os.path.exists(index_file):
-        return FileResponse(index_file)
+        return FileResponse(
+            index_file,
+            headers={
+                "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
+                "Pragma": "no-cache",
+                "Expires": "0"
+            }
+        )
     return JSONResponse({"status": "Server running", "message": "static/index.html is being prepared."})
