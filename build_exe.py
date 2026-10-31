@@ -78,6 +78,8 @@ def build():
         "--hidden-import=backend.profile_service",
         "--hidden-import=backend.shard_service",
         "--hidden-import=backend.greenhouse_service",
+        "--hidden-import=backend.crop_arbitrage_service",
+        "--hidden-import=backend.tracker_service",
         "run_server.py"
     ]
     

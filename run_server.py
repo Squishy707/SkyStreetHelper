@@ -72,7 +72,7 @@ if __name__ == "__main__":
     print("  Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking")
     print("                           and Mutation Output Calculator")
     print("  - 本地服务地址: http://localhost:8000")
-    print("  - 三大核心工具: 💎 宝石锻造套利 + 🧩 碎片属性追踪 + 🌱 农业突变产出与收益")
+    print("  - 五大核心工具: 💎 宝石锻造套利 + 🧩 碎片属性追踪 + 🌱 农业突变产出与收益 + 🌾 农作物破发套利雷达 + 🎯 挂单盯盘雷达")
     print("  - 关停方式 1 (控制台): 在此窗口按 Ctrl + C 或直接点击右上角 [X] 关闭")
     print("  - 关停方式 2 (网页端): 在打开的网页右上角点击 [关闭服务] 按钮")
     print("=" * 72)
