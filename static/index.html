@@ -24,6 +24,10 @@
 
   <!-- Custom Stylesheet -->
 
+    <!-- Google Fonts: Inter (UI) & JetBrains Mono (Data/Finance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css?v=0.5.2">
 
   <script>
@@ -278,7 +282,7 @@
 
         <i class="fa-solid fa-gem text-amber-300"></i>
 
-        <span>💎 宝石锻造套利器 (GemFlipper)</span>
+        <span>宝石锻造套利器 (GemFlipper)</span>
 
       </button>
 
@@ -286,7 +290,7 @@
 
         <i class="fa-solid fa-puzzle-piece text-emerald-400"></i>
 
-        <span>🧩 碎片属性追踪器 (ShardTracker)</span>
+        <span>碎片属性追踪器 (ShardTracker)</span>
 
         <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono">325</span>
 
@@ -296,7 +300,7 @@
 
         <i class="fa-solid fa-seedling text-lime-400"></i>
 
-        <span>🌱 突变产出与收益计算器 (Greenhouse)</span>
+        <span>突变产出与收益计算器 (Greenhouse)</span>
 
         <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-lime-500/20 text-lime-300 border border-lime-500/30 font-mono">39种</span>
 
@@ -316,7 +320,7 @@
 
         <i class="fa-solid fa-crosshairs text-indigo-400"></i>
 
-        <span>🎯 挂单盯盘雷达 (OrderRadar)</span>
+        <span>挂单盯盘雷达 (OrderRadar)</span>
 
         <span id="radarActiveBadge" class="px-1.5 py-0.2 rounded-full text-[10px] bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-mono">0单</span>
 
@@ -3486,131 +3490,61 @@
 
 
 
-      <!-- 1. TOP HEADER & EMERGENCY ALERT BANNER -->
-
-      <section class="bg-gradient-to-r from-[#181d2c] via-[#1f283d] to-[#181d2c] border border-amber-500/40 rounded-2xl p-5 shadow-xl relative overflow-hidden">
-
-        <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#262e45]">
-
-          <div class="flex items-center space-x-3.5">
-
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-2xl shadow-lg shadow-amber-500/10 shrink-0 animate-pulse">
-
+      <!-- 1. TOP HEADER & PRECISION STATUS BAR (黑曜石量化终端 - 文字脱水) -->
+      <section class="bg-[#0f1523] border border-amber-500/30 rounded-2xl p-4 shadow-lg space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#1e293b]">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl shadow-sm shrink-0">
               <i class="fa-solid fa-wheat-awn"></i>
-
             </div>
-
             <div>
-
               <div class="flex flex-wrap items-center gap-2">
-
-                <h2 class="text-base sm:text-lg font-extrabold text-white">农作物集市倾销与破发套利雷达</h2>
-
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 animate-pulse">
-
-                  2026-10-30 测试服突发情报
-
-                </span>
-
-                <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-
-                  正式服现行无风险套利中
-
-                </span>
-
+                <h2 class="text-base font-bold text-white tracking-tight">农作物集市倾销与破发套利雷达</h2>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">2026-10-30 测试服突发</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">正式服套利中</span>
               </div>
-
-              <p class="text-xs text-slate-400 mt-1">
-
-                实时比对 Bazaar 进货成本 vs NPC 收购底价 • 捕获恐慌抛盘破发差价 • 关门前零风险批量变现
-
+              <p class="text-xs text-slate-400 mt-0.5">
+                实时比对 Bazaar 进货成本 vs NPC 收购底价 · 捕捉恐慌抛盘破发差价 · 关门前零风险批量变现
               </p>
-
             </div>
-
           </div>
-
           <div class="flex flex-wrap items-center gap-2">
-
-            <a href="https://hypixel.net/threads/october-29-accessory-bag-revamp-economy-changes.6165308/" target="_blank" class="px-3 py-1.5 rounded-lg bg-[#111520] hover:bg-slate-700/60 border border-[#262e45] text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition active:scale-95 shadow-sm">
-
-              <i class="fa-solid fa-arrow-up-right-from-square text-amber-400"></i>
-
+            <a href="https://hypixel.net/threads/october-29-accessory-bag-revamp-economy-changes.6165308/" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-[#090d16] hover:bg-slate-800 border border-[#1e293b] text-slate-300 hover:text-white text-xs font-semibold flex items-center space-x-1.5 transition active:scale-95 shadow-sm">
+              <i class="fa-solid fa-arrow-up-right-from-square text-amber-400 text-[11px]"></i>
               <span>Hypixel 公告 ↗</span>
-
             </a>
-
-            <a href="/api/crops/export" download class="px-3 py-1.5 rounded-lg bg-[#111520] hover:bg-emerald-600/20 border border-[#262e45] hover:border-emerald-500/40 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition active:scale-95 shadow-sm">
-
-              <i class="fa-solid fa-file-csv text-emerald-400"></i>
-
+            <a href="/api/crops/export" download class="px-2.5 py-1.5 rounded-lg bg-[#090d16] hover:bg-emerald-950/40 border border-[#1e293b] hover:border-emerald-500/40 text-slate-300 hover:text-white text-xs font-semibold flex items-center space-x-1.5 transition active:scale-95 shadow-sm">
+              <i class="fa-solid fa-file-csv text-emerald-400 text-[11px]"></i>
               <span>导出大表 (.csv)</span>
-
             </a>
-
-            <button onclick="fetchCropArbitrageData(true)" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center space-x-1.5 transition active:scale-95 shadow-sm">
-
-              <i id="cropRefreshIcon" class="fa-solid fa-arrows-rotate"></i>
-
+            <button onclick="fetchCropArbitrageData(true)" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs font-bold flex items-center space-x-1.5 transition shadow-sm">
+              <i id="cropRefreshIcon" class="fa-solid fa-arrows-rotate text-[11px]"></i>
               <span>刷新盘口</span>
-
             </button>
-
           </div>
-
         </div>
 
-
-
-        <!-- Emergency Intelligence Callout -->
-
-        <div id="cropEmergencyCallout" class="mt-4 bg-[#111520]/90 border border-amber-500/20 rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs">
-
-          <div class="space-y-1.5 max-w-4xl text-slate-300 leading-relaxed">
-
-            <div class="flex items-center gap-2">
-
-              <span class="text-amber-400 font-bold flex items-center gap-1.5">
-
-                <i class="fa-solid fa-triangle-exclamation"></i> 行情解读与套利机制：
-
-              </span>
-
-              <span class="text-[11px] text-slate-400 font-mono">数据更新时间: <strong id="cropDataUpdateTime" class="text-amber-300">--</strong></span>
-
+        <!-- Precision Status Bar (替代原本 200px 冗长大黄框) -->
+        <div id="cropEmergencyCallout" class="bg-[#090d16]/80 border border-[#1e293b] rounded-xl px-3.5 py-2 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex flex-wrap items-center gap-2 text-slate-300">
+            <span class="crop-nerf-badge px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/15 text-rose-300 border border-rose-500/30">🔴 测试服削弱前瞻</span>
+            <span class="crop-arb-badge px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">🟢 正式服套利开放</span>
+            <span class="text-xs text-slate-300 hidden md:inline">正式服收购底价尚未下调，当前集市抛售破发差价显著，立买立卖即时锁定利润。</span>
+            <button onclick="openCropNerfModal()" class="text-xs text-amber-400 hover:text-amber-300 font-semibold underline underline-offset-2 flex items-center gap-1 transition ml-1 shrink-0" title="点击查看官方公告平衡草案与14种作物调价明细">
+              <i class="fa-solid fa-circle-info"></i> 调价对照与套利机制 ↗
+            </button>
+          </div>
+          <div class="flex items-center gap-3 shrink-0 font-mono">
+            <div id="cropPanicBox" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#111625] border border-amber-500/30 text-xs">
+              <span class="text-slate-400 font-sans text-[11px]">恐慌指数:</span>
+              <strong id="cropPanicVal" class="text-amber-400 font-extrabold tabular-nums">-- / 100</strong>
+              <span id="cropPanicBadge" class="text-[10px] font-bold ml-1">评估中</span>
+              <span id="cropPanicAdvice" class="hidden"></span>
             </div>
-
-            <p class="text-[11px] text-slate-300">
-
-              <strong class="crop-nerf-badge font-bold px-1.5 py-0.5 rounded text-[11px] shrink-0 bg-rose-500/20 text-rose-300 border border-rose-500/30">【测试服削弱】</strong>官方开发者公布经济平衡草案，小麦（6➔2.5C）、土豆/胡萝卜（3➔2C）、南瓜（10➔4.5C）等 14 大作物 NPC 卖价将遭到断崖式下调。大批囤货商与农夫因不愿手动一组组向 NPC 兜售，直接向集市疯狂点击 <strong class="text-amber-300">Insta-Sell</strong> 清仓，引发集市挂单被巨量压塌！
-
-            </p>
-
-            <p class="text-[11px] text-slate-300">
-
-              <strong class="crop-arb-badge font-bold px-1.5 py-0.5 rounded text-[11px] shrink-0 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">【无风险套利窗口】</strong>目前正式服<strong>仍未上线</strong>此项削弱，NPC 仍然执行原版高额收购价！只要集市买价低于当前 NPC 价格，即可<strong>买入 ➔ 直接转手 NPC 变现</strong>，赚取确定性无风险纯利润！
-
-            </p>
-
+            <span class="text-[11px] text-slate-500 hidden sm:inline">更新: <strong id="cropDataUpdateTime" class="text-slate-400">--</strong></span>
           </div>
-
-          <div id="cropPanicBox" class="bg-[#181d2c] border border-amber-500/30 rounded-xl p-3 shrink-0 text-center min-w-[200px] shadow-inner">
-
-            <span class="text-[11px] text-slate-400 block font-sans">全市场农作物恐慌指数</span>
-
-            <span id="cropPanicVal" class="text-2xl font-black text-amber-400 font-mono block my-0.5">-- / 100</span>
-
-            <span id="cropPanicBadge" class="text-xs font-bold block mb-1">正在评估...</span>
-
-            <p id="cropPanicAdvice" class="text-[10px] text-slate-400 leading-tight">加载实时盘口...</p>
-
-          </div>
-
         </div>
-
       </section>
-
-
 
       <!-- 2. CORE KPI CARDS ROW -->
 
@@ -5479,6 +5413,98 @@
   <script src="/static/order_tracker.js?v=0.5.2"></script>
 
   <script src="/static/app.js?v=0.5.2"></script>
+
+
+  <!-- CROP NERF & ARBITRAGE MECHANISM INFO MODAL -->
+  <div id="cropNerfModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden bg-black/70 backdrop-blur-sm">
+    <div class="bg-[#111625] border border-amber-500/40 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl relative flex flex-col max-h-[85vh]">
+      <!-- Header -->
+      <div class="px-5 py-3.5 border-b border-[#1e293b] flex items-center justify-between shrink-0 bg-[#0c101b]">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm font-bold">
+            <i class="fa-solid fa-wheat-awn"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-white">农作物经济平衡草案与无风险套利机制</h3>
+            <p class="text-[10px] text-slate-400 font-mono">Hypixel 测试服公告 (2026-10-29/30) 深度解读</p>
+          </div>
+        </div>
+        <button onclick="closeCropNerfModal()" class="text-slate-400 hover:text-white transition p-1 text-sm">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Content -->
+      <div class="p-5 overflow-y-auto space-y-4 text-xs text-slate-300 leading-relaxed">
+        <!-- Mechanism Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="p-3 rounded-xl bg-[#090d16] border border-rose-500/30">
+            <div class="flex items-center gap-1.5 font-bold text-rose-400 mb-1">
+              <i class="fa-solid fa-triangle-exclamation"></i> 测试服削弱前瞻
+            </div>
+            <p class="text-[11px] text-slate-400">
+              官方开发者草案拟大幅下调 14 种农作物及衍生品的 NPC 收购底价（跌幅达 25%~58%）。农夫与囤货商担忧实装后血亏，引发集市巨量恐慌抛售（Panic Sell），挂买单被直接砸穿！
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-[#090d16] border border-emerald-500/30">
+            <div class="flex items-center gap-1.5 font-bold text-emerald-400 mb-1">
+              <i class="fa-solid fa-shield-halved"></i> 正式服套利窗口
+            </div>
+            <p class="text-[11px] text-slate-400">
+              正式服<strong>仍维持原版高额 NPC 收购价</strong>！只要集市挂单/秒买成本低于现行 NPC 收购价，即刻买入转手 NPC 变现，即可赚取确定性无风险价差。
+            </p>
+          </div>
+        </div>
+
+        <!-- 14 Crops Adjustment Table -->
+        <div class="border border-[#1e293b] rounded-xl overflow-hidden bg-[#090d16]">
+          <div class="bg-[#161e31] px-3 py-1.5 border-b border-[#1e293b] flex items-center justify-between font-mono text-[11px]">
+            <span class="font-bold text-slate-200">14 种基础农作物 NPC 收购价调价对照表</span>
+            <span class="text-amber-400">单位: Coins / 个</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-[11px] font-mono">
+              <thead class="bg-[#0f1523] text-slate-400 border-b border-[#1e293b]">
+                <tr>
+                  <th class="py-1.5 px-2.5">作物品类</th>
+                  <th class="py-1.5 px-2.5 text-right">正式服现行原价</th>
+                  <th class="py-1.5 px-2.5 text-right text-rose-400">测试服拟调新价</th>
+                  <th class="py-1.5 px-2.5 text-right text-amber-400">跌幅</th>
+                  <th class="py-1.5 px-2.5 text-right text-emerald-400">满额 500M 需件数</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#1e293b]/40 text-slate-300">
+                <tr><td class="py-1.5 px-2.5 font-sans">🌾 Wheat (小麦)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">6.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">2.5 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-58.3%</td><td class="py-1.5 px-2.5 text-right text-slate-400">83.3 M</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-sans">🎃 Pumpkin (南瓜)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">10.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">4.5 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-55.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">50.0 M</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-sans">🍉 Melon (西瓜片)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">2.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">1.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">250.0 M</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-sans">🩸 Nether Wart (地狱疣)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">2.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">125.0 M</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-sans">🟤 Cocoa Beans (可可豆)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">3.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">1.5 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">166.7 M</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-sans">🍄 Mushroom (红/褐蘑菇)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">5.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">3.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-40.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">100.0 M</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-sans">🌵 Cactus (仙人掌)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">2.5 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-37.5%</td><td class="py-1.5 px-2.5 text-right text-slate-400">125.0 M</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-sans">🎋 Sugar Cane (甘蔗)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">2.5 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-37.5%</td><td class="py-1.5 px-2.5 text-right text-slate-400">125.0 M</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-sans">🥔 Potato / 🥕 Carrot</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">3.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">2.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-33.3%</td><td class="py-1.5 px-2.5 text-right text-slate-400">166.7 M</td></tr>
+                <tr><td class="py-1.5 px-2.5 font-sans">🌻 Sunflower / 🌙 Moonflower / 🌹 Wild Rose</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">3.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-25.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">125.0 M</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-200/90 text-[11px]">
+          <strong class="text-amber-400">💡 关键操盘风控提醒：</strong>
+          1. 优先套利 T2 紧实附魔作物（单车货值高，极低背包人次即可搬完 500M 限额）；
+          2. 若某作物进货成本已跌破「测试服拟调新价」，则属于<strong>绝对无风险（Safe Floor）</strong>——即便官方突然突袭实装更新，按新价卖给 NPC 也绝不亏损！
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="px-5 py-3 bg-[#0c101b] border-t border-[#1e293b] flex items-center justify-between text-xs">
+        <span class="text-slate-500">点击背景或右上角关闭</span>
+        <button onclick="closeCropNerfModal()" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition">
+          我知道了
+        </button>
+      </div>
+    </div>
+  </div>
 
 </body>
 

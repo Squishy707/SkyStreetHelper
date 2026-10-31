@@ -4786,3 +4786,189 @@ html:not(.dark) #cropPanicVal {
 html:not(.dark) #cropPanicAdvice {
   color: #64748b !important;
 }
+
+
+/* ==============================================================================
+ * SCHEME A: OBSIDIAN QUANT TERMINAL (黑曜石量化终端 - 全局排版与等宽系统)
+ * ============================================================================== */
+
+/* Tabular numbers for financial & trading density */
+.tabular-nums, table td, table th, .font-mono {
+  font-variant-numeric: tabular-nums;
+  -webkit-font-feature-settings: "tnum" 1;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Base Body Font Override */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Monospace Font Family Stack */
+.font-mono, td.font-mono, span.font-mono, strong.font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+/* Dark Mode Obsidian Terminal Base Tokens */
+html.dark, html:not(.light) {
+  --bg-primary: #090d16;
+  --bg-secondary: #0c101c;
+  --bg-card: #0f1523;
+  --bg-card-hover: #161e31;
+  --border-color: #1e293b;
+}
+
+/* Light Mode Scheme A Precision Polish */
+html:not(.dark) #cropEmergencyCallout {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+}
+
+html:not(.dark) #cropEmergencyCallout p,
+html:not(.dark) #cropEmergencyCallout .text-slate-300,
+html:not(.dark) #cropEmergencyCallout .text-slate-400 {
+  color: #334155 !important;
+}
+
+html:not(.dark) #cropEmergencyCallout .crop-nerf-badge {
+  background-color: #fee2e2 !important;
+  color: #b91c1c !important;
+  border-color: #fca5a5 !important;
+}
+
+html:not(.dark) #cropEmergencyCallout .crop-arb-badge {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+  border-color: #86efac !important;
+}
+
+html:not(.dark) #cropPanicBox {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html:not(.dark) #cropPanicBox span,
+html:not(.dark) #cropPanicBox p {
+  color: #475569 !important;
+}
+
+html:not(.dark) #cropPanicVal {
+  color: #b45309 !important;
+}
+
+/* Active Tab Styles in Light Mode - High Contrast & Sophisticated */
+html:not(.dark) #tabGemFlipperBtn:not(.inactive) {
+  background-color: #eef2ff !important;
+  color: #4338ca !important;
+  border-color: #818cf8 !important;
+}
+
+html:not(.dark) #tabShardTrackerBtn:not(.inactive) {
+  background-color: #ecfdf5 !important;
+  color: #065f46 !important;
+  border-color: #6ee7b7 !important;
+}
+
+html:not(.dark) #tabGreenhouseBtn:not(.inactive) {
+  background-color: #f7fee7 !important;
+  color: #3f6212 !important;
+  border-color: #a3e635 !important;
+}
+
+html:not(.dark) #tabCropArbitrageBtn:not(.inactive) {
+  background-color: #fffbeb !important;
+  color: #92400e !important;
+  border-color: #f59e0b !important;
+}
+
+html:not(.dark) #tabCropArbitrageBtn:not(.inactive) #tabCropArbitrageBadge {
+  background-color: #b45309 !important;
+  color: #ffffff !important;
+  border-color: #92400e !important;
+}
+
+html:not(.dark) #tabOrderTrackerBtn:not(.inactive) {
+  background-color: #ecfeff !important;
+  color: #155e75 !important;
+  border-color: #67e8f9 !important;
+}
+
+/* Inactive Tab Styles in Light Mode */
+html:not(.dark) #tabGemFlipperBtn.inactive,
+html:not(.dark) #tabShardTrackerBtn.inactive,
+html:not(.dark) #tabGreenhouseBtn.inactive,
+html:not(.dark) #tabCropArbitrageBtn.inactive,
+html:not(.dark) #tabOrderTrackerBtn.inactive {
+  background-color: #ffffff !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Crop Tier Pill & Icons in Light Mode */
+html:not(.dark) .crop-tier-t0-icon {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) .crop-tier-t1-icon {
+  background-color: #f0fdf4 !important;
+  border-color: #86efac !important;
+  color: #16a34a !important;
+}
+
+html:not(.dark) .crop-tier-t2-icon {
+  background-color: #eff6ff !important;
+  border-color: #93c5fd !important;
+  color: #2563eb !important;
+}
+
+html:not(.dark) .crop-tier-t0-name {
+  color: #334155 !important;
+}
+
+html:not(.dark) .crop-tier-t1-name {
+  color: #15803d !important;
+}
+
+html:not(.dark) .crop-tier-t2-name {
+  color: #1d4ed8 !important;
+}
+
+/* Crop Nerf Modal Light Mode Overrides */
+html:not(.dark) #cropNerfModal .bg-\[\#111625\] {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+html:not(.dark) #cropNerfModal .bg-\[\#0c101b\] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) #cropNerfModal .bg-\[\#090d16\] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) #cropNerfModal .bg-\[\#161e31\] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) #cropNerfModal .bg-\[\#0f1523\] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) #cropNerfModal h3,
+html:not(.dark) #cropNerfModal strong {
+  color: #0f172a !important;
+}
+
+html:not(.dark) #cropNerfModal p,
+html:not(.dark) #cropNerfModal td {
+  color: #334155 !important;
+}

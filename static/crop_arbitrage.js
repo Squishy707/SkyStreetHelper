@@ -357,24 +357,24 @@ function renderCropArbitrageTable() {
 
     // 稀有度分级色彩配置 (T0 仅图标边框为灰色，底色与图标保持原色; T1 绿色; T2 蓝色)
     let tierConfig = {
-      iconBoxClass: 'crop-tier-t0-icon bg-[#111520] border-slate-700/60',
-      nameClass: 'crop-tier-t0-name text-slate-400 font-bold',
-      pillClass: 'crop-tier-t0-pill bg-slate-700/30 text-slate-400 border-slate-600/70',
+      iconBoxClass: 'crop-tier-t0-icon bg-[#0d121f] border-slate-700/60',
+      nameClass: 'crop-tier-t0-name text-slate-300 font-bold',
+      pillClass: 'crop-tier-t0-pill bg-slate-800/60 text-slate-400 border-slate-700',
       pillLabel: 'T0 Standard'
     };
 
     if (item.tier === 'T1') {
       tierConfig = {
-        iconBoxClass: 'crop-tier-t1-icon bg-emerald-950/40 border-emerald-500/40 shadow-sm shadow-emerald-950/30',
+        iconBoxClass: 'crop-tier-t1-icon bg-emerald-950/30 border-emerald-500/40 shadow-sm shadow-emerald-950/30',
         nameClass: 'crop-tier-t1-name text-emerald-400 font-bold',
-        pillClass: 'crop-tier-t1-pill bg-emerald-500/20 text-emerald-400 border-emerald-500/40',
+        pillClass: 'crop-tier-t1-pill bg-emerald-500/15 text-emerald-300 border border-emerald-500/40',
         pillLabel: 'T1 Enchanted'
       };
     } else if (item.tier === 'T2') {
       tierConfig = {
-        iconBoxClass: 'crop-tier-t2-icon bg-blue-950/40 border-blue-500/40 shadow-sm shadow-blue-950/30',
+        iconBoxClass: 'crop-tier-t2-icon bg-blue-950/30 border-blue-500/40 shadow-sm shadow-blue-950/30',
         nameClass: 'crop-tier-t2-name text-blue-400 font-bold',
-        pillClass: 'crop-tier-t2-pill bg-blue-500/20 text-blue-400 border-blue-500/40',
+        pillClass: 'crop-tier-t2-pill bg-blue-500/15 text-blue-300 border border-blue-500/40',
         pillLabel: 'T2 Compacted'
       };
     }
@@ -416,17 +416,17 @@ function renderCropArbitrageTable() {
         <!-- 1. 标的与形态 (T0 灰色, T1 绿色, T2 蓝色) -->
         <td class="py-3 px-3.5 whitespace-nowrap">
           <div class="flex items-center space-x-2.5">
-            <span class="w-8 h-8 rounded-lg border flex items-center justify-center text-lg shrink-0 shadow-sm ${tierConfig.iconBoxClass}">
+            <span class="w-8 h-8 rounded-lg border flex items-center justify-center text-base shrink-0 shadow-sm select-none ${tierConfig.iconBoxClass}">
               ${item.icon}
             </span>
-            <div>
-              <div class="flex items-center space-x-1.5">
-                <span class="text-xs sm:text-sm ${tierConfig.nameClass}">${item.name}</span>
+            <div class="min-w-0">
+              <div class="flex items-center space-x-1.5 flex-nowrap">
+                <span class="text-xs sm:text-sm font-semibold truncate ${tierConfig.nameClass}">${item.name}</span>
                 ${tierPill}
               </div>
               <div class="text-[10px] text-slate-400 font-mono flex items-center gap-1.5">
-                <span>${item.id}</span>
-                <span class="text-slate-500">•</span>
+                <span class="truncate">${item.id}</span>
+                <span class="text-slate-600">•</span>
                 <span>= ${item.multiplier.toLocaleString()} base</span>
               </div>
             </div>
@@ -437,7 +437,7 @@ function renderCropArbitrageTable() {
         <td class="py-3 px-3 whitespace-nowrap font-mono text-xs">
           <div class="flex flex-col">
             <div class="flex items-baseline space-x-1.5">
-              <span class="font-extrabold text-blue-300 text-sm">${buyCost > 0 ? buyCost.toLocaleString() : '--'}</span>
+              <span class="font-extrabold text-blue-400 text-sm tabular-nums">${buyCost > 0 ? buyCost.toLocaleString() : '--'}</span>
               <span class="text-[10px] text-slate-500">Coins</span>
             </div>
             ${craftComparisonHtml}
@@ -448,7 +448,7 @@ function renderCropArbitrageTable() {
         <td class="py-3 px-3 whitespace-nowrap font-mono text-xs">
           <div class="flex flex-col space-y-0.5">
             <div class="flex items-baseline space-x-1.5">
-              <span class="font-extrabold text-slate-200 text-sm">${sellPrice > 0 ? sellPrice.toLocaleString() : '--'}</span>
+              <span class="font-extrabold text-slate-200 text-sm tabular-nums">${sellPrice > 0 ? sellPrice.toLocaleString() : '--'}</span>
               <span class="text-[10px] text-slate-500">Coins</span>
             </div>
             <div>${sellChannelBadge}</div>
@@ -458,7 +458,7 @@ function renderCropArbitrageTable() {
         <!-- 4. 单件净盈亏 (Unit PnL & ROI) -->
         <td class="py-3 px-3 whitespace-nowrap font-mono text-right text-xs">
           <div>
-            <span class="font-black text-sm block ${isProfit ? 'text-emerald-400' : 'text-rose-400'}">
+            <span class="font-black text-sm block tabular-nums ${isProfit ? 'text-emerald-400' : 'text-rose-400'}">
               ${isProfit ? '+' : ''}${unitProfit.toLocaleString()} Coins
             </span>
             <span class="text-[10px] font-bold px-1.5 py-0.2 rounded border inline-block mt-0.5 ${
@@ -474,7 +474,7 @@ function renderCropArbitrageTable() {
         <!-- 5. 500M NPC 满额纯利 (限额最大化) -->
         <td class="py-3 px-3 whitespace-nowrap font-mono text-right text-xs">
           <div>
-            <span class="font-black text-sm block ${capProfit > 0 ? 'text-amber-300' : 'text-slate-500'}">
+            <span class="font-black text-sm block tabular-nums ${capProfit > 0 ? 'text-amber-300' : 'text-slate-500'}">
               ${capProfit > 0 ? '+' + formatCoinsCompact(capProfit) : '0 C'}
             </span>
             <span class="text-[10px] text-slate-400 block mt-0.5">
@@ -822,4 +822,17 @@ function showCropToast(msg, type = 'info') {
   } else {
     alert(msg);
   }
+}
+
+// ==============================================================================
+// 10. Crop Nerf & Arbitrage Mechanism Modal Handlers
+// ==============================================================================
+function openCropNerfModal() {
+  const modal = document.getElementById('cropNerfModal');
+  if (modal) modal.classList.remove('hidden');
+}
+
+function closeCropNerfModal() {
+  const modal = document.getElementById('cropNerfModal');
+  if (modal) modal.classList.add('hidden');
 }
