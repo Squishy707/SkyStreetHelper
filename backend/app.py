@@ -30,6 +30,7 @@ from backend.profile_service import ProfileService
 from backend.shard_service import shard_service
 from backend.greenhouse_service import greenhouse_service
 from backend.crop_arbitrage_service import crop_arbitrage_service
+from backend.tracker_service import tracker_service
 
 # Resolve base directories (supporting both raw python and PyInstaller standalone .exe)
 if getattr(sys, 'frozen', False):
@@ -86,6 +87,18 @@ class SimulationRequest(BaseModel):
     quick_forge_level: int = 20
     cole_active: bool = False
     tax_rate: float = 0.01
+
+class TrackedOrderItem(BaseModel):
+    id: str
+    item_id: str
+    order_type: str = "buy_order"  # 'buy_order' or 'sell_offer'
+    target_price: float
+    initial_quantity: int = 1
+    previous_rank: Optional[int] = None
+    previous_filled: Optional[int] = None
+
+class BatchInspectRequest(BaseModel):
+    orders: List[TrackedOrderItem]
 
 # Endpoints
 
@@ -631,6 +644,53 @@ def export_crop_arbitrage_csv():
         media_type="text/csv; charset=utf-8",
         headers={"Content-Disposition": 'attachment; filename="SkyBlock_Crop_Arbitrage_v0.5.0.csv"'}
     )
+
+
+# ==============================================================================
+# 挂单雷达与成交追踪 API (Bazaar Order Tracker - alpha 0.5.0)
+# ==============================================================================
+@app.post("/api/tracker/inspect")
+def inspect_tracked_orders(req: BatchInspectRequest):
+    """
+    批量核验盯盘挂单的队列排位、前方压单、当前档位剩余量与成交估算
+    """
+    bazaar_service.fetch_live_bazaar(force=False, max_age_seconds=10)
+    orders_data = [o.dict() for o in req.orders]
+    results = tracker_service.inspect_orders(bazaar_service._cache, orders_data)
+    return {
+        "success": True,
+        "timestamp_ms": bazaar_service._last_updated_ms,
+        "timestamp_beijing": bazaar_service._format_beijing_time(bazaar_service._last_updated_ms),
+        "results": results
+    }
+
+@app.get("/api/tracker/depth")
+def get_order_book_depth(item_id: str, target_price: Optional[float] = None, order_type: str = "buy_order", depth: int = 20):
+    """
+    获取单品盘口前 N 档实时深度，并高亮标记用户的挂单档位
+    """
+    bazaar_service.fetch_live_bazaar(force=False, max_age_seconds=10)
+    return tracker_service.get_order_book_depth(
+        bazaar_service._cache,
+        item_id=item_id,
+        target_price=target_price,
+        order_type=order_type,
+        depth=depth
+    )
+
+@app.get("/api/tracker/search")
+def search_tracker_products(q: str = "", limit: int = 25):
+    """
+    快速检索 Bazaar 全量商品字典以供用户快速添加盯盘订单
+    """
+    bazaar_service.fetch_live_bazaar(force=False, max_age_seconds=60)
+    results = tracker_service.search_products(bazaar_service._cache, query=q, limit=limit)
+    return {
+        "success": True,
+        "query": q,
+        "count": len(results),
+        "results": results
+    }
 
 
 # ==============================================================================

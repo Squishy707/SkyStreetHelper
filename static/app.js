@@ -2576,10 +2576,12 @@ function switchMainTab(tab) {
   const shardBtn = document.getElementById('tabShardTrackerBtn');
   const ghBtn = document.getElementById('tabGreenhouseBtn');
   const cropBtn = document.getElementById('tabCropArbitrageBtn');
+  const radarBtn = document.getElementById('tabOrderTrackerBtn');
   const gemView = document.getElementById('gemFlipperView');
   const shardView = document.getElementById('shardTrackerView');
   const ghView = document.getElementById('greenhouseTrackerView');
   const cropView = document.getElementById('cropArbitrageView');
+  const radarView = document.getElementById('orderTrackerView');
 
   if (!gemBtn || !shardBtn || !gemView || !shardView) return;
 
@@ -2590,19 +2592,23 @@ function switchMainTab(tab) {
     shardBtn.className = inactiveClass;
     if (ghBtn) ghBtn.className = inactiveClass;
     if (cropBtn) cropBtn.className = inactiveClass;
+    if (radarBtn) radarBtn.className = inactiveClass;
     gemView.classList.remove('hidden');
     shardView.classList.add('hidden');
     if (ghView) ghView.classList.add('hidden');
     if (cropView) cropView.classList.add('hidden');
+    if (radarView) radarView.classList.add('hidden');
   } else if (tab === 'shardtracker') {
     shardBtn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-emerald-600 text-white whitespace-nowrap";
     gemBtn.className = inactiveClass;
     if (ghBtn) ghBtn.className = inactiveClass;
     if (cropBtn) cropBtn.className = inactiveClass;
+    if (radarBtn) radarBtn.className = inactiveClass;
     gemView.classList.add('hidden');
     shardView.classList.remove('hidden');
     if (ghView) ghView.classList.add('hidden');
     if (cropView) cropView.classList.add('hidden');
+    if (radarView) radarView.classList.add('hidden');
 
     if (!shardAppState.loaded) {
       fetchShardTrackerData();
@@ -2612,10 +2618,12 @@ function switchMainTab(tab) {
     gemBtn.className = inactiveClass;
     shardBtn.className = inactiveClass;
     if (cropBtn) cropBtn.className = inactiveClass;
+    if (radarBtn) radarBtn.className = inactiveClass;
     gemView.classList.add('hidden');
     shardView.classList.add('hidden');
     if (ghView) ghView.classList.remove('hidden');
     if (cropView) cropView.classList.add('hidden');
+    if (radarView) radarView.classList.add('hidden');
 
     if (typeof initGreenhouseTracker === 'function') {
       initGreenhouseTracker();
@@ -2625,13 +2633,30 @@ function switchMainTab(tab) {
     gemBtn.className = inactiveClass;
     shardBtn.className = inactiveClass;
     if (ghBtn) ghBtn.className = inactiveClass;
+    if (radarBtn) radarBtn.className = inactiveClass;
     gemView.classList.add('hidden');
     shardView.classList.add('hidden');
     if (ghView) ghView.classList.add('hidden');
     if (cropView) cropView.classList.remove('hidden');
+    if (radarView) radarView.classList.add('hidden');
 
     if (typeof initCropArbitrage === 'function') {
       initCropArbitrage();
+    }
+  } else if (tab === 'ordertracker') {
+    if (radarBtn) radarBtn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-indigo-600 text-white shadow-indigo-900/40 whitespace-nowrap";
+    gemBtn.className = inactiveClass;
+    shardBtn.className = inactiveClass;
+    if (ghBtn) ghBtn.className = inactiveClass;
+    if (cropBtn) cropBtn.className = inactiveClass;
+    gemView.classList.add('hidden');
+    shardView.classList.add('hidden');
+    if (ghView) ghView.classList.add('hidden');
+    if (cropView) cropView.classList.add('hidden');
+    if (radarView) radarView.classList.remove('hidden');
+
+    if (typeof pollOrderTracker === 'function') {
+      pollOrderTracker(true);
     }
   }
 }

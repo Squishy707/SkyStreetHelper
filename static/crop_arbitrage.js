@@ -485,11 +485,16 @@ function renderCropArbitrageTable() {
           </div>
         </td>
 
-        <!-- 8. 单车与全天测算按钮 -->
+        <!-- 8. 单车精算与一键盯盘按钮 -->
         <td class="py-3 px-3 whitespace-nowrap text-right">
-          <button onclick="openCropSimModal('${item.id}')" class="px-2.5 py-1 rounded bg-[#111520] hover:bg-indigo-600 border border-[#262e45] hover:border-indigo-500 text-slate-300 hover:text-white text-xs font-semibold transition active:scale-95 shadow-sm" title="一键模拟不同采购模式、出货渠道及 500M 满额收益">
-            <i class="fa-solid fa-calculator mr-1"></i>精算
-          </button>
+          <div class="flex items-center justify-end space-x-1.5">
+            <button onclick="openCropSimModal('${item.id}')" class="px-2 py-1 rounded bg-[#111520] hover:bg-indigo-600 border border-[#262e45] hover:border-indigo-500 text-slate-300 hover:text-white text-xs font-semibold transition active:scale-95 shadow-sm" title="一键模拟不同采购模式、出货渠道及 500M 满额收益">
+              <i class="fa-solid fa-calculator mr-1"></i>精算
+            </button>
+            <button onclick="openOrderTrackerWithPrefill('${item.id}', '${item.name}', ${buyCost}, 'buy_order')" class="px-2 py-1 rounded bg-amber-500/10 hover:bg-amber-600 border border-amber-500/30 hover:border-amber-500 text-amber-300 hover:text-white text-xs font-semibold transition active:scale-95 shadow-sm" title="加入挂单雷达实时盯盘与被压价提醒">
+              <i class="fa-solid fa-crosshairs mr-1"></i>盯盘
+            </button>
+          </div>
         </td>
       </tr>
     `;

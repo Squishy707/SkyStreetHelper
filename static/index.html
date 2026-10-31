@@ -155,6 +155,11 @@
         <span>🌾 农作物破发套利雷达 (CropArbitrage)</span>
         <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-mono font-bold animate-pulse">10.30测试服抛售</span>
       </button>
+      <button id="tabOrderTrackerBtn" onclick="switchMainTab('ordertracker')" class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-sm bg-[#181d2c] text-slate-300 hover:text-white hover:bg-slate-800 border border-[#262e45] whitespace-nowrap">
+        <i class="fa-solid fa-crosshairs text-indigo-400"></i>
+        <span>🎯 挂单盯盘雷达 (OrderRadar)</span>
+        <span id="radarActiveBadge" class="px-1.5 py-0.2 rounded-full text-[10px] bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-mono">0单</span>
+      </button>
     </div>
 
     <!-- GEMFLIPPER VIEW (宝石锻造套利主视图) -->
@@ -2059,6 +2064,151 @@
 
     </div>
 
+
+    <!-- ORDER TRACKER VIEW (挂单雷达与成交追踪主视图) -->
+    <div id="orderTrackerView" class="space-y-5 hidden">
+
+      <!-- TOP SUMMARY KPI CARDS (雷达核心概览看板) -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <!-- 1. 监控中挂单总数 -->
+        <div class="bg-[#181d2c] border border-[#262e45] rounded-xl p-4 flex items-center justify-between shadow-sm">
+          <div>
+            <div class="text-[11px] text-slate-400 font-medium">监控中挂单总数</div>
+            <div class="text-2xl font-black text-white mt-1 font-mono" id="radarKpiTotalOrders">0</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">多标的实时队列侦测</div>
+          </div>
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-lg">
+            <i class="fa-solid fa-crosshairs"></i>
+          </div>
+        </div>
+
+        <!-- 2. 队首最优撮合单 (Rank #1) -->
+        <div class="bg-[#181d2c] border border-[#262e45] rounded-xl p-4 flex items-center justify-between shadow-sm">
+          <div>
+            <div class="text-[11px] text-slate-400 font-medium">队首最优撮合 (#1)</div>
+            <div class="text-2xl font-black text-emerald-400 mt-1 font-mono" id="radarKpiLeadingOrders">0</div>
+            <div class="text-[10px] text-emerald-500/80 mt-0.5">优先排队 • 处于成交位</div>
+          </div>
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+        </div>
+
+        <!-- 3. 被压价/被超越 (Outbid) -->
+        <div class="bg-[#181d2c] border border-[#262e45] rounded-xl p-4 flex items-center justify-between shadow-sm">
+          <div>
+            <div class="text-[11px] text-slate-400 font-medium">被竞价超越 (Outbid)</div>
+            <div class="text-2xl font-black text-amber-400 mt-1 font-mono" id="radarKpiOutbidOrders">0</div>
+            <div class="text-[10px] text-amber-500/80 mt-0.5">需关注加价夺回建议</div>
+          </div>
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-lg">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+        </div>
+
+        <!-- 4. 100% 已完全成交 -->
+        <div class="bg-[#181d2c] border border-[#262e45] rounded-xl p-4 flex items-center justify-between shadow-sm">
+          <div>
+            <div class="text-[11px] text-slate-400 font-medium">完全成交订单</div>
+            <div class="text-2xl font-black text-purple-400 mt-1 font-mono" id="radarKpiFilledOrders">0</div>
+            <div class="text-[10px] text-purple-400/80 mt-0.5">已出盘口 • 可取货入库</div>
+          </div>
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-lg">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- RADAR CONTROLS & FILTER BAR (操作与筛选工具条) -->
+      <div class="bg-[#181d2c] border border-[#262e45] rounded-xl p-3.5 flex flex-wrap items-center justify-between gap-3 shadow-sm">
+        <!-- 左侧: 快速动作与筛选 -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="openAddOrderModal()" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center space-x-1.5 transition active:scale-95 shadow-md shadow-indigo-600/20">
+            <i class="fa-solid fa-plus text-xs"></i>
+            <span>添加盯盘订单</span>
+          </button>
+          
+          <div class="h-4 w-px bg-[#262e45] mx-1 hidden sm:block"></div>
+
+          <!-- 筛选按钮组 -->
+          <div class="inline-flex rounded-lg border border-[#262e45] bg-[#111520] p-0.5 gap-1">
+            <button onclick="setTrackerFilter('all')" class="radar-filter-btn active px-3 py-1 rounded-lg text-xs font-bold transition bg-indigo-600 text-white shadow-sm" data-filter="all">全部</button>
+            <button onclick="setTrackerFilter('leading')" class="radar-filter-btn px-3 py-1 rounded-lg text-xs font-bold transition bg-[#181d2c] text-slate-300 hover:text-white border border-[#262e45]" data-filter="leading">队首最优 (#1)</button>
+            <button onclick="setTrackerFilter('outbid')" class="radar-filter-btn px-3 py-1 rounded-lg text-xs font-bold transition bg-[#181d2c] text-slate-300 hover:text-white border border-[#262e45]" data-filter="outbid">被超越 (需改价)</button>
+            <button onclick="setTrackerFilter('filled')" class="radar-filter-btn px-3 py-1 rounded-lg text-xs font-bold transition bg-[#181d2c] text-slate-300 hover:text-white border border-[#262e45]" data-filter="filled">已成交</button>
+          </div>
+
+          <button onclick="clearCompletedOrders()" class="px-2.5 py-1.5 rounded-lg bg-[#111520] hover:bg-slate-700 border border-[#262e45] text-slate-400 hover:text-slate-200 text-xs font-medium transition" title="清空所有已成交的订单">
+            <i class="fa-solid fa-broom mr-1"></i>清理已成交
+          </button>
+        </div>
+
+        <!-- 右侧: 搜索框、声音开关、桌面通知开关、手动刷新 -->
+        <div class="flex items-center gap-2">
+          <!-- 搜索输入框 -->
+          <div class="relative w-44 sm:w-56 search-box-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2 text-xs"></i>
+            <input type="text" id="trackerSearchInput" oninput="onTrackerSearchInput()" placeholder="筛选监控标的..." class="search-input-box bg-[#111520] border border-[#262e45] text-slate-100 placeholder-slate-500 text-xs rounded-lg pl-8 pr-3 py-1.5 w-full focus:outline-none focus:border-indigo-500 transition">
+          </div>
+
+          <!-- 声音提示开关 -->
+          <button id="trackerSoundToggleBtn" onclick="toggleSoundSetting()" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-semibold flex items-center gap-1.5 transition active:scale-95" title="点击切换音效提醒">
+            <i class="fa-solid fa-volume-high"></i>
+            <span>声音: 开启</span>
+          </button>
+
+          <!-- 试听按钮 -->
+          <button onclick="testTrackerSound('outbid')" class="px-2 py-1 rounded-lg bg-[#111520] hover:bg-slate-700 border border-[#262e45] text-slate-400 hover:text-white text-xs transition" title="试听警报音效">
+            <i class="fa-solid fa-music"></i>
+          </button>
+
+          <!-- 桌面通知开关 -->
+          <button id="trackerNotifyToggleBtn" onclick="toggleDesktopNotificationSetting()" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition active:scale-95" title="点击切换浏览器桌面弹窗通知">
+            <i class="fa-solid fa-bell-slash"></i>
+            <span>通知: 关闭</span>
+          </button>
+
+          <!-- 手动刷新 -->
+          <button onclick="pollOrderTracker(true)" class="px-2.5 py-1 rounded-lg bg-[#111520] hover:bg-slate-700 border border-[#262e45] text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1 transition active:scale-95" title="立即核验当前盘口">
+            <i id="trackerRefreshIcon" class="fa-solid fa-arrows-rotate text-xs"></i>
+            <span>核验</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ORDER CARDS CONTAINER (监控卡片网格) -->
+      <div id="radarCardsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <!-- 动态由 order_tracker.js 渲染 -->
+      </div>
+
+      <!-- EMPTY STATE BANNER (空状态引导) -->
+      <div id="radarEmptyState" class="hidden bg-[#181d2c] border border-dashed border-[#262e45] rounded-xl p-12 text-center space-y-4">
+        <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-2xl mx-auto shadow-sm">
+          <i class="fa-solid fa-crosshairs"></i>
+        </div>
+        <div class="max-w-md mx-auto space-y-1.5">
+          <h3 class="text-base font-bold text-white">暂无监控中的 Bazaar 挂单</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            在 Hypixel 集市挂好买单 (Buy Order) 或卖单 (Sell Offer) 后，点击下方按钮录入价格与数量，系统将实时追踪您的排位、前方压单、成交进度并在被竞价超越时即时发出警报！
+          </p>
+        </div>
+        <button onclick="openAddOrderModal()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs inline-flex items-center space-x-2 transition shadow-lg shadow-indigo-600/30 active:scale-95">
+          <i class="fa-solid fa-plus text-xs"></i>
+          <span>添加第一笔盯盘挂单</span>
+        </button>
+      </div>
+
+      <!-- FOOTER NOTE -->
+      <div class="flex items-center justify-between text-[11px] text-slate-500 px-1 pt-1 font-mono">
+        <div class="flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>挂单雷达后台常驻监控中 (每 10 秒自动核验 Hypixel 盘口)</span>
+        </div>
+        <div>
+          <span>上次核验时间: <strong id="trackerLastUpdateText" class="text-slate-400 font-bold">--</strong></span>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- INTERACTIVE FLIP SIMULATOR MODAL (FlipCal) -->
@@ -2400,7 +2550,191 @@
   </div>
 
 
-  <!-- App Javascript -->
+  
+  <!-- FLOATING PERSISTENT RADAR DOCK (全局悬浮盯盘胶囊) -->
+  <div id="floatingRadarDock" onclick="onFloatingDockClick()" class="hidden fixed bottom-5 right-5 z-40 bg-[#181d2c]/95 backdrop-blur-md border border-indigo-500/40 rounded-full px-4 py-2.5 shadow-xl shadow-black/40 flex items-center space-x-3 cursor-pointer hover:scale-105 transition" title="点击进入挂单雷达详情">
+    <div class="relative flex items-center justify-center">
+      <i class="fa-solid fa-crosshairs text-indigo-400 text-base"></i>
+      <span id="radarDockBadge" class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+    </div>
+    <div class="text-xs">
+      <span class="font-bold text-white block">🎯 挂单雷达 (<span id="radarDockCount">0</span>单)</span>
+      <span class="text-[10px] text-slate-400" id="radarDockStatusText">正常监控中</span>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT ORDER MODAL (添加/编辑盯盘弹窗) -->
+  <div id="addOrderModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
+    <div class="bg-[#181d2c] border border-[#262e45] rounded-2xl w-full max-w-md overflow-hidden shadow-2xl relative">
+      <div class="px-5 py-4 border-b border-[#262e45] flex items-center justify-between">
+        <h3 class="text-base font-bold text-white flex items-center gap-2" id="addOrderModalTitle">
+          <i class="fa-solid fa-crosshairs text-indigo-400"></i>
+          <span>➕ 新建挂单盯盘监控</span>
+        </h3>
+        <button onclick="closeAddOrderModal()" class="text-slate-400 hover:text-white transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="p-5 space-y-4 text-xs">
+        <input type="hidden" id="trackerEditOrderId" value="">
+        <input type="hidden" id="trackerOrderTypeInput" value="buy_order">
+
+        <!-- 1. 挂单类型 (Buy Order vs Sell Offer) -->
+        <div class="space-y-1.5">
+          <label class="font-semibold text-slate-300">挂单类型 (Order Type):</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" id="trackerTypeBuyBtn" onclick="setOrderTypeRadio('buy_order')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-indigo-600 text-white shadow-sm border border-indigo-500">
+              <i class="fa-solid fa-cart-shopping mr-1.5"></i>Buy Order (预购求购)
+            </button>
+            <button type="button" id="trackerTypeSellBtn" onclick="setOrderTypeRadio('sell_offer')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-[#181d2c] text-slate-300 hover:text-white border border-[#262e45]">
+              <i class="fa-solid fa-tags mr-1.5"></i>Sell Offer (挂单出售)
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. 商品 Item ID 检索 -->
+        <div class="space-y-1.5 relative">
+          <label class="font-semibold text-slate-300">Bazaar 商品标识 / 名称 (Item ID):</label>
+          <div class="relative search-box-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2 text-xs"></i>
+            <input type="text" id="trackerItemInput" oninput="onTrackerItemInput()" placeholder="输入商品 ID 或关键词 (如 ENCHANTED_COOKIE)..." class="search-input-box bg-[#111520] border border-[#262e45] text-white text-xs rounded-lg pl-8 pr-3 py-2 w-full focus:outline-none focus:border-indigo-500 font-mono">
+          </div>
+          <div id="trackerItemSearchResults" class="hidden absolute left-0 right-0 top-full mt-1 bg-[#111520] border border-[#262e45] rounded-xl max-h-48 overflow-y-auto shadow-2xl z-50"></div>
+        </div>
+
+        <!-- 3. 挂单目标单价 -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="font-semibold text-slate-300">目标挂单单价 (Unit Price in Coins):</label>
+            <div class="flex items-center space-x-1">
+              <button type="button" onclick="fetchTopPriceForCurrentItem(0)" class="text-[10px] text-indigo-400 hover:text-indigo-300 underline font-mono">榜首价</button>
+              <span class="text-slate-600">•</span>
+              <button type="button" onclick="fetchTopPriceForCurrentItem(0.1)" class="text-[10px] text-emerald-400 hover:text-emerald-300 underline font-mono">+0.1C夺榜</button>
+            </div>
+          </div>
+          <div class="relative">
+            <input type="number" id="trackerPriceInput" step="0.1" placeholder="例如: 68141.2" class="bg-[#111520] border border-[#262e45] text-white text-xs rounded-lg px-3 py-2 w-full focus:outline-none focus:border-indigo-500 font-mono">
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 font-mono text-[11px]">Coins</span>
+          </div>
+        </div>
+
+        <!-- 4. 挂单初始数量 -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="font-semibold text-slate-300">挂单总数量 (Quantity):</label>
+            <div class="flex items-center space-x-1 font-mono text-[10px]">
+              <button type="button" onclick="setQuickQty(64)" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white border border-slate-700">64</button>
+              <button type="button" onclick="setQuickQty(512)" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white border border-slate-700">512</button>
+              <button type="button" onclick="setQuickQty(1000)" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white border border-slate-700">1k</button>
+              <button type="button" onclick="setQuickQty(5000)" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white border border-slate-700">5k</button>
+              <button type="button" onclick="setQuickQty(71680)" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white border border-slate-700">满单71k</button>
+            </div>
+          </div>
+          <input type="number" id="trackerQtyInput" placeholder="例如: 5000" class="bg-[#111520] border border-[#262e45] text-white text-xs rounded-lg px-3 py-2 w-full focus:outline-none focus:border-indigo-500 font-mono">
+        </div>
+
+        <!-- 5. 备注说明 (可选) -->
+        <div class="space-y-1.5">
+          <label class="font-semibold text-slate-400">备注说明 (可选):</label>
+          <input type="text" id="trackerNotesInput" placeholder="如: 饼干批量低吸、下界疣套利等" class="bg-[#111520] border border-[#262e45] text-slate-300 text-xs rounded-lg px-3 py-1.5 w-full focus:outline-none focus:border-indigo-500">
+        </div>
+      </div>
+
+      <div class="px-5 py-3.5 bg-[#111520] border-t border-[#262e45] flex items-center justify-end space-x-2">
+        <button onclick="closeAddOrderModal()" class="px-4 py-1.5 rounded-lg bg-[#262e45] hover:bg-slate-700 text-slate-200 text-xs font-semibold transition">
+          取消
+        </button>
+        <button onclick="saveOrderFromModal()" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition shadow-md shadow-indigo-600/30 active:scale-95">
+          确认加入盯盘
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE DEPTH BOOK MODAL (盘口深度明细弹窗) -->
+  <div id="depthBookModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
+    <div class="bg-[#181d2c] border border-[#262e45] rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[85vh]">
+      <!-- Header -->
+      <div class="px-5 py-4 border-b border-[#262e45] flex items-center justify-between shrink-0">
+        <div>
+          <h3 class="text-base font-bold text-white flex items-center gap-2" id="depthModalTitle">
+            <i class="fa-solid fa-chart-simple text-indigo-400"></i>
+            <span>实时盘口深度 (Top 20 档位明细)</span>
+          </h3>
+          <div id="depthQuickStatus" class="mt-1 text-slate-400"></div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="fetchAndRenderDepthBook()" class="px-2.5 py-1 rounded bg-[#111520] hover:bg-slate-700 border border-[#262e45] text-slate-300 hover:text-white text-xs transition" title="刷新深度">
+            <i class="fa-solid fa-arrows-rotate text-xs"></i>
+          </button>
+          <button onclick="closeDepthBookModal()" class="text-slate-400 hover:text-white transition">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Depth Tables Grid -->
+      <div class="p-4 overflow-y-auto flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <!-- 买单挂单 (Buy Orders / 绿色) -->
+        <div class="border border-emerald-500/30 rounded-xl overflow-hidden bg-[#111520]/60">
+          <div class="bg-emerald-950/40 px-3 py-2 border-b border-emerald-500/30 flex items-center justify-between">
+            <span class="font-bold text-emerald-300 text-xs flex items-center gap-1.5">
+              <i class="fa-solid fa-arrow-trend-up"></i>
+              <span>买单挂单队列 (Buy Orders)</span>
+            </span>
+            <span class="text-[10px] text-emerald-400/80 font-mono">高价优先撮合</span>
+          </div>
+          <div class="overflow-x-auto max-h-[50vh]">
+            <table class="w-full text-left">
+              <thead class="bg-[#181d2c] text-[10px] text-slate-400 uppercase font-mono border-b border-[#262e45]">
+                <tr>
+                  <th class="py-1.5 px-2">顺位</th>
+                  <th class="py-1.5 px-2 text-right">单价 (C)</th>
+                  <th class="py-1.5 px-2 text-right">挂单量</th>
+                  <th class="py-1.5 px-2 text-right">累计深度</th>
+                </tr>
+              </thead>
+              <tbody id="depthBidsBody" class="divide-y divide-[#262e45]/30"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 卖单挂单 (Sell Offers / 红色) -->
+        <div class="border border-rose-500/30 rounded-xl overflow-hidden bg-[#111520]/60">
+          <div class="bg-rose-950/40 px-3 py-2 border-b border-rose-500/30 flex items-center justify-between">
+            <span class="font-bold text-rose-300 text-xs flex items-center gap-1.5">
+              <i class="fa-solid fa-arrow-trend-down"></i>
+              <span>卖单挂单队列 (Sell Offers)</span>
+            </span>
+            <span class="text-[10px] text-rose-400/80 font-mono">低价优先撮合</span>
+          </div>
+          <div class="overflow-x-auto max-h-[50vh]">
+            <table class="w-full text-left">
+              <thead class="bg-[#181d2c] text-[10px] text-slate-400 uppercase font-mono border-b border-[#262e45]">
+                <tr>
+                  <th class="py-1.5 px-2">顺位</th>
+                  <th class="py-1.5 px-2 text-right">单价 (C)</th>
+                  <th class="py-1.5 px-2 text-right">挂单量</th>
+                  <th class="py-1.5 px-2 text-right">累计深度</th>
+                </tr>
+              </thead>
+              <tbody id="depthAsksBody" class="divide-y divide-[#262e45]/30"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="px-5 py-3 bg-[#111520] border-t border-[#262e45] flex items-center justify-between text-[11px] text-slate-500">
+        <span>金色行 <strong class="text-amber-400">👉 #N</strong> 表示您当前监控的挂单所在档位</span>
+        <button onclick="closeDepthBookModal()" class="px-3.5 py-1.5 rounded-lg bg-[#262e45] hover:bg-slate-700 text-slate-200 text-xs font-semibold transition">
+          关闭
+        </button>
+      </div>
+    </div>
+  </div>
+<!-- App Javascript -->
   <script src="/static/crop_arbitrage.js"></script>
   <script src="/static/greenhouse.js"></script>
   <script src="/static/app.js"></script>
