@@ -9,7 +9,7 @@ Accounts for the 500M daily NPC sell cap and the 15.00 B daily Bazaar turnover l
 from typing import Dict, Any, List, Optional
 from datetime import datetime, timezone, timedelta
 
-# 15 crops across 3 tiers (T0: Standard raw, T1: Compacted enchanted, T2: Dense compact)
+# 15 crops across 3 tiers (T0: Standard 标准, T1: Enchanted 附魔, T2: Compacted 紧实)
 CROP_DEFINITIONS = [
     # 1. Cactus
     {

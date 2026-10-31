@@ -368,14 +368,14 @@ function renderCropArbitrageTable() {
         iconBoxClass: 'crop-tier-t1-icon bg-emerald-950/40 border-emerald-500/40 shadow-sm shadow-emerald-950/30',
         nameClass: 'crop-tier-t1-name text-emerald-400 font-bold',
         pillClass: 'crop-tier-t1-pill bg-emerald-500/20 text-emerald-400 border-emerald-500/40',
-        pillLabel: 'T1 Compacted'
+        pillLabel: 'T1 Enchanted'
       };
     } else if (item.tier === 'T2') {
       tierConfig = {
         iconBoxClass: 'crop-tier-t2-icon bg-blue-950/40 border-blue-500/40 shadow-sm shadow-blue-950/30',
         nameClass: 'crop-tier-t2-name text-blue-400 font-bold',
         pillClass: 'crop-tier-t2-pill bg-blue-500/20 text-blue-400 border-blue-500/40',
-        pillLabel: 'T2 Dense'
+        pillLabel: 'T2 Compacted'
       };
     }
 

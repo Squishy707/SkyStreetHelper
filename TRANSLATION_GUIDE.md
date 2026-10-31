@@ -105,3 +105,15 @@
      - ★完美宝石链接：`https://sky.coflnet.com/item/PERFECT_{GEM}_GEM`（如 `PERFECT_TOPAZ_GEM`）；
    - 配方繁杂度全局过滤快捷按钮规范为：`[全选]`、`[仅低成本(S)]`、`[仅容易(S/A级)]`、`[仅CN五水晶(S/A/B级)]`、`[全不选]`；
    - 文本配色遵循 Hypixel 官方配色标准：粗糙 (灰白)、微瑕 (绿色)、精致 (蓝色)、无瑕 (紫色)、★完美 (金色)。
+
+---
+
+## 🌾 附录：农作物形态等级 (Crop Tiers) 统一翻译标准
+
+在集市（Bazaar）、温室（Greenhouse）突变计算器与农作物破发套利雷达（CropArbitrage）中，严格遵循以下三级形态对应中英标准：
+
+| 内部标识 (Code) | 规范中文翻译 | 规范英文翻译 | 游戏内物品命名特征 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| **T0** | **标准** | **Standard** | `Vanilla` (如 `Cactus`, `Carrot`, `Wheat`) | 基础原版未加工农作物 (1x base) |
+| **T1** | **附魔** | **Enchanted** | `Enchanted ...` (如 `Enchanted Cactus Green`, `Enchanted Carrot`) | 一阶附魔形态 (通常 160:1 合成) |
+| **T2** | **紧实** | **Compacted** | `Compacted ...` / `Enchanted ... Block` / `Mutant ...` / `Polished ...` / `Box of ...` | 二阶终极紧实形态 (通常 160 个 T1 合成，即 25,600:1) |
