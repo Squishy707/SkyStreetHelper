@@ -355,11 +355,31 @@ function renderCropArbitrageTable() {
     const nerfRoi = buyCost > 0 ? roundCoins((nerfPnl / buyCost) * 100) : 0.0;
     const isNerfSafe = nerfPnl >= 0;
 
-    // 形态徽章
-    let tierPill = '';
-    if (item.tier === 'T0') tierPill = '<span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-slate-700/40 text-slate-300 border border-slate-600">T0 Standard</span>';
-    else if (item.tier === 'T1') tierPill = '<span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">T1 Compacted</span>';
-    else if (item.tier === 'T2') tierPill = '<span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">T2 Dense</span>';
+    // 稀有度分级色彩配置 (T0 灰色, T1 绿色, T2 蓝色)
+    let tierConfig = {
+      iconBoxClass: 'crop-tier-t0-icon bg-slate-800/40 border-slate-700/60 text-slate-400 grayscale contrast-75',
+      nameClass: 'crop-tier-t0-name text-slate-400 font-bold',
+      pillClass: 'crop-tier-t0-pill bg-slate-700/30 text-slate-400 border-slate-600/70',
+      pillLabel: 'T0 Standard'
+    };
+
+    if (item.tier === 'T1') {
+      tierConfig = {
+        iconBoxClass: 'crop-tier-t1-icon bg-emerald-950/40 border-emerald-500/40 text-emerald-300 shadow-sm shadow-emerald-950/30',
+        nameClass: 'crop-tier-t1-name text-emerald-400 font-bold',
+        pillClass: 'crop-tier-t1-pill bg-emerald-500/20 text-emerald-400 border-emerald-500/40',
+        pillLabel: 'T1 Compacted'
+      };
+    } else if (item.tier === 'T2') {
+      tierConfig = {
+        iconBoxClass: 'crop-tier-t2-icon bg-blue-950/40 border-blue-500/40 text-blue-300 shadow-sm shadow-blue-950/30',
+        nameClass: 'crop-tier-t2-name text-blue-400 font-bold',
+        pillClass: 'crop-tier-t2-pill bg-blue-500/20 text-blue-400 border-blue-500/40',
+        pillLabel: 'T2 Dense'
+      };
+    }
+
+    const tierPill = `<span class="px-1.5 py-0.2 rounded text-[10px] font-bold border ${tierConfig.pillClass}">${tierConfig.pillLabel}</span>`;
 
     // T2 合成对比胶囊
     let craftComparisonHtml = '';
@@ -393,15 +413,15 @@ function renderCropArbitrageTable() {
 
     return `
       <tr class="hover:bg-slate-800/40 border-b border-[#262e45]/50 transition group">
-        <!-- 1. 标的与形态 -->
+        <!-- 1. 标的与形态 (T0 灰色, T1 绿色, T2 蓝色) -->
         <td class="py-3 px-3.5 whitespace-nowrap">
           <div class="flex items-center space-x-2.5">
-            <span class="w-8 h-8 rounded-lg bg-[#111520] border border-[#262e45] flex items-center justify-center text-lg shrink-0 shadow-sm">
+            <span class="w-8 h-8 rounded-lg border flex items-center justify-center text-lg shrink-0 shadow-sm ${tierConfig.iconBoxClass}">
               ${item.icon}
             </span>
             <div>
               <div class="flex items-center space-x-1.5">
-                <span class="font-bold text-white text-xs sm:text-sm">${item.name}</span>
+                <span class="text-xs sm:text-sm ${tierConfig.nameClass}">${item.name}</span>
                 ${tierPill}
               </div>
               <div class="text-[10px] text-slate-400 font-mono flex items-center gap-1.5">
@@ -609,7 +629,15 @@ function updateCropFilterButtonUI() {
     const t = btn.getAttribute('data-tier');
     const isActive = (t === 'all') ? isAllTiers : (!isAllTiers && cropArbitrageState.selectedTiers.has(t));
     if (isActive) {
-      btn.className = "crop-tier-btn active px-2.5 py-1 rounded-md text-[11px] font-bold transition bg-indigo-600 text-white shadow-sm border border-indigo-500";
+      if (t === 'T0') {
+        btn.className = "crop-tier-btn active px-2.5 py-1 rounded-md text-[11px] font-bold transition bg-slate-700 text-slate-200 shadow-sm border border-slate-500";
+      } else if (t === 'T1') {
+        btn.className = "crop-tier-btn active px-2.5 py-1 rounded-md text-[11px] font-bold transition bg-emerald-600 text-white shadow-sm border border-emerald-500";
+      } else if (t === 'T2') {
+        btn.className = "crop-tier-btn active px-2.5 py-1 rounded-md text-[11px] font-bold transition bg-blue-600 text-white shadow-sm border border-blue-500";
+      } else {
+        btn.className = "crop-tier-btn active px-2.5 py-1 rounded-md text-[11px] font-bold transition bg-indigo-600 text-white shadow-sm border border-indigo-500";
+      }
     } else {
       btn.className = "crop-tier-btn px-2.5 py-1 rounded-md text-[11px] font-bold transition bg-[#111520] text-slate-300 hover:text-white border border-[#262e45]";
     }

@@ -2291,3 +2291,62 @@ html:not(.dark) #floatingRadarDock .text-white {
 html:not(.dark) #floatingRadarDock .text-slate-400 {
   color: #64748b !important;
 }
+
+
+/* ==============================================================================
+ * CROP TIER VISUAL COLOR CODING (T0 灰色, T1 绿色, T2 蓝色)
+ * ============================================================================== */
+
+/* Dark Mode Enhancements */
+.crop-tier-t0-name {
+  color: #94a3b8;
+}
+.crop-tier-t1-name {
+  color: #34d399;
+}
+.crop-tier-t2-name {
+  color: #60a5fa;
+}
+
+/* Light Mode Overrides */
+html:not(.dark) .crop-tier-t0-name {
+  color: #64748b !important;
+}
+html:not(.dark) .crop-tier-t1-name {
+  color: #16a34a !important;
+}
+html:not(.dark) .crop-tier-t2-name {
+  color: #2563eb !important;
+}
+
+html:not(.dark) .crop-tier-t0-icon {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #64748b !important;
+}
+html:not(.dark) .crop-tier-t1-icon {
+  background-color: #f0fdf4 !important;
+  border-color: #86efac !important;
+  color: #16a34a !important;
+}
+html:not(.dark) .crop-tier-t2-icon {
+  background-color: #eff6ff !important;
+  border-color: #93c5fd !important;
+  color: #2563eb !important;
+}
+
+html:not(.dark) .crop-tier-t0-pill {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #64748b !important;
+}
+html:not(.dark) .crop-tier-t1-pill {
+  background-color: #dcfce7 !important;
+  border-color: #86efac !important;
+  color: #15803d !important;
+}
+html:not(.dark) .crop-tier-t2-pill {
+  background-color: #dbeafe !important;
+  border-color: #93c5fd !important;
+  color: #1d4ed8 !important;
+}
