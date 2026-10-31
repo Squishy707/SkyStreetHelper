@@ -357,6 +357,8 @@ async function pollOrderTracker(forceSpin = false) {
           } else if (item.alert_type === 'progress') {
             playProgressAlertSound();
             showOrderToast(item.alert_msg, 'info');
+          } else if (item.alert_type === 'cancelled') {
+            showOrderToast(item.alert_msg, 'warning');
           }
         }
       });
@@ -491,6 +493,7 @@ function renderTrackerCards() {
     const isLeading = info.status === 'LEADING';
     const isOutbid = info.status === 'OUTBID' || info.status === 'OUTBID_DEEP';
     const isFilled = info.status === 'FILLED';
+    const isCancelled = info.status === 'CANCELLED';
 
     // 状态边框和徽章
     let cardBorder = 'border-[#262e45]';
@@ -504,8 +507,20 @@ function renderTrackerCards() {
     } else if (isFilled) {
       cardBorder = 'border-purple-500/50 shadow-md shadow-purple-950/30';
       statusPill = '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40 flex items-center gap-1"><i class="fa-solid fa-check-double text-purple-400"></i> 100% 已成交</span>';
+    } else if (isCancelled) {
+      cardBorder = 'border-slate-700/60 opacity-80';
+      statusPill = `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-700/50 text-slate-300 border border-slate-600 flex items-center gap-1"><i class="fa-solid fa-ban text-slate-400"></i> 已撤单</span>`;
     } else {
       statusPill = `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-700/50 text-slate-300 border border-slate-600">排队 #${info.rank || '--'}</span>`;
+    }
+
+    let fillModeBadge = '';
+    if (info.fill_mode === 'dumper') {
+      fillModeBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1 shrink-0"><i class="fa-solid fa-bolt text-amber-400"></i> 倾销扫盘</span>';
+    } else if (info.fill_mode === 'retail' && isFilled) {
+      fillModeBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40 flex items-center gap-1 shrink-0"><i class="fa-solid fa-users text-purple-400"></i> 散户自然撮合</span>';
+    } else if (isCancelled) {
+      fillModeBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-700/40 text-slate-400 border border-slate-600/50 flex items-center gap-1 shrink-0"><i class="fa-solid fa-arrow-rotate-left"></i> 非队首撤单</span>';
     }
 
     const orderTypePill = isBuy
@@ -534,7 +549,8 @@ function renderTrackerCards() {
               </div>
             </div>
           </div>
-          <div>
+          <div class="flex items-center gap-1.5">
+            ${fillModeBadge}
             ${statusPill}
           </div>
         </div>

@@ -355,9 +355,9 @@ function renderCropArbitrageTable() {
     const nerfRoi = buyCost > 0 ? roundCoins((nerfPnl / buyCost) * 100) : 0.0;
     const isNerfSafe = nerfPnl >= 0;
 
-    // 稀有度分级色彩配置 (T0 灰色, T1 绿色, T2 蓝色)
+    // 稀有度分级色彩配置 (T0 仅图标边框为灰色，底色与图标保持原色; T1 绿色; T2 蓝色)
     let tierConfig = {
-      iconBoxClass: 'crop-tier-t0-icon bg-slate-800/40 border-slate-700/60 text-slate-400 grayscale contrast-75',
+      iconBoxClass: 'crop-tier-t0-icon bg-[#111520] border-slate-700/60',
       nameClass: 'crop-tier-t0-name text-slate-400 font-bold',
       pillClass: 'crop-tier-t0-pill bg-slate-700/30 text-slate-400 border-slate-600/70',
       pillLabel: 'T0 Standard'
@@ -365,14 +365,14 @@ function renderCropArbitrageTable() {
 
     if (item.tier === 'T1') {
       tierConfig = {
-        iconBoxClass: 'crop-tier-t1-icon bg-emerald-950/40 border-emerald-500/40 text-emerald-300 shadow-sm shadow-emerald-950/30',
+        iconBoxClass: 'crop-tier-t1-icon bg-emerald-950/40 border-emerald-500/40 shadow-sm shadow-emerald-950/30',
         nameClass: 'crop-tier-t1-name text-emerald-400 font-bold',
         pillClass: 'crop-tier-t1-pill bg-emerald-500/20 text-emerald-400 border-emerald-500/40',
         pillLabel: 'T1 Compacted'
       };
     } else if (item.tier === 'T2') {
       tierConfig = {
-        iconBoxClass: 'crop-tier-t2-icon bg-blue-950/40 border-blue-500/40 text-blue-300 shadow-sm shadow-blue-950/30',
+        iconBoxClass: 'crop-tier-t2-icon bg-blue-950/40 border-blue-500/40 shadow-sm shadow-blue-950/30',
         nameClass: 'crop-tier-t2-name text-blue-400 font-bold',
         pillClass: 'crop-tier-t2-pill bg-blue-500/20 text-blue-400 border-blue-500/40',
         pillLabel: 'T2 Dense'

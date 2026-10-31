@@ -134,6 +134,18 @@ class TrackerService:
                 estimated_filled = max(0, initial_qty - tier_amount)
                 fill_pct = min(100.0, round((estimated_filled / initial_qty) * 100, 1)) if initial_qty > 0 else 0.0
                 
+                # Detect fill mode (倾销扫盘 vs 散户自然微量撮合)
+                fill_mode = "none"
+                fill_mode_label = "挂单排队中"
+                delta_filled = estimated_filled - (prev_filled or 0)
+                if delta_filled > 0:
+                    if delta_filled >= 1000 or (initial_qty > 0 and (delta_filled / initial_qty) >= 0.3):
+                        fill_mode = "dumper"
+                        fill_mode_label = f"倾销扫盘吃单 (+{delta_filled:,} 颗)"
+                    else:
+                        fill_mode = "retail"
+                        fill_mode_label = f"散户自然撮合 (+{delta_filled:,} 颗)"
+                
                 # Price gap & Reclaim suggestion
                 if is_buy:
                     gap = round(top_price - target_price, 2)
@@ -166,11 +178,10 @@ class TrackerService:
                     needs_alert = True
                     alert_type = "outbid"
                     alert_msg = f"{clean_item_display_name(item_id)} 挂单已被超越！当前跌至 #{rank} 顺位，榜首竞价为 {top_price:,.1f} C (差价 {gap:+.1f} C)"
-                elif estimated_filled > (prev_filled or 0) and estimated_filled < initial_qty:
+                elif delta_filled > 0 and estimated_filled < initial_qty:
                     needs_alert = True
                     alert_type = "progress"
-                    diff_filled = estimated_filled - (prev_filled or 0)
-                    alert_msg = f"{clean_item_display_name(item_id)} 成交推进 +{diff_filled:,} 颗 (进度: {fill_pct:.1f}%)"
+                    alert_msg = f"{clean_item_display_name(item_id)} {fill_mode_label} (总进度: {fill_pct:.1f}%)"
                 elif estimated_filled >= initial_qty and initial_qty > 0:
                     needs_alert = True
                     alert_type = "filled"
@@ -188,6 +199,8 @@ class TrackerService:
                     "found_in_book": True,
                     "status": status,
                     "status_label": status_label,
+                    "fill_mode": fill_mode,
+                    "fill_mode_label": fill_mode_label,
                     "rank": rank,
                     "top_price": round(top_price, 1),
                     "price_gap": gap,
@@ -203,52 +216,133 @@ class TrackerService:
                     "alert_msg": alert_msg
                 })
             else:
-                # Target price tier is NOT found in the top depth book!
-                # Determine whether it was fully filled, or displaced beyond depth
+                # Target price tier is NOT found in the depth book!
+                # 精细化脱离盘口判定：
+                # 1. 倾销扫盘判定 (Dumper Sweep):
+                #    Buy Order: 榜首最高买价 top_price 已跌穿 target_price (top_price < target_price - 0.05)
+                #               说明有巨量倾销者把高于和等于 target_price 的买单全部砸穿吃光！
+                #    Sell Offer: 榜首最低卖价 top_price 已升穿 target_price (top_price > target_price + 0.05)
+                #               说明有大买家把低于和等于 target_price 的卖单全部扫货吃光！
+                # 2. 队首自然撮合 (Natural Fulfillment at Rank #1):
+                #    prev_rank == 1: 挂单处于队列最前端，自然被散户 Insta-Sell/Insta-Buy 撮合消化完毕。
+                # 3. 深度压盘脱离 (Pushed beyond 30-depth window):
+                #    len(book) >= 25 且末位价格仍处于不利方向（Buy单时末档价格 > target_price，Sell单时末档价格 < target_price）
+                #    说明被30档以上的新增挂单挤出视窗，并未真正成交或撤单。
+                # 4. 非榜一脱离 / 主动撤单 (Cancelled by User):
+                #    prev_rank > 1 且前方更有利的挂单依然存在 (如 Buy单时 top_price > target_price)
+                #    由于散户即时交易必须先撮合前方更优价单，在前方价单未被消化的前提下，中间价单消失只能是用户主动 Cancel 撤单！
+                
                 book_depth = len(book)
                 lowest_or_highest_in_book = book[-1]["pricePerUnit"] if book else 0.0
                 
-                # For Buy Order:
-                # If market prices in depth are all > target_price and depth == 30, it got pushed out of the 30 tiers window.
-                # If market price moved below or user had high fill progress, it was completely cleared/filled!
-                if is_buy:
-                    if book_depth >= 25 and lowest_or_highest_in_book > target_price:
-                        status = "OUTBID_DEEP"
-                        status_label = "深度脱离盘口 (被压在30档外)"
-                        gap = round(top_price - target_price, 2)
-                        reclaim_price = round(top_price + 0.1, 1)
-                        estimated_filled = prev_filled or 0
-                    else:
-                        # Price tier is gone: either completely filled or cancelled
-                        status = "FILLED"
-                        status_label = "已出盘口 / 判定已成交"
-                        gap = 0.0
-                        reclaim_price = round(top_price + 0.1, 1)
-                        estimated_filled = initial_qty
-                else:
-                    if book_depth >= 25 and lowest_or_highest_in_book < target_price:
-                        status = "OUTBID_DEEP"
-                        status_label = "深度脱离盘口 (被压在30档外)"
-                        gap = round(target_price - top_price, 2)
-                        reclaim_price = max(0.1, round(top_price - 0.1, 1))
-                        estimated_filled = prev_filled or 0
-                    else:
-                        status = "FILLED"
-                        status_label = "已出盘口 / 判定已成交"
-                        gap = 0.0
-                        reclaim_price = max(0.1, round(top_price - 0.1, 1))
-                        estimated_filled = initial_qty
-                        
-                fill_pct = 100.0 if status == "FILLED" else (min(100.0, round(((prev_filled or 0) / initial_qty) * 100, 1)) if initial_qty > 0 else 0.0)
-                
+                status = "FILLED"
+                status_label = "已出盘口 / 判定已成交"
+                fill_mode = "retail"
+                fill_mode_label = "队首散户自然撮合"
+                estimated_filled = initial_qty
+                fill_pct = 100.0
                 needs_alert = False
                 alert_type = None
                 alert_msg = ""
-                if status == "FILLED" and (prev_filled or 0) < initial_qty:
-                    needs_alert = True
-                    alert_type = "filled"
-                    alert_msg = f"{clean_item_display_name(item_id)} 挂单已脱离盘口，判定 100% 完全成交 (共 {initial_qty:,} 颗)！"
+                
+                if is_buy:
+                    gap = max(0.0, round(top_price - target_price, 2))
+                    reclaim_price = round(top_price + 0.1, 1)
                     
+                    if top_price < (target_price - 0.05):
+                        # 1. 倾销扫盘吞并
+                        status = "FILLED"
+                        status_label = "已完全成交 (倾销砸盘穿透)"
+                        fill_mode = "dumper"
+                        fill_mode_label = "检测到倾销大单砸盘穿透"
+                        estimated_filled = initial_qty
+                        fill_pct = 100.0
+                        needs_alert = (prev_filled or 0) < initial_qty
+                        alert_type = "filled"
+                        alert_msg = f"{clean_item_display_name(item_id)} 遭遇倾销者大单砸盘扫过挂单价，已 100% 全部成交！"
+                    elif prev_rank == 1:
+                        # 2. 队首自然撮合
+                        status = "FILLED"
+                        status_label = "已完全成交 (队首自然撮合)"
+                        fill_mode = "retail"
+                        fill_mode_label = "队首散户散单撮合完毕"
+                        estimated_filled = initial_qty
+                        fill_pct = 100.0
+                        needs_alert = (prev_filled or 0) < initial_qty
+                        alert_type = "filled"
+                        alert_msg = f"{clean_item_display_name(item_id)} 挂单在队首顺位完成撮合，100% 完全成交！"
+                    elif book_depth >= 25 and lowest_or_highest_in_book > (target_price + 0.05):
+                        # 3. 深度压盘脱离
+                        status = "OUTBID_DEEP"
+                        status_label = "深度脱离盘口 (被压在30档外)"
+                        fill_mode = "none"
+                        fill_mode_label = "已被新竞价压出30档外"
+                        estimated_filled = prev_filled or 0
+                        fill_pct = min(100.0, round(((prev_filled or 0) / initial_qty) * 100, 1)) if initial_qty > 0 else 0.0
+                        needs_alert = True
+                        alert_type = "outbid"
+                        alert_msg = f"{clean_item_display_name(item_id)} 挂单已被新竞价压出前30档盘口深度，请及时提价夺回！"
+                    else:
+                        # 4. 非榜一脱离 -> 主动撤单
+                        status = "CANCELLED"
+                        status_label = "挂单已撤销 (非队首脱离)"
+                        fill_mode = "cancelled"
+                        fill_mode_label = "非队首脱离，判定为已主动撤单"
+                        estimated_filled = prev_filled or 0
+                        fill_pct = min(100.0, round(((prev_filled or 0) / initial_qty) * 100, 1)) if initial_qty > 0 else 0.0
+                        needs_alert = True
+                        alert_type = "cancelled"
+                        alert_msg = f"{clean_item_display_name(item_id)} 挂单在第 #{prev_rank or '?'} 顺位脱离盘口 (前方高价单仍在)，判定为已主动撤单。"
+                else:
+                    # Sell Offer side
+                    gap = max(0.0, round(target_price - top_price, 2))
+                    reclaim_price = max(0.1, round(top_price - 0.1, 1))
+                    
+                    if top_price > (target_price + 0.05):
+                        # 1. 买盘大单扫货
+                        status = "FILLED"
+                        status_label = "已完全成交 (买盘扫货吞并)"
+                        fill_mode = "dumper"
+                        fill_mode_label = "买盘巨量扫货穿透"
+                        estimated_filled = initial_qty
+                        fill_pct = 100.0
+                        needs_alert = (prev_filled or 0) < initial_qty
+                        alert_type = "filled"
+                        alert_msg = f"{clean_item_display_name(item_id)} 遭遇买盘大额扫货穿透，已 100% 全部成交！"
+                    elif prev_rank == 1:
+                        # 2. 队首自然撮合
+                        status = "FILLED"
+                        status_label = "已完全成交 (队首自然撮合)"
+                        fill_mode = "retail"
+                        fill_mode_label = "队首买家撮合完毕"
+                        estimated_filled = initial_qty
+                        fill_pct = 100.0
+                        needs_alert = (prev_filled or 0) < initial_qty
+                        alert_type = "filled"
+                        alert_msg = f"{clean_item_display_name(item_id)} 出售挂单在队首完成撮合，100% 完全成交！"
+                    elif book_depth >= 25 and lowest_or_highest_in_book < (target_price - 0.05):
+                        # 3. 深度压盘脱离
+                        status = "OUTBID_DEEP"
+                        status_label = "深度脱离盘口 (被压在30档外)"
+                        fill_mode = "none"
+                        fill_mode_label = "已被更低卖价压出30档外"
+                        estimated_filled = prev_filled or 0
+                        fill_pct = min(100.0, round(((prev_filled or 0) / initial_qty) * 100, 1)) if initial_qty > 0 else 0.0
+                        needs_alert = True
+                        alert_type = "outbid"
+                        alert_msg = f"{clean_item_display_name(item_id)} 出售挂单已被更低报价压出前30档深度，请及时调价！"
+                    else:
+                        # 4. 非榜一脱离 -> 主动撤单
+                        status = "CANCELLED"
+                        status_label = "挂单已撤销 (非队首脱离)"
+                        fill_mode = "cancelled"
+                        fill_mode_label = "非队首脱离，判定为已主动撤单"
+                        estimated_filled = prev_filled or 0
+                        fill_pct = min(100.0, round(((prev_filled or 0) / initial_qty) * 100, 1)) if initial_qty > 0 else 0.0
+                        needs_alert = True
+                        alert_type = "cancelled"
+                        alert_msg = f"{clean_item_display_name(item_id)} 出售单在第 #{prev_rank or '?'} 顺位脱离盘口 (前方低价单仍在)，判定为已主动撤单。"
+                
                 inspected.append({
                     "id": order_id,
                     "item_id": item_id,
@@ -259,6 +353,8 @@ class TrackerService:
                     "found_in_book": False,
                     "status": status,
                     "status_label": status_label,
+                    "fill_mode": fill_mode,
+                    "fill_mode_label": fill_mode_label,
                     "rank": None,
                     "top_price": round(top_price, 1),
                     "price_gap": gap,

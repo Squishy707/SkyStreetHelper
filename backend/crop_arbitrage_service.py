@@ -30,7 +30,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 640.0,
         "npc_nerfed": 400.0,
-        "icon": "✨🟢"
+        "icon": "🟢"
     },
     {
         "id": "ENCHANTED_CACTUS",
@@ -40,7 +40,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 102400.0,
         "npc_nerfed": 64000.0,
-        "icon": "✨🌵"
+        "icon": "🌵"
     },
 
     # 2. Carrot
@@ -62,7 +62,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 480.0,
         "npc_nerfed": 320.0,
-        "icon": "✨🥕"
+        "icon": "🥕"
     },
     {
         "id": "ENCHANTED_GOLDEN_CARROT",
@@ -72,7 +72,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 76800.0,
         "npc_nerfed": 51200.0,
-        "icon": "✨👑🥕"
+        "icon": "🥕"
     },
 
     # 3. Cocoa Beans
@@ -94,7 +94,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 480.0,
         "npc_nerfed": 240.0,
-        "icon": "✨🟤"
+        "icon": "🟤"
     },
     {
         "id": "ENCHANTED_COOKIE",
@@ -104,7 +104,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 76800.0,
         "npc_nerfed": 38400.0,
-        "icon": "🍪✨"
+        "icon": "🍪"
     },
 
     # 4. Melon Slice
@@ -126,7 +126,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 320.0,
         "npc_nerfed": 160.0,
-        "icon": "✨🍉"
+        "icon": "🍉"
     },
     {
         "id": "ENCHANTED_MELON_BLOCK",
@@ -136,7 +136,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 51200.0,
         "npc_nerfed": 25600.0,
-        "icon": "✨🟩"
+        "icon": "🟩"
     },
 
     # 5. Moonflower
@@ -158,7 +158,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 640.0,
         "npc_nerfed": 480.0,
-        "icon": "✨🌙"
+        "icon": "🌙"
     },
     {
         "id": "COMPACTED_MOONFLOWER",
@@ -168,7 +168,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 102400.0,
         "npc_nerfed": 76800.0,
-        "icon": "📦🌙"
+        "icon": "🌕"
     },
 
     # 6. Mushroom (Red)
@@ -190,7 +190,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 1600.0,
         "npc_nerfed": 800.0,
-        "icon": "✨🍄"
+        "icon": "🍄"
     },
     {
         "id": "ENCHANTED_HUGE_MUSHROOM_2",
@@ -200,7 +200,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 256000.0,
         "npc_nerfed": 128000.0,
-        "icon": "🍄🧱"
+        "icon": "🍄"
     },
 
     # 7. Mushroom (Brown)
@@ -222,7 +222,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 1600.0,
         "npc_nerfed": 800.0,
-        "icon": "✨🤎"
+        "icon": "🤎"
     },
     {
         "id": "ENCHANTED_HUGE_MUSHROOM_1",
@@ -232,7 +232,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 256000.0,
         "npc_nerfed": 128000.0,
-        "icon": "🤎🧱"
+        "icon": "🤎"
     },
 
     # 8. Nether Wart
@@ -254,7 +254,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 640.0,
         "npc_nerfed": 320.0,
-        "icon": "✨🩸"
+        "icon": "🩸"
     },
     {
         "id": "MUTANT_NETHER_STALK",
@@ -264,7 +264,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 102400.0,
         "npc_nerfed": 51200.0,
-        "icon": "☣️🩸"
+        "icon": "🩸"
     },
 
     # 9. Potato
@@ -286,7 +286,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 480.0,
         "npc_nerfed": 320.0,
-        "icon": "✨🥔"
+        "icon": "🥔"
     },
     {
         "id": "ENCHANTED_BAKED_POTATO",
@@ -296,7 +296,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 76800.0,
         "npc_nerfed": 51200.0,
-        "icon": "🔥🥔"
+        "icon": "🥔"
     },
 
     # 10. Pumpkin
@@ -318,7 +318,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 1600.0,
         "npc_nerfed": 720.0,
-        "icon": "✨🎃"
+        "icon": "🎃"
     },
     {
         "id": "POLISHED_PUMPKIN",
@@ -328,7 +328,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 256000.0,
         "npc_nerfed": 115200.0,
-        "icon": "💎🎃"
+        "icon": "🎃"
     },
 
     # 11. Sugar Cane
@@ -350,7 +350,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 640.0,
         "npc_nerfed": 400.0,
-        "icon": "✨🧂"
+        "icon": "🧂"
     },
     {
         "id": "ENCHANTED_SUGAR_CANE",
@@ -360,7 +360,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 102400.0,
         "npc_nerfed": 64000.0,
-        "icon": "✨🎋"
+        "icon": "🎋"
     },
 
     # 12. Sunflower
@@ -382,7 +382,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 640.0,
         "npc_nerfed": 480.0,
-        "icon": "✨🌻"
+        "icon": "🌻"
     },
     {
         "id": "COMPACTED_SUNFLOWER",
@@ -392,7 +392,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 102400.0,
         "npc_nerfed": 76800.0,
-        "icon": "📦🌻"
+        "icon": "🌻"
     },
 
     # 13. Wheat
@@ -414,7 +414,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 960.0,
         "npc_nerfed": 400.0,
-        "icon": "✨🌾"
+        "icon": "🌾"
     },
     {
         "id": "ENCHANTED_HAY_BALE",
@@ -424,7 +424,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 153600.0,
         "npc_nerfed": 64000.0,
-        "icon": "📦✨"
+        "icon": "📦"
     },
 
     # 14. Seeds (Wheat Collection)
@@ -446,7 +446,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 480.0,
         "npc_nerfed": 160.0,
-        "icon": "✨🌱"
+        "icon": "🌱"
     },
     {
         "id": "BOX_OF_SEEDS",
@@ -456,7 +456,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 76800.0,
         "npc_nerfed": 25600.0,
-        "icon": "📦🌱"
+        "icon": "📦"
     },
 
     # 15. Wild Rose
@@ -478,7 +478,7 @@ CROP_DEFINITIONS = [
         "multiplier": 160,
         "npc_live": 640.0,
         "npc_nerfed": 480.0,
-        "icon": "✨🌹"
+        "icon": "🌹"
     },
     {
         "id": "COMPACTED_WILD_ROSE",
@@ -488,7 +488,7 @@ CROP_DEFINITIONS = [
         "multiplier": 25600,
         "npc_live": 102400.0,
         "npc_nerfed": 76800.0,
-        "icon": "📦🌹"
+        "icon": "🌹"
     }
 ]
 
