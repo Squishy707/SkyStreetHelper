@@ -7,6 +7,12 @@
 
 > 五大独立工具：**GemFlipper（宝石锻造与倒卖利润监控）**、**BazaarShardTracker（Shard碎片集市价格与 Attribute 吸收规划）**、**GreenhouseTracker（温室突变农业产出与收益精算器）**、**CropArbitrage（农作物集市倾销与破发套利雷达）** 与 **OrderTracker（集市挂单雷达与实时盯盘监控系统）**。
 
+> [!IMPORTANT]
+> **Language & Localization Notice / 界面语言与检索说明**
+> - **中文**：Hypixel SkyBlock 游戏物品数据以英文为标准基准。本项目用户界面（UI）采用中文呈现，**全面支持直接键入英文游戏原名进行检索与查询**，但目前**暂无开发全英文界面的计划**。
+> - **English**: While Hypixel SkyBlock content is natively in English—and this tool **fully supports searching items using their official English in-game names**—the user interface (UI) is designed exclusively in **Simplified Chinese**. There are currently **no plans** to support an English UI localization.
+
+
 [![Release](https://img.shields.io/badge/Release-alpha%200.5.0-blue.svg)](https://github.com/Squishy707/SkyStreetHelper/releases)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-teal.svg)](https://fastapi.tiangolo.com/)
