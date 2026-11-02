@@ -9,7 +9,7 @@
 
 > [!IMPORTANT]
 > **Language & Localization Notice / 界面语言与检索说明**
-> - **中文**：Hypixel SkyBlock 游戏物品数据以英文为标准基准。本项目用户界面（UI）采用中文呈现，**全面支持直接键入英文游戏原名进行检索与查询**，但目前**暂无开发全英文界面的计划**。
+> - **中文**：Hypixel SkyBlock 游戏物品数据以英文为标准基准。本项目用户界面（User Interface, UI）采用中文呈现，**全面支持直接键入英文游戏原名进行检索与查询**，但目前**暂无开发全英文界面的计划**。
 > - **English**: While Hypixel SkyBlock content is natively in English—and this tool **fully supports searching items using their official English in-game names**—the user interface (UI) is designed exclusively in **Simplified Chinese**. There are currently **no plans** to support an English UI localization.
 
 
