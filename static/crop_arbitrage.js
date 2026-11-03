@@ -357,25 +357,28 @@ function renderCropArbitrageTable() {
 
     // 稀有度分级色彩配置 (T0 仅图标边框为灰色，底色与图标保持原色; T1 绿色; T2 蓝色)
     let tierConfig = {
-      iconBoxClass: 'crop-tier-t0-icon bg-[#0d121f] border-slate-700/60',
+      iconBoxClass: 'crop-tier-t0-icon bg-[#111520] border-slate-700/60',
       nameClass: 'crop-tier-t0-name text-slate-300 font-bold',
       pillClass: 'crop-tier-t0-pill bg-slate-800/60 text-slate-400 border-slate-700',
-      pillLabel: 'T0 Standard'
+      pillLabel: 'T0 Standard',
+      badgeHtml: ''
     };
 
     if (item.tier === 'T1') {
       tierConfig = {
-        iconBoxClass: 'crop-tier-t1-icon bg-emerald-950/30 border-emerald-500/40 shadow-sm shadow-emerald-950/30',
+        iconBoxClass: 'crop-tier-t1-icon bg-emerald-950/30 border-emerald-500/50 shadow-sm shadow-emerald-950/30',
         nameClass: 'crop-tier-t1-name text-emerald-400 font-bold',
         pillClass: 'crop-tier-t1-pill bg-emerald-500/15 text-emerald-300 border border-emerald-500/40',
-        pillLabel: 'T1 Enchanted'
+        pillLabel: 'T1 Enchanted',
+        badgeHtml: '<span class="crop-corner-badge crop-corner-t1" title="T1 附魔形态 (Enchanted)">✨</span>'
       };
     } else if (item.tier === 'T2') {
       tierConfig = {
-        iconBoxClass: 'crop-tier-t2-icon bg-blue-950/30 border-blue-500/40 shadow-sm shadow-blue-950/30',
+        iconBoxClass: 'crop-tier-t2-icon bg-blue-950/30 border-blue-500/50 shadow-sm shadow-blue-950/30',
         nameClass: 'crop-tier-t2-name text-blue-400 font-bold',
         pillClass: 'crop-tier-t2-pill bg-blue-500/15 text-blue-300 border border-blue-500/40',
-        pillLabel: 'T2 Compacted'
+        pillLabel: 'T2 Compacted',
+        badgeHtml: '<span class="crop-corner-badge crop-corner-t2" title="T2 紧实形态 (Compacted)">📦</span>'
       };
     }
 
@@ -416,8 +419,9 @@ function renderCropArbitrageTable() {
         <!-- 1. 标的与形态 (T0 灰色, T1 绿色, T2 蓝色) -->
         <td class="py-3 px-3.5 whitespace-nowrap">
           <div class="flex items-center space-x-2.5">
-            <span class="w-8 h-8 rounded-lg border flex items-center justify-center text-base shrink-0 shadow-sm select-none ${tierConfig.iconBoxClass}">
-              ${item.icon}
+            <span class="relative w-8 h-8 rounded-lg border flex items-center justify-center text-base shrink-0 shadow-sm select-none ${tierConfig.iconBoxClass}">
+              <span>${item.icon}</span>
+              ${tierConfig.badgeHtml}
             </span>
             <div class="min-w-0">
               <div class="flex items-center space-x-1.5 flex-nowrap">

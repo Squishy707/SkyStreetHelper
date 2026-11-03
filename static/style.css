@@ -669,43 +669,35 @@ html:not(.dark) header {
 
 
 html:not(.dark) .bg-\[\#0b0d13\] {
-
   background-color: #f8fafc !important;
-
 }
 
-
-
-html:not(.dark) .bg-\[\#111520\] {
-
-  background-color: #f1f5f9 !important;
-
-}
-
-
-
-html:not(.dark) .bg-\[\#111520\]\/80 {
-
-  background-color: rgba(241, 245, 249, 0.85) !important;
-
-}
-
-
-
+html:not(.dark) .bg-\[\#0f1523\],
 html:not(.dark) .bg-\[\#181d2c\] {
-
   background-color: #ffffff !important;
-
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
-
 }
 
+html:not(.dark) .bg-\[\#090d16\],
+html:not(.dark) .bg-\[\#0a0d16\],
+html:not(.dark) .bg-\[\#0c101b\],
+html:not(.dark) .bg-\[\#0d121f\],
+html:not(.dark) .bg-\[\#0e1320\],
+html:not(.dark) .bg-\[\#111520\],
+html:not(.dark) .bg-\[\#111625\],
+html:not(.dark) .bg-\[\#151926\],
+html:not(.dark) .bg-\[\#161e31\] {
+  background-color: #f8fafc !important;
+}
 
+html:not(.dark) .bg-\[\#090d16\]\/80,
+html:not(.dark) .bg-\[\#111520\]\/80 {
+  background-color: rgba(248, 250, 252, 0.92) !important;
+}
 
+html:not(.dark) .border-\[\#1e293b\],
 html:not(.dark) .border-\[\#262e45\] {
-
   border-color: #e2e8f0 !important;
-
 }
 
 
@@ -3318,15 +3310,7 @@ html:not(.dark) #tabCropArbitrageBtn.inactive {
 
 }
 
-html:not(.dark) #tabCropArbitrageBtn:not(.inactive) {
 
-  background-color: #d97706 !important;
-
-  color: #ffffff !important;
-
-  box-shadow: 0 1px 3px rgba(217, 119, 6, 0.35) !important;
-
-}
 
 
 
@@ -4731,61 +4715,7 @@ html:not(.dark) #tabCropArbitrageBtn:not(.inactive) #tabCropArbitrageBadge {
   border: 1px solid rgba(16, 185, 129, 0.35);
 }
 
-/* Light Mode Callout & Panic Box - High Contrast Overrides */
-html:not(.dark) #cropEmergencyCallout {
-  background-color: #fffbeb !important;
-  border-color: #fcd34d !important;
-  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.08) !important;
-}
 
-html:not(.dark) #cropEmergencyCallout p,
-html:not(.dark) #cropEmergencyCallout .text-slate-300,
-html:not(.dark) #cropEmergencyCallout .text-slate-400 {
-  color: #334155 !important;
-}
-
-html:not(.dark) #cropEmergencyCallout .crop-nerf-badge {
-  background-color: #fee2e2 !important;
-  color: #b91c1c !important;
-  border-color: #fca5a5 !important;
-  font-weight: 700 !important;
-}
-
-html:not(.dark) #cropEmergencyCallout .crop-arb-badge {
-  background-color: #dcfce7 !important;
-  color: #15803d !important;
-  border-color: #86efac !important;
-  font-weight: 700 !important;
-}
-
-html:not(.dark) #cropEmergencyCallout .text-amber-400,
-html:not(.dark) #cropEmergencyCallout .text-amber-300 {
-  color: #b45309 !important;
-}
-
-html:not(.dark) #cropEmergencyCallout .text-emerald-400,
-html:not(.dark) #cropEmergencyCallout .text-emerald-300 {
-  color: #15803d !important;
-}
-
-html:not(.dark) #cropPanicBox {
-  background-color: #ffffff !important;
-  border-color: #fcd34d !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.06) !important;
-}
-
-html:not(.dark) #cropPanicBox span.font-sans,
-html:not(.dark) #cropPanicBox .text-slate-400 {
-  color: #475569 !important;
-}
-
-html:not(.dark) #cropPanicVal {
-  color: #b45309 !important;
-}
-
-html:not(.dark) #cropPanicAdvice {
-  color: #64748b !important;
-}
 
 
 /* ==============================================================================
@@ -4906,7 +4836,49 @@ html:not(.dark) #tabOrderTrackerBtn.inactive {
   border-color: #cbd5e1 !important;
 }
 
-/* Crop Tier Pill & Icons in Light Mode */
+/* Crop Tier Micro Corner Badges */
+.crop-corner-badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  line-height: 1;
+  pointer-events: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.crop-corner-t1 {
+  background-color: rgba(6, 78, 59, 0.9);
+  border: 1px solid rgba(52, 211, 153, 0.8);
+  color: #a7f3d0;
+}
+
+.crop-corner-t2 {
+  background-color: rgba(30, 58, 138, 0.9);
+  border: 1px solid rgba(96, 165, 250, 0.8);
+  color: #bfdbfe;
+}
+
+html:not(.dark) .crop-corner-t1 {
+  background-color: #dcfce7 !important;
+  border-color: #86efac !important;
+  color: #15803d !important;
+}
+
+html:not(.dark) .crop-corner-t2 {
+  background-color: #dbeafe !important;
+  border-color: #93c5fd !important;
+  color: #1d4ed8 !important;
+}
+
+/* Crop Tier Pill & Icons in Light Mode (T0: border only is grey; icon and background keep natural color) */
 html:not(.dark) .crop-tier-t0-icon {
   background-color: #ffffff !important;
   border-color: #cbd5e1 !important;
