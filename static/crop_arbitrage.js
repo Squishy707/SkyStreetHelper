@@ -488,13 +488,13 @@ function renderCropArbitrageTable() {
         </td>
 
         <!-- 6. 改版穿仓底线 (烂在手里直到削弱) -->
-        <td class="py-3 px-3 whitespace-nowrap font-mono text-center text-xs">
+        <td class="py-3 px-3 whitespace-nowrap font-mono text-center text-xs" title="正式服现行: ${item.npc_live.toLocaleString()} C | 10.30测试: ${(item.npc_nerf_v1 || item.npc_nerfed).toLocaleString()} C | 11.03二次大砍: ${(item.npc_nerf_v2 || item.npc_nerfed).toLocaleString()} C">
           <div>
             <span class="font-bold text-xs block ${isNerfSafe ? 'text-emerald-400' : 'text-rose-400'}">
               ${isNerfSafe ? '🛡️ 保底 +' : '⚠️ 穿仓 '}${nerfPnl.toLocaleString()} C
             </span>
             <span class="text-[10px] ${isNerfSafe ? 'text-emerald-500' : 'text-rose-500'}">
-              (${isNerfSafe ? '+' : ''}${nerfRoi.toFixed(1)}% 改版新价)
+              (${isNerfSafe ? '+' : ''}${nerfRoi.toFixed(1)}% 11.03新底)
             </span>
           </div>
         </td>

@@ -11,7 +11,7 @@ from datetime import datetime, timezone, timedelta
 
 # 15 crops across 3 tiers (T0: Standard 标准, T1: Enchanted 附魔, T2: Compacted 紧实)
 CROP_DEFINITIONS = [
-    # 1. Cactus
+    # 1. CACTUS
     {
         "id": "CACTUS",
         "name": "Cactus",
@@ -19,7 +19,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 4.0,
-        "npc_nerfed": 2.5,
+        "npc_nerf_v1": 2.5,
+        "npc_nerf_v2": 1.5,
+        "npc_nerfed": 1.5,
         "icon": "🌵"
     },
     {
@@ -29,7 +31,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 640.0,
-        "npc_nerfed": 400.0,
+        "npc_nerf_v1": 400.0,
+        "npc_nerf_v2": 240.0,
+        "npc_nerfed": 240.0,
         "icon": "🟢"
     },
     {
@@ -39,11 +43,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 102400.0,
-        "npc_nerfed": 64000.0,
+        "npc_nerf_v1": 64000.0,
+        "npc_nerf_v2": 38400.0,
+        "npc_nerfed": 38400.0,
         "icon": "🌵"
     },
-
-    # 2. Carrot
+    # 2. CARROT
     {
         "id": "CARROT_ITEM",
         "name": "Carrot",
@@ -51,7 +56,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 3.0,
-        "npc_nerfed": 2.0,
+        "npc_nerf_v1": 2.0,
+        "npc_nerf_v2": 1.5,
+        "npc_nerfed": 1.5,
         "icon": "🥕"
     },
     {
@@ -61,7 +68,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 480.0,
-        "npc_nerfed": 320.0,
+        "npc_nerf_v1": 320.0,
+        "npc_nerf_v2": 240.0,
+        "npc_nerfed": 240.0,
         "icon": "🥕"
     },
     {
@@ -71,11 +80,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 76800.0,
-        "npc_nerfed": 51200.0,
+        "npc_nerf_v1": 51200.0,
+        "npc_nerf_v2": 38400.0,
+        "npc_nerfed": 38400.0,
         "icon": "🥕"
     },
-
-    # 3. Cocoa Beans
+    # 3. COCOA_BEANS
     {
         "id": "INK_SACK:3",
         "name": "Cocoa Beans",
@@ -83,7 +93,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 3.0,
-        "npc_nerfed": 1.5,
+        "npc_nerf_v1": 1.5,
+        "npc_nerf_v2": 1.0,
+        "npc_nerfed": 1.0,
         "icon": "🟤"
     },
     {
@@ -93,7 +105,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 480.0,
-        "npc_nerfed": 240.0,
+        "npc_nerf_v1": 240.0,
+        "npc_nerf_v2": 160.0,
+        "npc_nerfed": 160.0,
         "icon": "🟤"
     },
     {
@@ -103,11 +117,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 76800.0,
-        "npc_nerfed": 38400.0,
+        "npc_nerf_v1": 38400.0,
+        "npc_nerf_v2": 25600.0,
+        "npc_nerfed": 25600.0,
         "icon": "🍪"
     },
-
-    # 4. Melon Slice
+    # 4. MELON_SLICE
     {
         "id": "MELON",
         "name": "Melon Slice",
@@ -115,7 +130,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 2.0,
-        "npc_nerfed": 1.0,
+        "npc_nerf_v1": 1.0,
+        "npc_nerf_v2": 0.5,
+        "npc_nerfed": 0.5,
         "icon": "🍉"
     },
     {
@@ -125,7 +142,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 320.0,
-        "npc_nerfed": 160.0,
+        "npc_nerf_v1": 160.0,
+        "npc_nerf_v2": 80.0,
+        "npc_nerfed": 80.0,
         "icon": "🍉"
     },
     {
@@ -135,11 +154,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 51200.0,
-        "npc_nerfed": 25600.0,
+        "npc_nerf_v1": 25600.0,
+        "npc_nerf_v2": 12800.0,
+        "npc_nerfed": 12800.0,
         "icon": "🟩"
     },
-
-    # 5. Moonflower
+    # 5. MOONFLOWER
     {
         "id": "MOONFLOWER",
         "name": "Moonflower",
@@ -147,7 +167,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 4.0,
-        "npc_nerfed": 3.0,
+        "npc_nerf_v1": 3.0,
+        "npc_nerf_v2": 2.0,
+        "npc_nerfed": 2.0,
         "icon": "🌙"
     },
     {
@@ -157,7 +179,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 640.0,
-        "npc_nerfed": 480.0,
+        "npc_nerf_v1": 480.0,
+        "npc_nerf_v2": 320.0,
+        "npc_nerfed": 320.0,
         "icon": "🌙"
     },
     {
@@ -167,11 +191,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 102400.0,
-        "npc_nerfed": 76800.0,
+        "npc_nerf_v1": 76800.0,
+        "npc_nerf_v2": 51200.0,
+        "npc_nerfed": 51200.0,
         "icon": "🌕"
     },
-
-    # 6. Mushroom (Red)
+    # 6. RED_MUSHROOM
     {
         "id": "RED_MUSHROOM",
         "name": "Red Mushroom",
@@ -179,7 +204,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 10.0,
-        "npc_nerfed": 5.0,
+        "npc_nerf_v1": 5.0,
+        "npc_nerf_v2": 3.5,
+        "npc_nerfed": 3.5,
         "icon": "🍄"
     },
     {
@@ -189,7 +216,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 1600.0,
-        "npc_nerfed": 800.0,
+        "npc_nerf_v1": 800.0,
+        "npc_nerf_v2": 560.0,
+        "npc_nerfed": 560.0,
         "icon": "🍄"
     },
     {
@@ -199,11 +228,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 256000.0,
-        "npc_nerfed": 128000.0,
+        "npc_nerf_v1": 128000.0,
+        "npc_nerf_v2": 89600.0,
+        "npc_nerfed": 89600.0,
         "icon": "🍄"
     },
-
-    # 7. Mushroom (Brown)
+    # 7. BROWN_MUSHROOM
     {
         "id": "BROWN_MUSHROOM",
         "name": "Brown Mushroom",
@@ -211,7 +241,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 10.0,
-        "npc_nerfed": 5.0,
+        "npc_nerf_v1": 5.0,
+        "npc_nerf_v2": 3.5,
+        "npc_nerfed": 3.5,
         "icon": "🤎"
     },
     {
@@ -221,7 +253,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 1600.0,
-        "npc_nerfed": 800.0,
+        "npc_nerf_v1": 800.0,
+        "npc_nerf_v2": 560.0,
+        "npc_nerfed": 560.0,
         "icon": "🤎"
     },
     {
@@ -231,11 +265,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 256000.0,
-        "npc_nerfed": 128000.0,
+        "npc_nerf_v1": 128000.0,
+        "npc_nerf_v2": 89600.0,
+        "npc_nerfed": 89600.0,
         "icon": "🤎"
     },
-
-    # 8. Nether Wart
+    # 8. NETHER_WART
     {
         "id": "NETHER_STALK",
         "name": "Nether Wart",
@@ -243,7 +278,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 4.0,
-        "npc_nerfed": 2.0,
+        "npc_nerf_v1": 2.0,
+        "npc_nerf_v2": 1.5,
+        "npc_nerfed": 1.5,
         "icon": "🩸"
     },
     {
@@ -253,7 +290,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 640.0,
-        "npc_nerfed": 320.0,
+        "npc_nerf_v1": 320.0,
+        "npc_nerf_v2": 240.0,
+        "npc_nerfed": 240.0,
         "icon": "🩸"
     },
     {
@@ -263,11 +302,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 102400.0,
-        "npc_nerfed": 51200.0,
+        "npc_nerf_v1": 51200.0,
+        "npc_nerf_v2": 38400.0,
+        "npc_nerfed": 38400.0,
         "icon": "🩸"
     },
-
-    # 9. Potato
+    # 9. POTATO
     {
         "id": "POTATO_ITEM",
         "name": "Potato",
@@ -275,7 +315,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 3.0,
-        "npc_nerfed": 2.0,
+        "npc_nerf_v1": 2.0,
+        "npc_nerf_v2": 1.5,
+        "npc_nerfed": 1.5,
         "icon": "🥔"
     },
     {
@@ -285,7 +327,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 480.0,
-        "npc_nerfed": 320.0,
+        "npc_nerf_v1": 320.0,
+        "npc_nerf_v2": 240.0,
+        "npc_nerfed": 240.0,
         "icon": "🥔"
     },
     {
@@ -295,11 +339,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 76800.0,
-        "npc_nerfed": 51200.0,
+        "npc_nerf_v1": 51200.0,
+        "npc_nerf_v2": 38400.0,
+        "npc_nerfed": 38400.0,
         "icon": "🥔"
     },
-
-    # 10. Pumpkin
+    # 10. PUMPKIN
     {
         "id": "PUMPKIN",
         "name": "Pumpkin",
@@ -307,7 +352,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 10.0,
-        "npc_nerfed": 4.5,
+        "npc_nerf_v1": 4.5,
+        "npc_nerf_v2": 3.0,
+        "npc_nerfed": 3.0,
         "icon": "🎃"
     },
     {
@@ -317,7 +364,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 1600.0,
-        "npc_nerfed": 720.0,
+        "npc_nerf_v1": 720.0,
+        "npc_nerf_v2": 480.0,
+        "npc_nerfed": 480.0,
         "icon": "🎃"
     },
     {
@@ -327,11 +376,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 256000.0,
-        "npc_nerfed": 115200.0,
+        "npc_nerf_v1": 115200.0,
+        "npc_nerf_v2": 76800.0,
+        "npc_nerfed": 76800.0,
         "icon": "🎃"
     },
-
-    # 11. Sugar Cane
+    # 11. SUGAR_CANE
     {
         "id": "SUGAR_CANE",
         "name": "Sugar Cane",
@@ -339,7 +389,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 4.0,
-        "npc_nerfed": 2.5,
+        "npc_nerf_v1": 2.5,
+        "npc_nerf_v2": 1.5,
+        "npc_nerfed": 1.5,
         "icon": "🎋"
     },
     {
@@ -349,7 +401,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 640.0,
-        "npc_nerfed": 400.0,
+        "npc_nerf_v1": 400.0,
+        "npc_nerf_v2": 240.0,
+        "npc_nerfed": 240.0,
         "icon": "🧂"
     },
     {
@@ -359,11 +413,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 102400.0,
-        "npc_nerfed": 64000.0,
+        "npc_nerf_v1": 64000.0,
+        "npc_nerf_v2": 38400.0,
+        "npc_nerfed": 38400.0,
         "icon": "🎋"
     },
-
-    # 12. Sunflower
+    # 12. SUNFLOWER
     {
         "id": "DOUBLE_PLANT",
         "name": "Sunflower",
@@ -371,7 +426,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 4.0,
-        "npc_nerfed": 3.0,
+        "npc_nerf_v1": 3.0,
+        "npc_nerf_v2": 2.0,
+        "npc_nerfed": 2.0,
         "icon": "🌻"
     },
     {
@@ -381,7 +438,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 640.0,
-        "npc_nerfed": 480.0,
+        "npc_nerf_v1": 480.0,
+        "npc_nerf_v2": 320.0,
+        "npc_nerfed": 320.0,
         "icon": "🌻"
     },
     {
@@ -391,11 +450,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 102400.0,
-        "npc_nerfed": 76800.0,
+        "npc_nerf_v1": 76800.0,
+        "npc_nerf_v2": 51200.0,
+        "npc_nerfed": 51200.0,
         "icon": "🌻"
     },
-
-    # 13. Wheat
+    # 13. WHEAT
     {
         "id": "WHEAT",
         "name": "Wheat",
@@ -403,6 +463,8 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 6.0,
+        "npc_nerf_v1": 2.5,
+        "npc_nerf_v2": 2.5,
         "npc_nerfed": 2.5,
         "icon": "🌾"
     },
@@ -413,6 +475,8 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 960.0,
+        "npc_nerf_v1": 400.0,
+        "npc_nerf_v2": 400.0,
         "npc_nerfed": 400.0,
         "icon": "🌾"
     },
@@ -423,11 +487,11 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 153600.0,
+        "npc_nerf_v1": 64000.0,
+        "npc_nerf_v2": 64000.0,
         "npc_nerfed": 64000.0,
         "icon": "📦"
     },
-
-    # 14. Seeds (Wheat Collection)
     {
         "id": "SEEDS",
         "name": "Seeds",
@@ -435,6 +499,8 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 3.0,
+        "npc_nerf_v1": 1.0,
+        "npc_nerf_v2": 1.0,
         "npc_nerfed": 1.0,
         "icon": "🌱"
     },
@@ -445,6 +511,8 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 480.0,
+        "npc_nerf_v1": 160.0,
+        "npc_nerf_v2": 160.0,
         "npc_nerfed": 160.0,
         "icon": "🌱"
     },
@@ -455,11 +523,12 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 76800.0,
+        "npc_nerf_v1": 25600.0,
+        "npc_nerf_v2": 25600.0,
         "npc_nerfed": 25600.0,
         "icon": "📦"
     },
-
-    # 15. Wild Rose
+    # 14. WILD_ROSE
     {
         "id": "WILD_ROSE",
         "name": "Wild Rose",
@@ -467,7 +536,9 @@ CROP_DEFINITIONS = [
         "tier": "T0",
         "multiplier": 1,
         "npc_live": 4.0,
-        "npc_nerfed": 3.0,
+        "npc_nerf_v1": 3.0,
+        "npc_nerf_v2": 2.0,
+        "npc_nerfed": 2.0,
         "icon": "🌹"
     },
     {
@@ -477,7 +548,9 @@ CROP_DEFINITIONS = [
         "tier": "T1",
         "multiplier": 160,
         "npc_live": 640.0,
-        "npc_nerfed": 480.0,
+        "npc_nerf_v1": 480.0,
+        "npc_nerf_v2": 320.0,
+        "npc_nerfed": 320.0,
         "icon": "🌹"
     },
     {
@@ -487,12 +560,14 @@ CROP_DEFINITIONS = [
         "tier": "T2",
         "multiplier": 25600,
         "npc_live": 102400.0,
-        "npc_nerfed": 76800.0,
+        "npc_nerf_v1": 76800.0,
+        "npc_nerf_v2": 51200.0,
+        "npc_nerfed": 51200.0,
         "icon": "🌹"
-    }
+    },
 ]
 
-# T2 到对应 T1 原料的单向 160:1 合成映射表
+# T2 对应 T1 原料的 160:1 合成映射
 T2_TO_T1_MAP = {
     "ENCHANTED_CACTUS": "ENCHANTED_CACTUS_GREEN",
     "ENCHANTED_GOLDEN_CARROT": "ENCHANTED_CARROT",
@@ -694,6 +769,8 @@ class CropArbitrageService:
                 "insta_sell_price": insta_sell_price,
                 "npc_live": live_npc,
                 "npc_nerfed": nerfed_npc,
+                "npc_nerf_v1": item_def.get("npc_nerf_v1", nerfed_npc),
+                "npc_nerf_v2": item_def.get("npc_nerf_v2", nerfed_npc),
                 # T1 合成成本 (仅限 T2)
                 "t1_id": t1_id,
                 "t1_name": t1_name,
@@ -785,8 +862,10 @@ class CropArbitrageService:
                 "panic_level": panic_level,
                 "panic_color": panic_color,
                 "panic_advice": panic_advice,
-                "announcement_url": "https://hypixel.net/threads/october-29-accessory-bag-revamp-economy-changes.6165308/",
-                "patch_note_date": "2026-10-29 / 2026-10-30"
+                "announcement_url": "https://hypixel.net/threads/november-3-magic-find-rework-testing-5-accessory-bag-revamp-economy-changes-testing-2.6168638/",
+                "previous_announcement_url": "https://hypixel.net/threads/october-29-accessory-bag-revamp-economy-changes.6165308/",
+                "patch_note_date": "2026-11-03 (Testing #2 二次大砍)",
+                "previous_patch_note_date": "2026-10-29 / 2026-10-30"
             },
             "items": items_result
         }

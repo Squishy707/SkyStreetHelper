@@ -312,7 +312,7 @@
 
         <span>农作物破发套利雷达 (CropArbitrage)</span>
 
-        <span id="tabCropArbitrageBadge" class="px-1.5 py-0.2 rounded-full text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-mono font-bold animate-pulse">10.30测试服抛售</span>
+        <span id="tabCropArbitrageBadge" class="px-1.5 py-0.2 rounded-full text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/30 font-mono font-bold animate-pulse">11.03测试服二次大砍</span>
 
       </button>
 
@@ -3500,16 +3500,16 @@
             <div>
               <div class="flex flex-wrap items-center gap-2">
                 <h2 class="text-base font-bold text-white tracking-tight">农作物集市倾销与破发套利雷达</h2>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">2026-10-30 测试服突发</span>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">正式服套利中</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-500/15 text-rose-300 border border-rose-500/30">2026-11-03 Alpha二次大砍</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">正式服未实装·现行无风险套利</span>
               </div>
               <p class="text-xs text-slate-400 mt-0.5">
-                实时比对 Bazaar 进货成本 vs NPC 收购底价 · 捕捉恐慌抛盘破发差价 · 关门前零风险批量变现
+                实时比对 Bazaar 进货成本 vs NPC 现行收购价 · 测试服二次追加削弱加剧恐慌抛盘 · 关门前零风险批量变现
               </p>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-2">
-            <a href="https://hypixel.net/threads/october-29-accessory-bag-revamp-economy-changes.6165308/" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-[#111520] hover:bg-slate-700/60 border border-[#262e45] text-slate-300 hover:text-white text-xs font-semibold flex items-center space-x-1.5 transition active:scale-95 shadow-sm">
+            <a href="https://hypixel.net/threads/november-3-magic-find-rework-testing-5-accessory-bag-revamp-economy-changes-testing-2.6168638/" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-[#111520] hover:bg-slate-700/60 border border-[#262e45] text-slate-300 hover:text-white text-xs font-semibold flex items-center space-x-1.5 transition active:scale-95 shadow-sm">
               <i class="fa-solid fa-arrow-up-right-from-square text-amber-400 text-[11px]"></i>
               <span>Hypixel 公告 ↗</span>
             </a>
@@ -3527,11 +3527,11 @@
         <!-- Precision Status Bar (替代原本 200px 冗长大黄框) -->
         <div id="cropEmergencyCallout" class="bg-[#111520]/80 border border-[#262e45] rounded-xl px-3.5 py-2 flex flex-wrap items-center justify-between gap-3 text-xs">
           <div class="flex flex-wrap items-center gap-2 text-slate-300">
-            <span class="crop-nerf-badge px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/15 text-rose-300 border border-rose-500/30">🔴 测试服削弱前瞻</span>
-            <span class="crop-arb-badge px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">🟢 正式服套利开放</span>
-            <span class="text-xs text-slate-300 hidden md:inline">正式服收购底价尚未下调，当前集市抛售破发差价显著，立买立卖即时锁定利润。</span>
-            <button onclick="openCropNerfModal()" class="text-xs text-amber-400 hover:text-amber-300 font-semibold underline underline-offset-2 flex items-center gap-1 transition ml-1 shrink-0" title="点击查看官方公告平衡草案与14种作物调价明细">
-              <i class="fa-solid fa-circle-info"></i> 调价对照与套利机制 ↗
+            <span class="crop-nerf-badge px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/15 text-rose-300 border border-rose-500/30">🔴 11.03 Alpha二次大砍</span>
+            <span class="crop-arb-badge px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">🟢 正式服保持原价</span>
+            <span class="text-xs text-slate-300 hidden md:inline">测试服西瓜降至0.5C、南瓜3C、仙人掌/胡萝卜/土豆1.5C。正式服尚未实装任何削弱，仍按原价全额收购，集市踩踏差价扩大！</span>
+            <button onclick="openCropNerfModal()" class="text-xs text-amber-400 hover:text-amber-300 font-semibold underline underline-offset-2 flex items-center gap-1 transition ml-1 shrink-0" title="点击查看官方公告平衡草案与两次测试调价明细">
+              <i class="fa-solid fa-circle-info"></i> 两次大砍对照与套利机制 ↗
             </button>
           </div>
           <div class="flex items-center gap-3 shrink-0 font-mono">
@@ -5417,16 +5417,16 @@
 
   <!-- CROP NERF & ARBITRAGE MECHANISM INFO MODAL -->
   <div id="cropNerfModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden bg-black/70 backdrop-blur-sm">
-    <div class="bg-[#111625] border border-amber-500/40 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl relative flex flex-col max-h-[85vh]">
+    <div class="bg-[#111625] border border-amber-500/40 rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[88vh]">
       <!-- Header -->
-      <div class="px-5 py-3.5 border-b border-[#1e293b] flex items-center justify-between shrink-0 bg-[#0c101b]">
+      <div class="px-5 py-3.5 border-b border-[#262e45] flex items-center justify-between shrink-0 bg-[#0c101b]">
         <div class="flex items-center space-x-2.5">
-          <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm font-bold">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-base font-bold shadow-sm">
             <i class="fa-solid fa-wheat-awn"></i>
           </div>
           <div>
-            <h3 class="text-sm font-bold text-white">农作物经济平衡草案与无风险套利机制</h3>
-            <p class="text-[10px] text-slate-400 font-mono">Hypixel 测试服公告 (2026-10-29/30) 深度解读</p>
+            <h3 class="text-sm font-bold text-white">农作物经济平衡草案与无风险套利机制 (Alpha 两次削弱追踪)</h3>
+            <p class="text-[10px] text-slate-400 font-mono">Hypixel 测试服 (2026-10-30 Testing #1 &amp; 2026-11-03 Testing #2) 深度追踪</p>
           </div>
         </div>
         <button onclick="closeCropNerfModal()" class="text-slate-400 hover:text-white transition p-1 text-sm">
@@ -5438,68 +5438,82 @@
       <div class="p-5 overflow-y-auto space-y-4 text-xs text-slate-300 leading-relaxed">
         <!-- Mechanism Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div class="p-3 rounded-xl bg-[#090d16] border border-rose-500/30">
+          <div class="p-3 rounded-xl bg-[#111520] border border-rose-500/30">
             <div class="flex items-center gap-1.5 font-bold text-rose-400 mb-1">
-              <i class="fa-solid fa-triangle-exclamation"></i> 测试服削弱前瞻
+              <i class="fa-solid fa-triangle-exclamation"></i> 11.03 测试服二次追加大砍 (Testing #2)
             </div>
             <p class="text-[11px] text-slate-400">
-              官方开发者草案拟大幅下调 14 种农作物及衍生品的 NPC 收购底价（跌幅达 25%~58%）。农夫与囤货商担忧实装后血亏，引发集市巨量恐慌抛售（Panic Sell），挂买单被直接砸穿！
+              官方在 10.30 方案基础上，于 11.03 发布第二版测试（Testing #2），对基础作物 NPC 回收价再度挥刀大砍：西瓜腰斩至 0.5C、南瓜降至 3C、仙人掌/胡萝卜/土豆/甘蔗/下界疣降至 1.5C、可可豆降至 1C，跌幅扩大至 50%~75%！被砍收益拟通过害虫捕猎补偿，直接重创被动收割农夫与囤货商，引发全服集市新一轮恐慌踩踏！
             </p>
           </div>
-          <div class="p-3 rounded-xl bg-[#090d16] border border-emerald-500/30">
+          <div class="p-3 rounded-xl bg-[#111520] border border-emerald-500/30">
             <div class="flex items-center gap-1.5 font-bold text-emerald-400 mb-1">
-              <i class="fa-solid fa-shield-halved"></i> 正式服套利窗口
+              <i class="fa-solid fa-shield-halved"></i> 正式服套利窗口仍全面开放
             </div>
             <p class="text-[11px] text-slate-400">
-              正式服<strong>仍维持原版高额 NPC 收购价</strong>！只要集市挂单/秒买成本低于现行 NPC 收购价，即刻买入转手 NPC 变现，即可赚取确定性无风险价差。
+              正式服<strong>尚未上线两次大砍中的任何一次，NPC 依然 100% 执行原始高额收购底价</strong>！只要集市买入成本低于现行 NPC 收购价，即刻买入转手 NPC 变现，即可赚取确定性无风险利差。
             </p>
           </div>
         </div>
 
-        <!-- 14 Crops Adjustment Table -->
-        <div class="border border-[#1e293b] rounded-xl overflow-hidden bg-[#090d16]">
-          <div class="bg-[#161e31] px-3 py-1.5 border-b border-[#1e293b] flex items-center justify-between font-mono text-[11px]">
-            <span class="font-bold text-slate-200">14 种基础农作物 NPC 收购价调价对照表</span>
+        <!-- 15 Crops Adjustment Multi-Version Table -->
+        <div class="border border-[#262e45] rounded-xl overflow-hidden bg-[#111520]">
+          <div class="bg-[#181d2c] px-3.5 py-2 border-b border-[#262e45] flex items-center justify-between font-mono text-[11px]">
+            <span class="font-bold text-slate-200">15 种农作物及衍生品 NPC 回收价两次削弱全对比</span>
             <span class="text-amber-400">单位: Coins / 个</span>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left text-[11px] font-mono">
-              <thead class="bg-[#0f1523] text-slate-400 border-b border-[#1e293b]">
+              <thead class="bg-[#181d2c] text-slate-400 border-b border-[#262e45]">
                 <tr>
                   <th class="py-1.5 px-2.5">作物品类</th>
-                  <th class="py-1.5 px-2.5 text-right">正式服现行原价</th>
-                  <th class="py-1.5 px-2.5 text-right text-rose-400">测试服拟调新价</th>
-                  <th class="py-1.5 px-2.5 text-right text-amber-400">跌幅</th>
-                  <th class="py-1.5 px-2.5 text-right text-emerald-400">满额 500M 需件数</th>
+                  <th class="py-1.5 px-2 text-right">正式服现行价</th>
+                  <th class="py-1.5 px-2 text-right text-slate-400">10.30测试#1</th>
+                  <th class="py-1.5 px-2 text-right text-rose-400 font-bold">11.03二次大砍</th>
+                  <th class="py-1.5 px-2 text-right text-amber-400">累计跌幅</th>
+                  <th class="py-1.5 px-2 text-right text-emerald-400">500M 需件数(新价)</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-[#1e293b]/40 text-slate-300">
-                <tr><td class="py-1.5 px-2.5 font-sans">🌾 Wheat (小麦)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">6.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">2.5 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-58.3%</td><td class="py-1.5 px-2.5 text-right text-slate-400">83.3 M</td></tr>
-                <tr><td class="py-1.5 px-2.5 font-sans">🎃 Pumpkin (南瓜)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">10.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">4.5 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-55.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">50.0 M</td></tr>
-                <tr><td class="py-1.5 px-2.5 font-sans">🍉 Melon (西瓜片)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">2.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">1.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">250.0 M</td></tr>
-                <tr><td class="py-1.5 px-2.5 font-sans">🩸 Nether Wart (地狱疣)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">2.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">125.0 M</td></tr>
-                <tr><td class="py-1.5 px-2.5 font-sans">🟤 Cocoa Beans (可可豆)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">3.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">1.5 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">166.7 M</td></tr>
-                <tr><td class="py-1.5 px-2.5 font-sans">🍄 Mushroom (红/褐蘑菇)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">5.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">3.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-40.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">100.0 M</td></tr>
-                <tr><td class="py-1.5 px-2.5 font-sans">🌵 Cactus (仙人掌)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">2.5 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-37.5%</td><td class="py-1.5 px-2.5 text-right text-slate-400">125.0 M</td></tr>
-                <tr><td class="py-1.5 px-2.5 font-sans">🎋 Sugar Cane (甘蔗)</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">2.5 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-37.5%</td><td class="py-1.5 px-2.5 text-right text-slate-400">125.0 M</td></tr>
-                <tr><td class="py-1.5 px-2.5 font-sans">🥔 Potato / 🥕 Carrot</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">3.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">2.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-33.3%</td><td class="py-1.5 px-2.5 text-right text-slate-400">166.7 M</td></tr>
-                <tr><td class="py-1.5 px-2.5 font-sans">🌻 Sunflower / 🌙 Moonflower / 🌹 Wild Rose</td><td class="py-1.5 px-2.5 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-300">3.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400">-25.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">125.0 M</td></tr>
+              <tbody class="divide-y divide-[#262e45]/40 text-slate-300">
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🍉 Melon (西瓜片)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">2.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">1.0 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">0.5 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-75.0%</td><td class="py-1.5 px-2 text-right text-slate-400">1,000.0 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🎃 Pumpkin (南瓜)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">10.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">4.5 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">3.0 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-70.0%</td><td class="py-1.5 px-2 text-right text-slate-400">166.7 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🟤 Cocoa Beans (可可豆)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">3.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">1.5 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">1.0 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-66.7%</td><td class="py-1.5 px-2 text-right text-slate-400">500.0 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🍄 Mushroom (红/棕蘑菇)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">10.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">5.0 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">3.5 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-65.0%</td><td class="py-1.5 px-2 text-right text-slate-400">142.9 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🩸 Nether Wart (地狱疣)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">2.0 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">1.5 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-62.5%</td><td class="py-1.5 px-2 text-right text-slate-400">333.3 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🌵 Cactus (仙人掌)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">2.5 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">1.5 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-62.5%</td><td class="py-1.5 px-2 text-right text-slate-400">333.3 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🎋 Sugar Cane (甘蔗)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">2.5 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">1.5 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-62.5%</td><td class="py-1.5 px-2 text-right text-slate-400">333.3 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🌾 Wheat (小麦)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">6.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">2.5 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">2.5 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-58.3%</td><td class="py-1.5 px-2 text-right text-slate-400">200.0 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🥔 Potato (土豆)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">3.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">2.0 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">1.5 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">333.3 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🥕 Carrot (胡萝卜)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">3.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">2.0 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">1.5 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">333.3 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🌻 Sunflower (向日葵)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">3.0 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">2.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400 font-bold">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">250.0 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🌙 Moonflower (月光花)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">3.0 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">2.0 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">250.0 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🌹 Wild Rose (野玫瑰)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">4.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">3.0 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">2.0 C</td><td class="py-1.5 px-2.5 text-right text-rose-400 font-bold">-50.0%</td><td class="py-1.5 px-2.5 text-right text-slate-400">250.0 M</td></tr>
+                <tr class="hover:bg-slate-800/20"><td class="py-1.5 px-2.5 font-sans">🌱 Seeds (小麦种子)</td><td class="py-1.5 px-2 text-right font-bold text-emerald-400">3.0 C</td><td class="py-1.5 px-2 text-right text-slate-400">1.0 C</td><td class="py-1.5 px-2 text-right text-rose-300 font-bold">1.0 C</td><td class="py-1.5 px-2 text-right text-rose-400 font-bold">-66.7%</td><td class="py-1.5 px-2.5 text-right text-slate-400">500.0 M</td></tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-200/90 text-[11px]">
-          <strong class="text-amber-400">💡 关键操盘风控提醒：</strong>
-          1. 优先套利 T2 紧实附魔作物（单车货值高，极低背包人次即可搬完 500M 限额）；
-          2. 若某作物进货成本已跌破「测试服拟调新价」，则属于<strong>绝对无风险（Safe Floor）</strong>——即便官方突然突袭实装更新，按新价卖给 NPC 也绝不亏损！
+        <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200/90 text-[11px] space-y-1">
+          <div class="font-bold text-amber-400 flex items-center gap-1.5 text-xs">
+            <i class="fa-solid fa-lightbulb"></i> 操盘实战与风控安全垫指南：
+          </div>
+          <p>1. <strong>优先选择 T2 紧实附魔作物</strong>：T2 单件面值极高（如 Compacted Moonflower 51.2k、Polished Pumpkin 76.8k），仅需少量背包次数即可搬空 500M 每日额度，避免搬运原版生作物的手工疲劳。</p>
+          <p>2. <strong>终极安全垫（Safe Floor）</strong>：本系统大表第 6 列「削弱后底线」已全面接入 11.03 Testing #2 最新大砍底价。若某个作物的集市采购成本已跌破 Testing #2 底线（如南瓜买价低于 3C、西瓜买价低于 0.5C），则具备<strong>双重绝对安全垫</strong>——即便官方突袭上线更新，转手新 NPC 也绝不亏损！</p>
         </div>
       </div>
 
       <!-- Footer -->
-      <div class="px-5 py-3 bg-[#0c101b] border-t border-[#1e293b] flex items-center justify-between text-xs">
-        <span class="text-slate-500">点击背景或右上角关闭</span>
-        <button onclick="closeCropNerfModal()" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition">
+      <div class="px-5 py-3 bg-[#0c101b] border-t border-[#262e45] flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex items-center space-x-2">
+          <a href="https://hypixel.net/threads/november-3-magic-find-rework-testing-5-accessory-bag-revamp-economy-changes-testing-2.6168638/" target="_blank" class="px-2.5 py-1 rounded bg-[#181d2c] hover:bg-slate-700 text-slate-300 hover:text-white text-[11px] font-mono border border-[#262e45] transition flex items-center gap-1">
+            <i class="fa-solid fa-arrow-up-right-from-square text-amber-400"></i> 11.03 官方贴 ↗
+          </a>
+          <a href="https://hypixel.net/threads/october-29-accessory-bag-revamp-economy-changes.6165308/" target="_blank" class="px-2.5 py-1 rounded bg-[#181d2c] hover:bg-slate-700 text-slate-400 hover:text-white text-[11px] font-mono border border-[#262e45] transition flex items-center gap-1">
+            <i class="fa-solid fa-arrow-up-right-from-square text-slate-500"></i> 10.30 方案 ↗
+          </a>
+        </div>
+        <button onclick="closeCropNerfModal()" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition active:scale-95 shadow-sm">
           我知道了
         </button>
       </div>
