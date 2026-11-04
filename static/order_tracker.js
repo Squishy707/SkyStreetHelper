@@ -1,5 +1,5 @@
 /**
- * SkyStreetHelper - Bazaar Order Tracker & Radar (alpha 0.5.0)
+ * SkyStreetHelper - Bazaar Order Tracker & Radar (alpha 0.5.1)
  * 集市挂单雷达与实时盯盘监控系统
  * - 实时排位与前方压单量计算 (Queue Ranking & Ahead Volume)
  * - 榜首最优竞价与加价夺回建议 (Top Competing Price & +0.1 Reclaim)

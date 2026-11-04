@@ -589,7 +589,7 @@ T2_TO_T1_MAP = {
 
 class CropArbitrageService:
     def __init__(self):
-        self.version = "alpha 0.5.0"
+        self.version = "alpha 0.5.1"
         self.definitions = CROP_DEFINITIONS
 
     def calculate_arbitrage(self, bz_cache: Dict[str, Any]) -> Dict[str, Any]:

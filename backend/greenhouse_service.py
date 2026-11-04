@@ -25,7 +25,7 @@ JSON_PATH = os.path.join(DATA_DIR, "greenhouse_mutations.json")
 
 class GreenhouseService:
     def __init__(self):
-        self.version = "alpha 0.5.0"
+        self.version = "alpha 0.5.1"
         self.mutations: List[Dict[str, Any]] = []
         self.base_crops: List[Dict[str, Any]] = []
         self.npc_prices: Dict[str, float] = {}
@@ -58,7 +58,7 @@ class GreenhouseService:
     def _load_from_json(self, path: str):
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
-            self.version = data.get("version", "alpha 0.5.0")
+            self.version = data.get("version", "alpha 0.5.1")
             self.base_crops = data.get("base_crops", [])
             self.mutations = data.get("mutations", [])
             self.aloe_stages = {int(k): float(v) for k, v in data.get("aloe_stages", {}).items()}

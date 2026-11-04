@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 >nul
-title SkyStreetHelper (alpha 0.5.0)
+title SkyStreetHelper (alpha 0.5.1)
 python run_server.py
 if %ERRORLEVEL% NEQ 0 (
     echo.

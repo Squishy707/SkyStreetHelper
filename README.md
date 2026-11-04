@@ -1,4 +1,8 @@
-# SkyStreetHelper (alpha 0.5.0)
+# SkyStreetHelper (alpha 0.5.1)
+
+> 🪦 **Rest in peace, farmers!**  
+> **再见了，所有的农批。**  
+> *(致敬在 2026-10-30 与 2026-11-03 连续两次测试服 NPC 收购底价断崖大砍中灰飞烟灭的农业时代。被动收割已死，害虫捕猎当立；悲报已至，集市踩踏，唯有量化套利永存。)*
 
 > **Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking, Greenhouse Mutations, Crop Dump Arbitrage and Order Radar**
 > **Hypixel Skyblock 助手：宝石锻造倒卖、集市Shard询价、温室突变精算、农作物破发套利与集市挂单盯盘雷达**
@@ -13,7 +17,7 @@
 > - **English**: While Hypixel SkyBlock content is natively in English—and this tool **fully supports searching items using their official English in-game names**—the user interface (UI) is designed exclusively in **Simplified Chinese**. There are currently **no plans** to support an English UI localization.
 
 
-[![Release](https://img.shields.io/badge/Release-alpha%200.5.0-blue.svg)](https://github.com/Squishy707/SkyStreetHelper/releases)
+[![Release](https://img.shields.io/badge/Release-alpha%200.5.1-blue.svg)](https://github.com/Squishy707/SkyStreetHelper/releases)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-teal.svg)](https://fastapi.tiangolo.com/)
 [![License](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
@@ -105,7 +109,7 @@
 便携版（无需安装 Python）：
 
 1. 前往 GitHub 仓库右侧的 [**Releases**](https://github.com/Squishy707/SkyStreetHelper/releases) 页面；
-2. 找到最新版本（`alpha 0.5.0`），在附件列表下载 **`SkyStreetHelper_0.5.0.exe`**；
+2. 找到最新版本（`alpha 0.5.1`），在附件列表下载 **`SkyStreetHelper_0.5.1.exe`**；
 3. 将 `.exe` 放置在任意文件夹中，**双击直接运行**；
 4. 程序启动后会自动打开系统默认浏览器，访问 `http://localhost:8000` 即可开始使用；
 5. **安全退出**：可在网页顶栏点击红色的 `[关闭服务]` 按钮，或在终端按 `Ctrl + C`。
@@ -151,7 +155,7 @@ pip install -r requirements.txt
 pip install pyinstaller
 python build_exe.py
 ```
-- 打包产物将自动输出至 `dist/SkyStreetHelper_0.5.0.exe`（及带时间戳归档副本）。
+- 打包产物将自动输出至 `dist/SkyStreetHelper_0.5.1.exe`（及带时间戳归档副本）。
 
 ---
 
@@ -191,6 +195,28 @@ SkyStreetHelper/
 ---
 
 ## 📌 版本更新日志 (Changelog)
+
+### alpha 0.5.1 (2026-11-04)
+- **农业二次大砍深度追踪（November 3 Alpha Testing #2 接入）**：
+  - **连续削弱追踪**：接入官方 2026-11-03 发布的第二版测试草案（Testing #2），西瓜腰斩至 0.5C、南瓜压降至 3.0C、仙人掌/胡萝卜/土豆/甘蔗/下界疣统一压降至 1.5C、可可豆降至 1.0C、蘑菇 3.5C，累计跌幅扩大至 50%~75%；
+  - **正式服原价基准保护**：由于官方尚未实装两次大砍中的任何一次，系统坚守正式服现行高额回收价计算无风险即时变现利润；
+  - **终极穿仓底线（Safe Floor）与双重安全垫**：大表第 6 列全线接入 Testing #2 最严苛底价作为风控基准，精准识别跌破新底价的「双重绝对防穿仓品种」；
+  - **大砍演进全景弹窗（Crop Nerf Modal）**：全新上线 15 大农作物从「正式服现行原价」➔「10.30 初版测试」➔「11.03 二次大砍」的三阶段价格演进大表，并附官方双贴直达按钮。
+- **全站视觉体验深度重构（黑曜石量化终端 Scheme A & 浅色模式全覆写）**：
+  - **金融级等宽排版**：全量启用 `tabular-nums` 与 JetBrains Mono 风格等宽数字栈，彻底解决财务数据列对齐抖动；
+  - **浅色模式（Light Mode）全白底无缝覆写**：全面修正暗黑 Token 在浅色模式下的残留，彻底消除「黑底黑字不可见」与色块割裂问题；
+  - **选项卡与徽标修复**：清除导航 Tab 中的重复 Emoji 麦穗，重塑激活态高反差琥珀徽章，达到 WCAG AA 级无障碍阅读标准；
+  - **农作物品阶微徽标系统（Micro Corner Badge）**：
+    - T0（标准 / Standard）：100% 还原基础作物鲜艳生动色彩，仅边框采用低调中性浅灰，彻底移除灰度滤镜；
+    - T1（附魔 / Enchanted）：右上角锚定迷你附魔星芒微徽标（`✨`）与翡翠荧光框；
+    - T2（紧实 / Compacted）：右上角锚定迷你致密方块微徽标（`📦`）与蓝晶高阶框；
+    - 根除多 Emoji 拼接造成的容器横向溢出与裁剪换行 bug。
+- **325 种 Attribute Shard 数据全面对齐与维护**：
+  - 同步权威社区 SkyShards.com 最新数据：移除废弃词条（L61 Burningsoul、E53 Folf、U107 Chocobun 及重复 R72 Flora）；
+  - 补充新词条（C48 Rabbit Youth、U73 Fiesta Fortune、R28 Catacombs Cap、L52 Flora）；
+  - 将 E48 Inferno Demonlord 准确映射至集市代码 `SHARD_BURNINGSOUL`。
+- **界面语言与检索说明醒目化**：
+  - 在 README 顶部规范嵌入 GitHub GFM `> [!IMPORTANT]` 原生警示框，提供规范地道的中英双语界面与物品名称检索指引。
 
 ### alpha 0.5.0 (2026-10-31)
 - **全新模块上线：农作物集市倾销与破发套利雷达（CropArbitrage）**：

@@ -43,8 +43,8 @@ FALLBACK_CSV_PATH = os.path.join(BASE_DIR, "backend", "data", "bazaar_fallback.c
 
 app = FastAPI(
     title="SkyStreetHelper API",
-    description="Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking, Greenhouse Mutations and Crop Dump Arbitrage (alpha 0.5.0)",
-    version="alpha 0.5.0"
+    description="Hypixel Skyblock Helper: Forge Gem-Flipping, Shard Price Tracking, Greenhouse Mutations and Crop Dump Arbitrage (alpha 0.5.1)",
+    version="alpha 0.5.1"
 )
 
 # Enable CORS
@@ -535,7 +535,7 @@ def download_shards_dictionary_csv():
     if os.path.exists(dict_file):
         return FileResponse(
             dict_file, 
-            filename="SkyBlock_Shards_Dictionary_v0.5.0.csv",
+            filename="SkyBlock_Shards_Dictionary_v0.5.1.csv",
             media_type="text/csv; charset=utf-8"
         )
     raise HTTPException(status_code=404, detail="Shard 词典 CSV 文件未就绪")
@@ -601,14 +601,14 @@ def export_greenhouse_csv():
     if os.path.exists(csv_file):
         return FileResponse(
             csv_file,
-            filename="SkyBlock_Greenhouse_Mutations_v0.5.0.csv",
+            filename="SkyBlock_Greenhouse_Mutations_v0.5.1.csv",
             media_type="text/csv; charset=utf-8"
         )
     raise HTTPException(status_code=404, detail="温室突变 CSV 字典文件未找到")
 
 
 # ==============================================================================
-# 农作物集市倾销与破发套利 API (Crop Dump Arbitrage - alpha 0.5.0)
+# 农作物集市倾销与破发套利 API (Crop Dump Arbitrage - alpha 0.5.1)
 # ==============================================================================
 @app.get("/api/crops/arbitrage")
 def get_crop_arbitrage():
@@ -652,12 +652,12 @@ def export_crop_arbitrage_csv():
     return Response(
         content=csv_content.encode("utf-8"),
         media_type="text/csv; charset=utf-8",
-        headers={"Content-Disposition": 'attachment; filename="SkyBlock_Crop_Arbitrage_v0.5.0.csv"'}
+        headers={"Content-Disposition": 'attachment; filename="SkyBlock_Crop_Arbitrage_v0.5.1.csv"'}
     )
 
 
 # ==============================================================================
-# 挂单雷达与成交追踪 API (Bazaar Order Tracker - alpha 0.5.0)
+# 挂单雷达与成交追踪 API (Bazaar Order Tracker - alpha 0.5.1)
 # ==============================================================================
 @app.post("/api/tracker/inspect")
 def inspect_tracked_orders(req: BatchInspectRequest):

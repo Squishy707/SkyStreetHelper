@@ -1,5 +1,5 @@
 /**
- * SkyStreetHelper - Crop Arbitrage & Panic Dump Radar Logic (alpha 0.5.0)
+ * SkyStreetHelper - Crop Arbitrage & Panic Dump Radar Logic (alpha 0.5.1)
  * 农作物集市倾销与破发套利雷达 (应对 2026-10-30 测试服 NPC 卖价大削弱)
  * 支持多渠道买入进货 (BO, IB, T1合成)、多渠道卖出 (NPC现价, 集市挂单, 集市秒卖, 削弱底线)
  * 深度集成 NPC 每日 500M 出售上限与集市 15.00 B 流水限额风控
