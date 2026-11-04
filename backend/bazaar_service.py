@@ -89,6 +89,30 @@ class BazaarService:
         except Exception as e:
             print(f"[Bazaar Data] [WARN] 读取 CSV 备用快照失败: {e}")
 
+    def _save_to_csv(self) -> None:
+        """Persists current in-memory cache to CSV so fallback is always comprehensive and fresh."""
+        try:
+            if not self._cache:
+                return
+            os.makedirs(os.path.dirname(self.csv_backup_path), exist_ok=True)
+            rows = [["product_id", "buy_price", "sell_price", "buy_volume", "sell_volume", "buy_moving_week", "sell_moving_week"]]
+            for pid, pdata in sorted(self._cache.items()):
+                qs = pdata.get("quick_status", {})
+                rows.append([
+                    pid,
+                    qs.get("buyPrice", 0.0),
+                    qs.get("sellPrice", 0.0),
+                    qs.get("buyVolume", 0),
+                    qs.get("sellVolume", 0),
+                    qs.get("buyMovingWeek", 0),
+                    qs.get("sellMovingWeek", 0),
+                ])
+            with open(self.csv_backup_path, "w", encoding="utf-8-sig", newline="") as f:
+                writer = csv.writer(f)
+                writer.writerows(rows)
+        except Exception as e:
+            print(f"[Bazaar Data] [WARN] 自动保存 CSV 快照失败: {e}")
+
     def fetch_live_bazaar(self, force: bool = False, max_age_seconds: int = 60) -> Dict[str, Any]:
         """
         Fetches live data from Hypixel API if cache is older than max_age_seconds or forced.
@@ -124,9 +148,14 @@ class BazaarService:
                         
                         dt_str = self._format_beijing_time(self._last_updated_ms)
                         print(f"[Bazaar API] [OK] 成功拉取实时数据: 获得 {len(self._cache)} 件商品 | 耗时: {latency}s | 市场时间: {dt_str}")
+                        # Auto-update CSV snapshot if healthy
+                        if len(self._cache) > 100:
+                            self._save_to_csv()
                         return self._format_response()
                     else:
                         print(f"[Bazaar API] [WARN] Hypixel 接口返回失败: {data.get('cause')}")
+                elif resp.status_code == 403:
+                    print(f"[Bazaar API] [WARN] Hypixel HTTP 403 Forbidden (Cloudflare 拦截，通常因国内直连 IP 触发 Error 1006 防护)。已自动无缝切换至包含 {len(self._cache)} 项商品的本地全量快照。请检查代理软件的分流规则，确保 api.hypixel.net 走代理节点。")
                 else:
                     print(f"[Bazaar API] [WARN] Hypixel HTTP 异常状态码: {resp.status_code}")
             except Exception as e:
@@ -191,6 +220,10 @@ class BazaarService:
                     perk_str = f"Molten Forge 锻炉减免 = {'生效 (-25%)' if molten_forge_active else '未生效'}"
                     print(f"[Election API] [OK] 选举信息获取成功 (耗时 {latency}s): 市长 = {current_mayor_name}, 部长 = {minister_name} | {perk_str}")
                     return self._last_election_info
+                elif resp.status_code == 403:
+                    print(f"[Election API] [WARN] Hypixel HTTP 403 Forbidden (Cloudflare 拦截)，已采用默认市长与部长配置。")
+                else:
+                    print(f"[Election API] [WARN] Hypixel HTTP 异常状态码: {resp.status_code}")
             except Exception as e:
                 self._election_last_fetched = time.time()
                 print(f"[Election API] [WARN] 选举信息获取失败 ({type(e).__name__}: {e})，已采用默认配置。")
